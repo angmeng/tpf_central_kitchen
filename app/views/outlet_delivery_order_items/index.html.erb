@@ -1,0 +1,28 @@
+<h1>Listing outlet_delivery_order_items</h1>
+
+<table>
+  <tr>
+    <th>Outlet delivery order</th>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Unit price</th>
+    <th>Remark</th>
+  </tr>
+
+<% @outlet_delivery_order_items.each do |outlet_delivery_order_item| %>
+  <tr>
+    <td><%=h outlet_delivery_order_item.outlet_delivery_order_id %></td>
+    <td><%=h outlet_delivery_order_item.product_id %></td>
+    <td><%=h outlet_delivery_order_item.quantity %></td>
+    <td><%=h outlet_delivery_order_item.unit_price %></td>
+    <td><%=h outlet_delivery_order_item.remark %></td>
+    <td><%= link_to 'Show', outlet_delivery_order_item %></td>
+    <td><%= link_to 'Edit', edit_outlet_delivery_order_item_path(outlet_delivery_order_item) %></td>
+    <td><%= link_to 'Destroy', outlet_delivery_order_item, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New outlet_delivery_order_item', new_outlet_delivery_order_item_path %>

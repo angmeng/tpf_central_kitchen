@@ -1,0 +1,36 @@
+<% title "outlet staff" %>
+<br />
+<%= link_to 'New outlet staff', new_outlet_staff_path %>
+<br /><br />
+<table class="list">
+  <thead>
+  <tr>
+    <th>Fullname</th>
+    <th>Nickname</th>
+	<th>Login</th>
+    <th>Outlet</th>
+    <th>Suspend</th>
+ 
+    <th>Action</th>
+  </tr>
+    </thead>
+   <tbody>
+<% @outlet_staffs.each do |outlet_staff| %>
+  <tr class="<%= cycle("odd", "even") %>">
+    <td align="center"><%=h outlet_staff.fullname %></td>
+    <td align="center"><%=h outlet_staff.nickname %></td>
+	<td align="center"><%=h outlet_staff.login %></td>
+    <td align="center"><%=h outlet_staff.outlet.name %></td>
+    <td align="center"><%=h outlet_staff.suspend %></td>
+    <td align="center"><%= link_to image_tag("show.png", :title => "show"), outlet_staff %>
+   <%= link_to image_tag("edit.png", :title => "Edit"), edit_outlet_staff_path(outlet_staff) %>
+    <%= link_to image_tag("delete.png", :title => "Delete"), outlet_staff, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+<br />
+
+
+

@@ -1,0 +1,35 @@
+
+<% title "Packing lists" %>
+<br />
+
+<table class="list">
+  <thead>
+  <tr>
+    <th>Packing list number</th>
+    <th>Packing date</th>
+    <th>Description</th>
+    <th>Void</th>
+    <th>Settled</th>
+	<th>Action</th>
+  </tr>
+    </thead>
+   <tbody>
+
+<% @packing_lists.each do |packing_list| %>
+   <tr class="<%= cycle("odd", "even") %>">
+    <td align="center"><%=h packing_list.packing_list_number %></td>
+    <td align="center"><%=h packing_list.packing_date %></td>
+    <td align="center"><%=h packing_list.description %></td>
+    <td align="center"><%=h packing_list.void %></td>
+    <td align="center"><%=h packing_list.settled %></td>
+    <td align="center"><%= link_to image_tag("show.png", :title => "show"), packing_list %>
+  
+	<%= link_to image_tag("edit.png", :title => "Edit"), edit_packing_list_path(packing_list) %>
+    <%= link_to image_tag("delete.png", :title => "Delete"), packing_list, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+
+<br />
+

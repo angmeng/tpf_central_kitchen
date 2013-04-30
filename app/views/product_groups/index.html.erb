@@ -1,0 +1,33 @@
+
+<% title "Listing product groups"  %>
+<br />
+<%= link_to image_tag("new.png", :title => "New"), new_product_group_path %>
+<br />
+<br />
+<table class="list">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Suspend</th>
+	<th>Action</th>
+  </tr>
+    </thead>
+   <tbody>
+<% @product_groups.each do |product_group| %>
+   <tr class="<%= cycle("odd", "even") %>" align="center">
+    <td><%=h product_group.name %></td>
+    <td><%=h product_group.description %></td>
+    <td><%=h product_group.suspend %></td>
+ 
+
+      <td><%= link_to image_tag("show.png", :title => "show"), product_group %>
+      <%= link_to image_tag("edit.png", :title => "Edit"),  edit_product_group_path(product_group) %>
+      <%= link_to image_tag("delete.png", :title => "Delete"), product_group, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+<br />
+

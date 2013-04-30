@@ -1,0 +1,47 @@
+<% title (t "titles.report_for_profit_loss") %>
+<em>
+	<%= params[:from].to_s %> to <%= params[:to].to_s %>
+</em> | 
+<%= link_to (t "links.back"), :action => "profit_and_loss" %>
+<br /><br />
+<table class="list">
+  <thead>
+  <tr>
+    <th><%=t "report.group" %></th>
+    <th><%=t "report.total_sales" %></th>
+    <th><%=t "report.total_profit" %></th>
+	
+  </tr>
+    </thead>
+   <tbody>
+  <% grand_sales = 0.0
+     grand_profit = 0.0
+     for result in @results 
+       grand_sales += result.total_sales
+       grand_profit += result.total_profit
+   %>
+    <tr class="<%= cycle("list0", "list1") %>">
+      <td align="center"><%=h result.name %></td>
+      <td align="center">RM <%=h number_with_precision(result.total_sales, :precision => 2) %></td>
+      <td align="center">RM <%=h number_with_precision(result.total_profit, :precision => 2) %></td>
+      
+    </tr>
+  <% end %>
+  
+    <tr>
+    	<td align="center"><%=t "report.total_expenses" %></td>
+		<td></td>
+		<td align="center">RM (<%= number_with_precision(@total_expenses, :precision => 2) %>)</td>
+    </tr>
+		
+  <% grand_profit -= @total_expenses %>
+  <tr>
+  	<td></td>
+	<td align="center"><hr>RM <%= number_with_precision(grand_sales, :precision => 2) %><hr><hr></td>
+	<td align="center"><hr>RM <%= number_with_precision(grand_profit, :precision => 2) %><hr><hr></td>
+  </tr>
+   </tbody>
+</table>
+
+<br />
+

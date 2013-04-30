@@ -1,0 +1,50 @@
+<% title (t "titles.store_location") %>
+
+<p>
+  <strong><%=t 'common.name' %>:</strong>
+  <%=h @store_location.name %>
+</p>
+<p>
+  <strong><%=t 'common.description' %>:</strong>
+  <%=h @store_location.description %>
+</p>
+
+<p>
+ <%= link_to image_tag("edit.png", :title => "Edit"), edit_store_location_path(@store_location) %> |
+ <%= link_to image_tag("delete.png", :title => "Delete"), @store_location, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to image_tag("home.png", :title => "View All"), store_locations_path %>
+</p>
+
+<hr />
+<br />
+
+
+<%= form_tag update_balance_store_location_path(@store_location) do %>
+<table style="width:100%">
+	<tr>
+		<th><%=t 'product.code' %></th>
+		<th><%=t 'common.name' %></th>
+		<th><%=t 'stock.quantity' %></th>
+		<th><%=t 'product.open_balance' %></th>
+		<th><%=t 'common.action' %></th>
+	</tr>
+	
+	
+		<% for p in @stocks %>
+		 <tr class="<%= cycle("list0", "list1") %>">
+		  <td><%= p.product.code rescue "None" %></td>
+		  <td><%= p.product.name rescue "None" %></td>
+		  <td align="center"><%= p.total_quantity %></td>
+		  <td align="center"><%= text_field_tag "stock[" + p.id.to_s + "][open_balance]", p.opening_balance, :size => 5 %></td>
+		  <td align="center"><%= link_to (t "links.show"), p %></td>
+		  </tr>
+		<% end %>
+		<tr>
+			<td colspan="3"></td>
+			<td align="center"><%= submit_tag (t "links.update") %></td>
+		</tr>
+	
+</table>
+<% end %>
+
+<br /><br />

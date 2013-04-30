@@ -1,0 +1,36 @@
+<h1>Editing packing_order_item</h1>
+
+<% form_for(@packing_order_item) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :packing_list_id %><br />
+    <%= f.text_field :packing_list_id %>
+  </p>
+  <p>
+    <%= f.label :outlet_purchase_order_id %><br />
+    <%= f.text_field :outlet_purchase_order_id %>
+  </p>
+  <p>
+    <%= f.label :outlet_id %><br />
+    <%= f.text_field :outlet_id %>
+  </p>
+  <p>
+    <%= f.label :product_id %><br />
+    <%= f.text_field :product_id %>
+  </p>
+  <p>
+    <%= f.label :quantity %><br />
+    <%= f.text_field :quantity %>
+  </p>
+  <p>
+    <%= f.label :picked %><br />
+    <%= f.check_box :picked %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @packing_order_item %> |
+<%= link_to 'Back', packing_order_items_path %>

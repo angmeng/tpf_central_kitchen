@@ -1,0 +1,27 @@
+<% title "Administrator Login" %>
+
+	<% if flash[:error] %>
+	<div align="center" style="width:100%;color:red">
+		<%= flash[:error] %>
+	</div>
+	<% end %>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>Administrator LOGIN<br /><br /></td>
+  </tr>
+  <tr>
+    <td><%= form_tag sessions_path do %>
+	<%= hidden_field_tag "login_type", "admin" %>
+      <label>Name  
+        <input name="login" type="text" id="login" />
+      </label>
+      <label>Password  
+      <input type="password" name="password" id="password" style="margin-top:5px;" />
+      </label>
+      <label>
+       <input type="submit" name="button" id="button" value="Login" />
+      </label>
+    <% end %>   </td>
+  </tr>
+</table>
+ 

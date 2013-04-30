@@ -1,0 +1,34 @@
+<h1>Listing stock_transfers</h1>
+
+<table class="list">
+  <thead>
+  <tr>
+  	<th>Transfer date</th>
+    <th>Product</th>
+    <th>From Location</th>
+    <th>To Location</th>
+    <th>Quantity</th>
+	<th>Action</th>
+    
+  </tr>
+  </thead>
+   <tbody>
+<% @stock_transfers.each do |stock_transfer| %>
+   <tr class="<%= cycle("odd", "even") %>">
+  	<td align="center"><%=h stock_transfer.transfer_date %></td>
+    <td align="center"><%=h stock_transfer.product.name %></td>
+    <td align="center"><%=h stock_transfer.from_store_location_name %></td>
+    <td align="center"><%=h stock_transfer.store_location.name %></td>
+    <td align="center"><%=h stock_transfer.quantity %></td>
+    
+    <td align="center"><%= link_to (t "links.show"), stock_transfer %>
+   
+    <%= link_to (t "links.destroy"), stock_transfer, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+<br />
+
+<%= link_to image_tag("new.png", :title => "New"), new_stock_transfer_path %>

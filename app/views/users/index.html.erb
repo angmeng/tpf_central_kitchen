@@ -1,0 +1,36 @@
+
+<% title (t "titles.user") %>
+<br />
+<% if is_admin? %>
+<p><%= link_to image_tag("new.png", :title => "New"), new_user_path %></p>
+<% end %>
+<br />
+<table class="list">
+  <thead>
+  <tr>
+    <th><%=t 'user.user_name' %></th>
+    <th><%=t 'user.department' %></th>
+    <th><%=t 'user.email' %></th>
+	<th><%=t 'common.action' %></th>
+  </tr>
+    </thead>
+   <tbody>
+  <% for user in @users %>
+     <tr class="<%= cycle("odd", "even") %>">
+  
+      <td><%=h user.username %></td>
+      <td><%=h user.department.name rescue "None" %></td>
+      <td><%=h user.email %></td>
+      <td align="center">
+      <%= link_to image_tag("edit.png", :title => "Edit"), edit_user_path(user) %>
+	 
+      <%= link_to image_tag("delete.png", :title => "Delete"), user, :confirm => 'Are you sure?', :method => :delete %>
+	  <%=  link_to image_tag("password.png", :title => "Change Password"), change_password_user_path(user)%>
+	  </td>
+    </tr>
+  <% end %>
+   </tbody>
+</table>
+
+<br />
+<%= will_paginate @users %>

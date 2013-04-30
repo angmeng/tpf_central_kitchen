@@ -1,0 +1,37 @@
+<% title "Outlet Staff" %>
+<br />
+
+<%= link_to (t "links.change_password"), change_password_outlet_staff_path(@outlet_staff)%>
+<% if is_admin? %>
+|
+<%= link_to (t "links.edit"), edit_outlet_staff_path(@outlet_staff) %> |
+<%= link_to (t "links.back"), outlet_staffs_path %>
+<% end %>
+<br /><br />
+<p>
+  <b>Fullname:</b>
+  <%=h @outlet_staff.fullname %>
+</p>
+
+<p>
+  <b>Nickname:</b>
+  <%=h @outlet_staff.nickname %>
+</p>
+
+<p>
+  <b>Login:</b>
+  <%=h @outlet_staff.login %>
+</p>
+
+<p>
+  <b>Outlet:</b>
+  <%=h @outlet_staff.outlet.name %>
+</p>
+
+<p>
+  <b>Suspend:</b>
+  <%=h @outlet_staff.suspend %>
+</p>
+
+
+

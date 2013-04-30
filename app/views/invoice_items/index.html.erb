@@ -1,0 +1,25 @@
+<% title "Invoice Items" %>
+
+<table>
+  <tr>
+    <th>Invoice</th>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Unit Price</th>
+    <th>Remark</th>
+  </tr>
+  <% for invoice_item in @invoice_items %>
+    <tr>
+      <td><%=h invoice_item.invoice_id %></td>
+      <td><%=h invoice_item.product_id %></td>
+      <td><%=h invoice_item.quantity %></td>
+      <td><%=h invoice_item.unit_price %></td>
+      <td><%=h invoice_item.remark %></td>
+      <td><%= link_to "Show", invoice_item %></td>
+      <td><%= link_to "Edit", edit_invoice_item_path(invoice_item) %></td>
+      <td><%= link_to "Destroy", invoice_item, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Invoice Item", new_invoice_item_path %></p>

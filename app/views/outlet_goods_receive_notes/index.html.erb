@@ -1,0 +1,33 @@
+<h1>Listing outlet_goods_receive_notes</h1>
+
+<table class="list">
+  <thead>
+  <tr>
+    <th>Outlet</th>
+    <th>Grn number</th>
+    <th>Grn date</th>
+    <th>Remark</th>
+    <th>Void</th>
+    <th>Settled</th>
+  </tr>
+</thead>
+   <tbody>
+<% @outlet_goods_receive_notes.each do |outlet_goods_receive_note| %>
+  <tr class="<%= cycle("odd", "even") %>">
+    <td><%=h outlet_goods_receive_note.outlet_id %></td>
+    <td><%=h outlet_goods_receive_note.grn_number %></td>
+    <td><%=h outlet_goods_receive_note.grn_date %></td>
+    <td><%=h outlet_goods_receive_note.remark %></td>
+    <td><%=h outlet_goods_receive_note.void %></td>
+    <td><%=h outlet_goods_receive_note.settled %></td>
+    <td><%= link_to 'Show', outlet_goods_receive_note %></td>
+    <td><%= link_to 'Edit', edit_outlet_goods_receive_note_path(outlet_goods_receive_note) %></td>
+    <td><%= link_to 'Destroy', outlet_goods_receive_note, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+ </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New outlet_goods_receive_note', new_outlet_goods_receive_note_path %>

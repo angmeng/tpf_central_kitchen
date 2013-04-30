@@ -1,0 +1,43 @@
+<% title (t "titles.department") %>
+<br />
+
+<%= link_to image_tag("edit.png", :title => "Edit"), edit_department_path(@department) %> |
+<%= link_to image_tag("home.png", :title => "View All"), departments_path %>
+<br />
+<br />
+<table>
+	<tr>
+		<td style="font-weight:bold;width:25%"><%=t 'department.name' %> : </td>
+		<td style="text-align:left"><%=h @department.name %></td>
+	</tr>
+	<tr>
+		<td style="font-weight:bold;" valign="top"><%=t 'department.description' %> : </td>
+		<td style="text-align:left" valign="top"><%=h @department.description %></td>
+	</tr>
+	<tr>
+		<td style="font-weight:bold;" valign="top"><%=t 'department.message' %> : </td>
+		<td style="text-align:left" valign="top"><%= @department.message %></td>
+	</tr>
+	<tr>
+		<td style="font-weight:bold;"><%=t 'department.builtin' %> : </td>
+		<td style="text-align:left"><%=h @department.builtin %></td>
+	</tr>
+</table>
+<br />
+<hr />
+<br />
+<h2>Assigned Authorization</h2>
+
+ 	<ul>
+ 		
+ 	</ul>
+  <% @department.accessible_menus(:order => "name").each do |e| %>
+	   <li>
+	   	 <%= e.name %>
+	   </li>
+	<% end %>
+
+<br />
+
+
+

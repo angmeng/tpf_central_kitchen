@@ -1,0 +1,32 @@
+<% title (t 'menu.company')  %>
+
+<%= link_to (t "titles.new"), new_company_path %>
+<br /><br />
+<table class="list">
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Phone number</th>
+    <th>Fax number</th>
+	<th>Action</th>
+  </tr>
+</thead>
+   <tbody>
+<% @companies.each do |company| %>
+    <tr class="<%= cycle("odd", "even") %>">
+    <td align="center"><%=h company.name %></td>
+    <td align="center"><%=h company.phone_number %></td>
+    <td align="center"><%=h company.fax_number %></td>
+   
+    <td align="center"><%= link_to image_tag("show.png", :title => "show"), company %>
+    <%= link_to image_tag("edit.png", :title => "Edit"), edit_company_path(company) %>
+    <%= link_to image_tag("delete.png", :title => "Delete"), company, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+ </tbody>
+</table>
+
+<br />
+
+
+

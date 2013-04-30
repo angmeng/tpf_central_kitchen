@@ -1,0 +1,28 @@
+<p>
+  <b>Outlet:</b>
+  <%=h @outlet_delivery_order.outlet_id %>
+</p>
+
+<p>
+  <b>Delivery order date:</b>
+  <%=h @outlet_delivery_order.delivery_order_date %>
+</p>
+
+<p>
+  <b>Delivery order number:</b>
+  <%=h @outlet_delivery_order.delivery_order_number %>
+</p>
+
+<p>
+  <b>Remark:</b>
+  <%=h @outlet_delivery_order.remark %>
+</p>
+
+<p>
+  <b>Void:</b>
+  <%=h @outlet_delivery_order.void %>
+</p>
+
+
+<%= link_to 'Edit', edit_outlet_delivery_order_path(@outlet_delivery_order) %> |
+<%= link_to 'Back', outlet_delivery_orders_path %>

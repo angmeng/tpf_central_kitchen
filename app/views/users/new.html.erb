@@ -1,0 +1,32 @@
+<% title (t "titles.new") %>
+
+
+<%= form_for @user do |f| %>
+   <% render "/shared/error_messages", :target => @user %>  <p>
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
+  </p>
+  
+  <p>
+  	<%= f.label :department %><br />
+    <%= f.select :department_id, Department.all(:order => "name").map {|c| [c.name, c.id]} %>
+  	</p>
+	
+  <p>
+    <%= f.label :email, "Email Address" %><br />
+    <%= f.text_field :email %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label :password_confirmation, "Confirm Password" %><br />
+    <%= f.password_field :password_confirmation %>
+  </p>
+  <p><%= f.submit(t "links.submit") %> | <%= link_to (t "links.back"), users_path %></p>
+<% end %>
+
+<p>
+  
+</p>

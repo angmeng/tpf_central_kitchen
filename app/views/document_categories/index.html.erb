@@ -1,0 +1,27 @@
+<% title (t "titles.document_category") %>
+<p><%= link_to (t "titles.new"), new_document_category_path %></p>
+
+<table class="list">
+  <thead>
+  <tr>
+    <th><%=t 'common.name' %></th>
+    <th><%=t 'common.description' %></th>
+	<th><%=t 'common.action' %></th>
+  </tr>
+  </thead>
+   <tbody>
+  <% for document_category in @document_categories %>
+      <tr class="<%= cycle("odd", "even") %>">
+      <td><%=h document_category.name %></td>
+      <td><%=h document_category.description %></td>
+      <td align="center"><%= link_to image_tag("show.png", :title => "show"), document_category %>
+      <%= link_to image_tag("edit.png", :title => "Edit"),edit_document_category_path(document_category) %>
+      <%= link_to image_tag("delete.png", :title => "Delete"), document_category, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+   </tbody>
+</table>
+
+
+
+

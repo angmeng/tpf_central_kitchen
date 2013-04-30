@@ -1,0 +1,25 @@
+<%= form_for @cheque do |f| %>
+ <% render "/shared/error_messages", :target => @cheque %>  <p>
+    <%= f.label :cheque_number, (t "cheque.cheque_number") %><br />
+    <%= f.text_field :cheque_number %>
+  </p>
+  <p>
+    <%= f.label :bank_id, (t "cheque.cheque_bank") %><br />
+    <%= f.select :bank_id, Bank.all(:order => "name").map {|b| [b.name, b.id]} %>
+  </p>
+  
+  <p>
+    <%= f.label :owner_name, (t "cheque.owner_name") %><br />
+    <%= f.text_field :owner_name %>
+  </p>
+  <p>
+    <%= f.label :cheque_date, (t "cheque.cheque_date") %><br />
+    <%= f.date_select :cheque_date %>
+  </p>
+  <p>
+    <%= f.label :bank_account_number, (t "cheque.bank_account_no") %><br />
+    <%= f.text_field :bank_account_number %>
+  </p>
+  
+  <p><%= f.submit(t "links.submit") %></p>
+<% end %>

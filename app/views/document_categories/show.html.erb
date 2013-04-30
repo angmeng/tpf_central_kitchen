@@ -1,0 +1,33 @@
+<% title (t "titles.document_category") %>
+
+<p>
+  <strong><%=t 'common.name' %>:</strong>
+  <%=h @document_category.name %>
+</p>
+<p>
+  <strong><%=t 'common.description' %>:</strong>
+  <%=h @document_category.description %>
+</p>
+
+<p>
+  <%= link_to (t "links.edit"), edit_document_category_path(@document_category) %> |
+  <%= link_to (t "links.destroy"), @document_category, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to (t "links.view_all"), document_categories_path %>
+</p>
+
+<br />
+<hr />
+
+<h4><%=t 'document_category.authorized_department' %></h4>
+<table>
+	
+<% for department in Department.all(:order => "name") %>
+   <tr>
+      <td>
+      	<%= check_box_tag "document_category[department_ids][]", department.id, @document_category.departments.include?(department), :disabled => true %>
+		<%= department.name %>
+      </td>
+	</tr>
+<% end %>
+  
+</table>

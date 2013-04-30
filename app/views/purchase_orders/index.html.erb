@@ -1,0 +1,32 @@
+<% title (t "menu.purchase_order") %>
+
+<%= link_to (t "links.new"), new_purchase_order_path %>
+<table class="list">
+  <thead>
+  <tr>
+	<th><%=t "invoice.invoice_date" %></th>
+    <th><%=t "invoice.invoice_number" %></th>
+    <th><%=t "purchase_invoice.supplier" %></th>
+    <th><%=t "invoice.total" %></th>
+    <th><%=t "purchase_invoice.void" %></th>
+	<th><%=t "common.action" %></th>
+  </tr>
+</thead>
+   <tbody>
+<% @purchase_orders.each do |purchase_order| %>
+   <tr class="<%= cycle("odd", "even") %>">
+    <td align="center"><%=h purchase_order.purchase_order_date %></td>
+    <td align="center"><%=h purchase_order.purchase_order_number %></td>
+    <td align="center"><%=h purchase_order.supplier_name %></td>
+    <td align="center"><%=h purchase_order.remark %></td>
+    <td align="center"><%=h purchase_order.void %></td>
+    <td align="center"><%= link_to image_tag("show.png", :title => "show"), purchase_order %>
+    	<%= link_to image_tag("edit.png", :title => "Edit"), edit_purchase_order_path(purchase_order) %>
+    <%= link_to image_tag("delete.png", :title => "Delete"), :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+     </tbody>
+</table>
+
+<br />
+<%= will_paginate @purchase_orders %>

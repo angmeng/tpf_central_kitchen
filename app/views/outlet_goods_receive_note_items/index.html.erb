@@ -1,0 +1,30 @@
+<h1>Listing outlet_goods_receive_note_items</h1>
+
+<table>
+  <tr>
+    <th>Outlet goods receive note</th>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Unit price</th>
+    <th>Remark</th>
+    <th>Rejected</th>
+  </tr>
+
+<% @outlet_goods_receive_note_items.each do |outlet_goods_receive_note_item| %>
+  <tr>
+    <td><%=h outlet_goods_receive_note_item.outlet_goods_receive_note_id %></td>
+    <td><%=h outlet_goods_receive_note_item.product_id %></td>
+    <td><%=h outlet_goods_receive_note_item.quantity %></td>
+    <td><%=h outlet_goods_receive_note_item.unit_price %></td>
+    <td><%=h outlet_goods_receive_note_item.remark %></td>
+    <td><%=h outlet_goods_receive_note_item.rejected %></td>
+    <td><%= link_to 'Show', outlet_goods_receive_note_item %></td>
+    <td><%= link_to 'Edit', edit_outlet_goods_receive_note_item_path(outlet_goods_receive_note_item) %></td>
+    <td><%= link_to 'Destroy', outlet_goods_receive_note_item, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New outlet_goods_receive_note_item', new_outlet_goods_receive_note_item_path %>

@@ -1,0 +1,23 @@
+<h1>Editing product_list</h1>
+
+<%= form_for(@product_list, :html=> {:multipart => true}) do |f| %>
+   <% render "/shared/error_messages", :target => @product_list %>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+        <p>  
+      <%= f.label :import_list, (t "document.filename") %>  <br />
+      <%= f.file_field :import_list %>  
+   </p>  
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @product_list %> |
+<%= link_to 'Back', product_lists_path %>

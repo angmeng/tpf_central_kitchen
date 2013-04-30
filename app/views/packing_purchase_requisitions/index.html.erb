@@ -1,0 +1,22 @@
+<h1>Listing packing_purchase_requisitions</h1>
+
+<table>
+  <tr>
+    <th>Packing list</th>
+    <th>Outlet purchase order</th>
+  </tr>
+
+<% @packing_purchase_requisitions.each do |packing_purchase_requisition| %>
+  <tr>
+    <td><%=h packing_purchase_requisition.packing_list_id %></td>
+    <td><%=h packing_purchase_requisition.outlet_purchase_order_id %></td>
+    <td><%= link_to 'Show', packing_purchase_requisition %></td>
+    <td><%= link_to 'Edit', edit_packing_purchase_requisition_path(packing_purchase_requisition) %></td>
+    <td><%= link_to 'Destroy', packing_purchase_requisition, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New packing_purchase_requisition', new_packing_purchase_requisition_path %>

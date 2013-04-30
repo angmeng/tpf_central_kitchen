@@ -1,0 +1,88 @@
+<% title "New Outlet" %>
+<br />
+
+
+<%= form_for(@outlet) do |f| %>
+   <% render "/shared/error_messages", :target => @outlet %>
+  <p>
+    <%= f.label :code %><br />
+    <%= f.text_field :code %>
+  </p>
+  <p>
+    <%= f.label :company_number %><br />
+    <%= f.text_field :company_number %>
+  </p>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :address %><br />
+    <%= f.text_area :address, :size => "60x8" %>
+  </p>
+  <p>
+    <%= f.label :phone_number %><br />
+    <%= f.text_field :phone_number %>
+  </p>
+  <p>
+    <%= f.label :fax_number %><br />
+    <%= f.text_field :fax_number %>
+  </p>
+   <p>
+    <%= f.label :fax_number %><br />
+    <%= f.text_field :fax_number %>
+  </p>
+  <p>
+    <%= f.label :area %><br />
+    <%= f.text_field :area %>
+  </p>
+  <p>
+    <%= f.label :contact %><br />
+    <%= f.text_field :contact %>
+  </p>
+  <p>
+    <%= f.label :term %><br />
+    <%= f.text_field :term %>
+  </p>
+  
+  <p>
+    <b>Pricing Category</b><br />
+    <%= f.radio_button :pricing_category_id, ReferenceData::OUTLET_PRICING_A %> Pricing A &nbsp;&nbsp;
+	<%= f.radio_button :pricing_category_id, ReferenceData::OUTLET_PRICING_B %> Pricing B <br />
+  </p>
+  <br /><br />
+  
+  <fieldset>
+  	<legend>Remote</legend>
+	  <p>
+    <%= f.label :domain_name %><br />
+    <%= f.text_field :domain_name %>
+  </p>
+   <p>
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
+  </p>
+   <p>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </p>
+   <p>
+    <%= f.label :database %><br />
+    <%= f.text_field :database %>
+  </p>
+  </fieldset>
+
+  <p>
+    <%= f.submit 'Create' %> | <%= link_to 'Back', outlets_path %>
+  </p>
+<% end %>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+

@@ -1,0 +1,32 @@
+<% title (t "titles.edit") %>
+
+<%= form_for(@purchase_order) do |f| %>
+   <% render "/shared/error_messages", :target => @purchase_order %>
+  <p>
+    <%= f.label :purchase_order_date, (t "invoice.invoice_date") %><br />
+    <%= f.date_select :purchase_order_date %>
+  </p>
+  <p>
+    <%= f.label :purchase_order_number, (t "invoice.invoice_number") %><br />
+    <%= f.text_field :purchase_order_number %>
+  </p>
+  <p>
+    <%= f.label :supplier_id, (t "purchase_invoice.supplier") %><br />
+    <%= f.text_field :supplier_id %>
+  </p>
+  <p>
+    <%= f.label :remark, (t "common.remark") %><br />
+    <%= f.text_area :remark %>
+  </p>
+  <p>
+    <%= f.label :void, (t "purchase_invoice.void") %><br />
+    <%= f.check_box :void %>
+  </p>
+  <p>
+    <%= f.submit(t "links.update") %>
+  </p>
+  
+<% end %>
+
+<%= link_to (t "links.show"), @purchase_order %> |
+<%= link_to (t "links.view_all"), purchase_orders_path %>

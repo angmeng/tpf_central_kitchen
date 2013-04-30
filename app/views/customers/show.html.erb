@@ -1,0 +1,62 @@
+<% title (t "titles.customer") %>
+
+<p>
+  <strong><%=t 'customer.code' %>:</strong>
+  <%=h @customer.code %>
+</p>
+<p>
+  <strong><%=t 'customer.name' %>:</strong>
+  <%=h @customer.name %>
+</p>
+<p>
+  <strong><%=t 'customer.home_address' %>:</strong>
+  <%=h @customer.home_address %>
+</p>
+
+<p>
+  <strong><%=t 'customer.company_address' %>CompanyAddress:</strong>
+  <%=h @customer.company_address %>
+</p>
+<p>
+  <strong><%=t 'customer.mobile_number' %>:</strong>
+  <%=h @customer.mobile_number %>
+</p>
+<p>
+  <strong><%=t 'customer.additional_phone_one' %>:</strong>
+  <%=h @customer.additional_phone_one %>
+</p>
+<p>
+  <strong><%=t 'customer.additional_phone_two' %>:</strong>
+  <%=h @customer.additional_phone_two %>
+</p>
+<p>
+  <strong><%=t 'customer.home_phone_number' %>:</strong>
+  <%=h @customer.home_phone_number %>
+</p>
+<p>
+  <strong><%=t 'customer.office_phone_number' %>:</strong>
+  <%=h @customer.office_phone_number %>
+</p>
+<p>
+  <strong><%=t 'customer.fax_number' %>:</strong>
+  <%=h @customer.fax_number %>
+</p>
+<p>
+  <strong><%=t 'customer.credit_limit' %>:</strong>
+  RM <%=h number_with_precision(@customer.credit_limit, :precision => 2)  %>
+</p>
+<p>
+  <strong><%=t 'customer.outstanding_amount' %>:</strong>
+  RM <%=h number_with_precision(@customer.current_credit, :precision => 2)  %> 
+</p>
+<p>
+  <strong><%=t 'customer.suspend' %>:</strong>
+  <%=h @customer.suspend %>
+</p>
+
+<p>
+  <%= link_to (t "links.edit"), edit_customer_path(@customer) %> |
+  <%= link_to "Pricing", edit_pricing_customer_path(@customer) %> |
+  <%= link_to (t "links.destroy"), @customer, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to (t "links.view_all"), customers_path %>
+</p>

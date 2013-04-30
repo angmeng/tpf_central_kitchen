@@ -1,0 +1,32 @@
+<% title (t "titles.edit") %>
+
+<%= form_for(@salesman) do |f| %>
+   <% render "/shared/error_messages", :target => @salesman %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :address %><br />
+    <%= f.text_area :address %>
+  </p>
+  <p>
+    <%= f.label :mobile_number %><br />
+    <%= f.text_field :mobile_number %>
+  </p>
+  <p>
+    <%= f.label :remark %><br />
+    <%= f.text_area :remark %>
+  </p>
+  <p>
+    <%= f.label :suspend %><br />
+    <%= f.check_box :suspend %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to (t "links.show"), @salesman %> |
+<%= link_to (t "links.view_all"), salesmen_path %>

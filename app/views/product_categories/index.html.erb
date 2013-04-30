@@ -1,0 +1,29 @@
+<br>
+<p><%= link_to image_tag("new.png", :title => "New"), new_product_category_path %></p>
+<br>
+
+<% title (t "titles.product_category") %>
+
+<table class="list">
+  <thead>
+  <tr>
+    <th><%=t 'common.name' %></th>
+    <th><%=t 'common.description' %></th>
+	<th><%=t 'common.action' %></th>
+  </tr>
+  </thead>
+   <tbody>
+  <% for product_category in @product_categories %>
+     <tr class="<%= cycle("odd", "even") %>">
+      <td><%=h product_category.name %></td>
+      <td><%=h product_category.description %></td>
+     <td align="center"><%= link_to image_tag("show.png", :title => "show"), product_category %>
+     <%= link_to image_tag("edit.png", :title => "Edit"), edit_product_category_path(product_category) %>
+     <%= link_to image_tag("delete.png", :title => "Delete"), :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+    </tbody>
+</table>
+
+<br>
+<%= will_paginate @product_categories %>

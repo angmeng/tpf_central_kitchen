@@ -1,0 +1,23 @@
+<%= form_for @invoice_item do |f| %>
+  <% render "/shared/error_messages", :target => @invoice_item %>  <p>
+    <%= f.label :invoice_id %><br />
+    <%= f.text_field :invoice_id %>
+  </p>
+  <p>
+    <%= f.label :product_id %><br />
+    <%= f.text_field :product_id %>
+  </p>
+  <p>
+    <%= f.label :quantity %><br />
+    <%= f.text_field :quantity %>
+  </p>
+  <p>
+    <%= f.label :unit_price %><br />
+    <%= f.text_field :unit_price %>
+  </p>
+  <p>
+    <%= f.label :remark %><br />
+    <%= f.text_field :remark %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

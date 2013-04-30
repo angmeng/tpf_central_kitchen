@@ -1,0 +1,16 @@
+<p>
+  <strong> <%=t "card.card_no" %>:</strong>
+  <%=h @credit_card.card_number %>
+</p>
+<p>
+  <strong><%=t "card.card_bank" %>:</strong>
+  <%=h @credit_card.bank.name %>
+</p>
+<p>
+  <strong> <%=t "card.card_type" %>:</strong>
+  <%=h @credit_card.card_category.name %>
+</p>
+<p>
+  <strong><%=t "card.owner_name" %>:</strong>
+  <%=h @credit_card.owner_name %>
+</p>

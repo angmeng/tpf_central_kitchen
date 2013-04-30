@@ -1,0 +1,35 @@
+<% title (t "titles.purchase_invoice") %>
+
+<p><%= link_to (t "links.new"), new_purchase_invoice_path %></p>
+
+<table class="list">
+  <thead>
+  <tr>
+    <th><%=t "invoice.invoice_date" %></th>
+    <th><%=t "invoice.invoice_number" %></th>
+    <th><%=t "purchase_invoice.supplier" %></th>
+    <th><%=t "invoice.total" %></th>
+    <th><%=t "purchase_invoice.void" %></th>
+	<th><%=t "common.action" %></th>
+  </tr>
+    </thead>
+   <tbody>
+  <% for purchase_invoice in @purchase_invoices %>
+     <tr class="<%= cycle("odd", "even") %>">
+      <td align="center"><%=h purchase_invoice.invoice_date %></td>
+      <td align="center"><%=h purchase_invoice.invoice_number %></td>
+      <td align="center"><%=h purchase_invoice.supplier_name %></td>
+      <td align="center">RM <%=h number_with_precision(purchase_invoice.total_amount, :precision => 2) %></td>
+      <td align="center"><%=h purchase_invoice.void %></td>
+      <td align="center">
+      	<%= link_to image_tag("show.png", :title => "show"), purchase_invoice %>
+     <%= link_to image_tag("edit.png", :title => "Edit"), edit_purchase_invoice_path(purchase_invoice) %>
+   <%= link_to image_tag("delete.png", :title => "Delete"), purchase_invoice, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+   </tbody>
+</table>
+
+
+
+<%= will_paginate @purchase_invoices %>

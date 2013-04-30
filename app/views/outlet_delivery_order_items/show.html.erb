@@ -1,0 +1,28 @@
+<p>
+  <b>Outlet delivery order:</b>
+  <%=h @outlet_delivery_order_item.outlet_delivery_order_id %>
+</p>
+
+<p>
+  <b>Product:</b>
+  <%=h @outlet_delivery_order_item.product_id %>
+</p>
+
+<p>
+  <b>Quantity:</b>
+  <%=h @outlet_delivery_order_item.quantity %>
+</p>
+
+<p>
+  <b>Unit price:</b>
+  <%=h @outlet_delivery_order_item.unit_price %>
+</p>
+
+<p>
+  <b>Remark:</b>
+  <%=h @outlet_delivery_order_item.remark %>
+</p>
+
+
+<%= link_to 'Edit', edit_outlet_delivery_order_item_path(@outlet_delivery_order_item) %> |
+<%= link_to 'Back', outlet_delivery_order_items_path %>

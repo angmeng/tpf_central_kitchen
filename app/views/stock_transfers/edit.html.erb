@@ -1,0 +1,31 @@
+<h1>Editing stock_transfer</h1>
+
+<%= form_for(@stock_transfer) do |f| %>
+ <% render "/shared/error_messages", :target => @stock_transfer %>
+  <p>
+    <%= f.label :product_id %><br />
+    <%= f.text_field :product_id %>
+  </p>
+  <p>
+    <%= f.label :from_store_location_id %><br />
+    <%= f.text_field :from_store_location_id %>
+  </p>
+  <p>
+    <%= f.label :store_location_id %><br />
+    <%= f.text_field :store_location_id %>
+  </p>
+  <p>
+    <%= f.label :quantity %><br />
+    <%= f.text_field :quantity %>
+  </p>
+  <p>
+    <%= f.label :transfer_date %><br />
+    <%= f.date_select :transfer_date %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @stock_transfer %> |
+<%= link_to 'Back', stock_transfers_path %>

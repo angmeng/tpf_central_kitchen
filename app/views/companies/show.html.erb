@@ -1,0 +1,30 @@
+<% title (t "menu.company") %>
+
+<p>
+  <b>Name:</b>
+  <%=h @company.name %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%=h @company.address %>
+</p>
+
+<p>
+  <b>Phone number:</b>
+  <%=h @company.phone_number %>
+</p>
+
+<p>
+  <b>Fax number:</b>
+  <%=h @company.fax_number %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @company.description %>
+</p>
+
+
+<%= link_to (t "links.edit"), edit_company_path(@company) %> |
+<%= link_to (t "links.view_all"), companies_path %>

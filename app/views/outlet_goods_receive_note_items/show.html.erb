@@ -1,0 +1,33 @@
+<p>
+  <b>Outlet goods receive note:</b>
+  <%=h @outlet_goods_receive_note_item.outlet_goods_receive_note_id %>
+</p>
+
+<p>
+  <b>Product:</b>
+  <%=h @outlet_goods_receive_note_item.product_id %>
+</p>
+
+<p>
+  <b>Quantity:</b>
+  <%=h @outlet_goods_receive_note_item.quantity %>
+</p>
+
+<p>
+  <b>Unit price:</b>
+  <%=h @outlet_goods_receive_note_item.unit_price %>
+</p>
+
+<p>
+  <b>Remark:</b>
+  <%=h @outlet_goods_receive_note_item.remark %>
+</p>
+
+<p>
+  <b>Rejected:</b>
+  <%=h @outlet_goods_receive_note_item.rejected %>
+</p>
+
+
+<%= link_to 'Edit', edit_outlet_goods_receive_note_item_path(@outlet_goods_receive_note_item) %> |
+<%= link_to 'Back', outlet_goods_receive_note_items_path %>

@@ -1,0 +1,20 @@
+<% title "Card Category" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @card_category.name %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%=h @card_category.description %>
+</p>
+<p>
+  <strong>Priority:</strong>
+  <%=h @card_category.priority %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_card_category_path(@card_category) %> |
+  <%= link_to "Destroy", @card_category, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", card_categories_path %>
+</p>

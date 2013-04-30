@@ -1,0 +1,25 @@
+
+  <table width="100%">
+  <tr>
+  	
+	<td>
+  		<%= hidden_field "invoice[invoice_item_attributes][][invoice_id]",  @invoice.id %>
+  		
+  	</td>
+	
+  	<td>
+  		
+  		<%=t "invoice.product" %> : <%= select_tag("invoice[invoice_item_attributes][][product_id]", options_from_collection_for_select(@products, :id, :name)) %>
+  	</td>
+	<td>
+		<%=t "invoice.quantity" %> : <%= text_field_tag "invoice[invoice_item_attributes][][quantity]", nil, :size => 5 %>
+	</td>
+	<!--<td>
+	 	<%=t "invoice.unit_price" %> : <%= text_field_tag "invoice[invoice_item_attributes][][unit_price]", nil, :size => 8  %>	
+	</td>
+	<td>
+		Remark : <%= text_field_tag "invoice[invoice_item_attributes][][remark]" %>
+	</td>-->
+    
+  </tr>
+  </table>

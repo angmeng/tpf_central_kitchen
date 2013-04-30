@@ -1,0 +1,41 @@
+<% title (t "titles.stock_detail") %>
+
+
+      <a href="/report/stock_report/products.pdf">PDF</a>  
+<br />
+<br />
+<table class="list">
+  <thead>
+  <tr>
+    <th><%=t "titles.product" %></th>
+    <th><%=t "titles.product_category" %></th>
+    <th><%=t "product.stock_quantity" %></th>
+    <th><%=t "report.cost" %></th>
+	<th><%=t "report.total_amount" %></th>
+	
+  </tr>
+    </thead>
+   <tbody>
+  <% for product in @products %>
+  
+    <tr class="<%= cycle("list0", "list1") %>">
+      <td align="center"><%=h product.name %></td>
+      <td align="center"><%=h product.product_category_name %></td>
+      <td align="center"><%=h product.on_hand_quantity %></td>
+      <td align="center">RM <%= number_with_precision(product.average_cost, :precision => 2) %></td>
+	  <td align="center">RM <%= number_with_precision(product.total_cost, :precision => 2) %></td>
+    </tr>
+  <% end %>
+  
+  <tr>
+  	<td colspan="4"></td>
+	<td align="center"><hr>
+	RM <%= number_with_precision(@gross, :precision => 2) %>
+	<hr><hr>
+	</td>
+  </tr>
+    </tbody>
+</table>
+
+<br />
+

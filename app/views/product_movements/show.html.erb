@@ -1,0 +1,32 @@
+<% title "Product Movement" %>
+
+<p>
+  <strong>Product:</strong>
+  <%=h @product_movement.product_id %>
+</p>
+<p>
+  <strong>Movement Category:</strong>
+  <%=h @product_movement.movement_category_id %>
+</p>
+<p>
+  <strong>Reference:</strong>
+  <%=h @product_movement.reference_id %>
+</p>
+<p>
+  <strong>Quantity:</strong>
+  <%=h @product_movement.quantity %>
+</p>
+<p>
+  <strong>Unit Price:</strong>
+  <%=h @product_movement.unit_price %>
+</p>
+<p>
+  <strong>Movement Date:</strong>
+  <%=h @product_movement.movement_date %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_product_movement_path(@product_movement) %> |
+  <%= link_to "Destroy", @product_movement, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", product_movements_path %>
+</p>

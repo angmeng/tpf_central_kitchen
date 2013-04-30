@@ -1,0 +1,27 @@
+<%= form_for @setting do |f| %>
+   <% render "/shared/error_messages", :target => @setting %>  <p>
+    <%= f.label :ar_code %><br />
+    <%= f.text_field :ar_code %>
+  </p>
+  <p>
+    <%= f.label :ar_last_number %><br />
+    <%= f.text_field :ar_last_number %>
+  </p>
+  <p>
+    <%= f.label :ap_code %><br />
+    <%= f.text_field :ap_code %>
+  </p>
+  <p>
+    <%= f.label :ap_last_number %><br />
+    <%= f.text_field :ap_last_number %>
+  </p>
+  <p>
+    <%= f.label :invoice_code %><br />
+    <%= f.text_field :invoice_code %>
+  </p>
+  <p>
+    <%= f.label :invoice_last_number %><br />
+    <%= f.text_field :invoice_last_number %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

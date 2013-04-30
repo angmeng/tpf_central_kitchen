@@ -1,0 +1,70 @@
+<h2 align="center">Purchase Invoice</h2>
+
+<table width="100%" style="border:solid">
+	<tr>
+		<td width="10%">Supplier : </td> 
+		<td width="60%">
+		 <%= @purchase_invoice.supplier_name %>
+		</td>
+		<td width="10%">Invoice Date : </td>
+		<td>
+		 <%= @purchase_invoice.invoice_date.strftime("%d-%m-%Y") %>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>Remark : </td>
+		<td> <%= @purchase_invoice.remark %>
+		</td>
+		<td>Invoice Number : </td>
+		<td> <%= @purchase_invoice.invoice_number %>
+		</td>
+	</tr>
+	
+</table>
+<br />
+<table width="100%"  style="border:groove">
+	<tr>
+	
+		<th>Product</th>
+		<th>Quantity</th>
+		<th>Unit Price</th>
+		<th>Amount (RM)</th>
+	</tr>
+	
+	<% line = 0 %>
+	<% @purchase_invoice.purchase_invoice_items.each do |c|  %>
+	<% line += 1%>
+	<tr>
+	
+		<td align="center">
+			<%= c.product.name %>
+		</td>
+		<td align="center">
+			<%= c.quantity %>
+		</td>
+		<td align="center">
+			<%= "%.2f" % c.unit_price %>
+		</td>
+		<td align="center">
+			<%= "%.2f" % c.total_amount %>
+		</td>
+	</tr>
+	<% end %>
+	<% 0.upto(10-line) do %>
+	  <tr><td colspan="4">&nbsp;</td>
+	  	</tr>
+	<% end unless line >= 10 %>
+	<tr>
+		<td colspan="3">  </td>
+		<td align="center">
+			<hr>
+			Total :
+			<%= "%.2f" % @purchase_invoice.total_amount %>
+		    <hr>
+		</td>
+	</tr>
+</table>
+
+
+

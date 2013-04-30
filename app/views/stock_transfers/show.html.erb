@@ -1,0 +1,28 @@
+<p>
+  <b>Transfer date:</b>
+  <%=h @stock_transfer.transfer_date %>
+</p>
+
+
+<p>
+  <b>Product:</b>
+  <%=h @stock_transfer.product.name %>
+</p>
+
+<p>
+  <b>From Store location:</b>
+  <%=h @stock_transfer.from_store_location_name %>
+</p>
+
+<p>
+  <b>To Store location:</b>
+  <%=h @stock_transfer.store_location.name %>
+</p>
+
+<p>
+  <b>Quantity:</b>
+  <%=h @stock_transfer.quantity %>
+</p>
+
+<%= link_to image_tag("delete.png", :title => "Delete"), @stock_transfer, :confirm => 'Are you sure?', :method => :delete %> |
+<%= link_to image_tag("show.png", :title => "View All"), stock_transfers_path %>

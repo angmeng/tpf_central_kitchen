@@ -1,0 +1,28 @@
+<% title "Invoice Item" %>
+
+<p>
+  <strong>Invoice:</strong>
+  <%=h @invoice_item.invoice_id %>
+</p>
+<p>
+  <strong>Product:</strong>
+  <%=h @invoice_item.product_id %>
+</p>
+<p>
+  <strong>Quantity:</strong>
+  <%=h @invoice_item.quantity %>
+</p>
+<p>
+  <strong>Unit Price:</strong>
+  <%=h @invoice_item.unit_price %>
+</p>
+<p>
+  <strong>Remark:</strong>
+  <%=h @invoice_item.remark %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_invoice_item_path(@invoice_item) %> |
+  <%= link_to "Destroy", @invoice_item, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", invoice_items_path %>
+</p>

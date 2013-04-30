@@ -1,0 +1,29 @@
+<% content_for :head do %>
+
+<script type="text/javascript">
+
+	
+	function show_supplier() {
+		document.getElementById("supplier_area").style.display="block";
+		
+	}
+
+	function hide_supplier() {
+		document.getElementById("supplier_area").style.display="none";
+		
+	}
+	
+
+
+</script>
+
+<% end %>
+
+<% title (t "titles.new") %>
+<br />
+<p>
+  <%= link_to image_tag("home.png", :title => "View All"), products_path %>
+</p>
+<br />
+<%= render :partial => 'form' %>
+

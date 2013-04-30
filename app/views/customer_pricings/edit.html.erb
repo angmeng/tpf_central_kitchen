@@ -1,0 +1,23 @@
+<h1>Editing customer_pricing</h1>
+
+<%= form_for(@customer_pricing) do |f| %>
+ <% render "/shared/error_messages", :target => @customer_pricing %>
+  <p>
+    <%= f.label :customer_id %><br />
+    <%= f.text_field :customer_id %>
+  </p>
+  <p>
+    <%= f.label :product_id %><br />
+    <%= f.text_field :product_id %>
+  </p>
+  <p>
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @customer_pricing %> |
+<%= link_to 'Back', customer_pricings_path %>

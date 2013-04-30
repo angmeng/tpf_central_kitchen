@@ -1,0 +1,39 @@
+<% title (t "titles.cheque") %>
+
+<table style="width:100%">
+	<tr align="center">
+		<td style="width:20%"><%= link_to (t "links.my_current_date_cheques"), show_current_date_own_cheques_path %></td>
+		<td style="width:20%"><%= link_to (t "links.customer_current_date_cheques"), show_current_date_customer_cheques_path %></td>
+		<td style="width:20%"><%= link_to (t "links.my_future_cheques"), show_future_own_cheques_path %></td>
+		<td style="width:20%"><%= link_to (t "links.customer_future_cheques"), show_future_customer_cheques_path %></td>
+		<td style="width:20%"><%= link_to (t "links.back"), cheques_path %></td>
+	</tr>
+	
+</table>
+<br />
+
+<table>
+  <tr>
+    <th><%=t "cheque.cheque_number" %> </th>
+    <th><%=t "cheque.cheque_bank" %></th>
+    <th><%=t "cheque.owner_name" %></th>
+    <th><%=t "cheque.cheque_date" %></th>
+    <th><%=t "cheque.bank_account_no" %></th>
+	<th><%=t "cheque.own_cheque" %></th>
+	<th><%=t "common.action" %></th>
+  </tr>
+  <% for cheque in @cheques %>
+    <tr class="<%= cycle("list0", "list1") %>">
+      <td align="center"><%=h cheque.cheque_number %></td>
+      <td><%=h cheque.bank.name %></td>
+      <td><%=h cheque.owner_name %></td>
+      <td align="center"><%=h cheque.cheque_date %></td>
+      <td><%=h cheque.bank_account_number %></td>
+	  <td align="center"><%= cheque.status %></td>
+      <td align="center"><%= link_to (t "links.show"), cheque %>
+      <%= link_to (t "links.edit"), edit_cheque_path(cheque) %>
+     </td>
+    </tr>
+  <% end %>
+</table>
+

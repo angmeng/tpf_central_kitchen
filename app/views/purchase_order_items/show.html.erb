@@ -1,0 +1,28 @@
+<p>
+  <b>Purchase order:</b>
+  <%=h @purchase_order_item.purchase_order_id %>
+</p>
+
+<p>
+  <b>Product:</b>
+  <%=h @purchase_order_item.product_id %>
+</p>
+
+<p>
+  <b>Quantity:</b>
+  <%=h @purchase_order_item.quantity %>
+</p>
+
+<p>
+  <b>Unit price:</b>
+  <%=h @purchase_order_item.unit_price %>
+</p>
+
+<p>
+  <b>Remark:</b>
+  <%=h @purchase_order_item.remark %>
+</p>
+
+
+<%= link_to 'Edit', edit_purchase_order_item_path(@purchase_order_item) %> |
+<%= link_to 'Back', purchase_order_items_path %>

@@ -1,0 +1,23 @@
+<%= form_for @purchase_invoice do |f| %>
+   <% render "/shared/error_messages", :target => @purchase_invoice %>  <p>
+    <%= f.label :invoice_date, (t "invoice.invoice_date") %><br />
+    <%= f.date_select :invoice_date %>
+  </p>
+  <p>
+    <%= f.label :invoice_number, (t "invoice.invoice_number") %><br />
+    <%= f.text_field :invoice_number %>
+  </p>
+  <p>
+    <%= f.label :supplier_id, (t "purchase_invoice.supplier") %><br />
+     <%= f.select :supplier_id, Supplier.all(:order => "name").map {|c| [c.name, c.id]} %>
+  </p>
+  <p>
+    <%= f.label :remark, (t "common.remark") %><br />
+    <%= f.text_area :remark %>
+  </p>
+  <p>
+    <%= f.label :void, (t "purchase_invoice.void") %><br />
+    <%= f.check_box :void %>
+  </p>
+  <p><%= f.submit(t "links.submit") %></p>
+<% end %>

@@ -1,0 +1,91 @@
+<% title (t "titles.purchase_invoice") %>
+
+<table width="100%">
+	<tr>
+		<td><%= t "purchase_invoice.supplier" %> : <%= @purchase_invoice.supplier_name %>
+		</td>
+		<td>
+			<%= t "invoice.invoice_date" %> : <%= @purchase_invoice.invoice_date.strftime("%d-%m-%Y") %>
+		</td>
+	</tr>
+	
+	<tr>
+		<td><%= t "common.remark" %>: <%= @purchase_invoice.remark %>
+		</td>
+		<td>
+			<%= t "invoice.invoice_number" %> : <%= @purchase_invoice.invoice_number %>
+		</td>
+	</tr>
+	
+</table>
+<br />
+<table>
+	<tr>
+		<th><%=t "links.remove" %></th>
+		<th><%=t "invoice.location" %></th>
+		<th><%=t "invoice.product" %></th>
+		<th><%=t "invoice.quantity" %></th>
+		<th><%=t "invoice.unit_price" %></th>
+		<th><%=t "invoice.amount" %></th>
+	</tr>
+	
+	<% @current_items.each do |c| %>
+	<tr>
+		<td align="center">
+			<%= link_to (t "links.remove"), remove_item_purchase_invoice_path(@purchase_invoice, :purchase_invoice_item_id => c.id), :confirm => "Are you sure ?" %>
+			</td>
+			<td>
+			<%= c.store_location.name %>
+		</td>
+		<td>
+			<%= c.product.name %>
+		</td>
+		<td align="center">
+			<%= c.quantity %>
+		</td>
+		<td align="center">
+			RM <%= number_with_precision(c.unit_price, :precision => 2) %>
+		</td>
+		<td align="center">
+			RM <%= number_with_precision(c.total_amount, :precision => 2) %>
+		</td>
+	</tr>
+	<% end %>
+	<tr>
+		<td colspan="5">  </td>
+		<td align="center">
+			<hr>
+			<%=t ("invoice.total") %> :
+			RM <%= number_with_precision(@purchase_invoice.total_amount, :precision => 2) %>
+		    <hr><hr>
+		</td>
+	</tr>
+</table>
+<br /> <br />
+
+<%= form_tag add_items_purchase_invoice_path(@purchase_invoice) do %>
+
+ <div id="purchase_invoice_items">
+      <% 
+         @new_items = []
+         1.upto(3) { @new_items << @purchase_invoice.purchase_invoice_items.build } 
+
+       %>
+     <%= render :partial => 'purchase_invoice_items', :collection => @new_items  %>
+   </div>
+   <br />
+ <%= submit_tag (t "invoice.add_product") %> |
+ <%= link_to_function (t "invoice.add_item") do |page|
+  page.insert_html :bottom, :purchase_invoice_items, :partial => 'purchase_invoice_items', :object => PurchaseInvoiceItem.new
+end %> 
+ <% end %>  
+ <br />
+
+
+<p>
+  <%= link_to (t "links.edit"), edit_purchase_invoice_path(@purchase_invoice) %> |
+  <%= link_to((t "links.preview"), preview_purchase_invoice_path(@purchase_invoice), {:target => "_blank"}) %> | 
+  <%= link_to (t "links.destroy"), @purchase_invoice, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to (t "links.view_all"), purchase_invoices_path %> | 
+  <%= link_to (t "links.new"), new_purchase_invoice_path %>
+</p>

@@ -1,0 +1,81 @@
+
+<% title "Supplier Purchase orders for this Outlet Purchase Order"%>
+
+<br /><br />
+
+<p>
+	   <%= link_to image_tag("back.png", :title => "Back to Outlet Purchase order"), @outlet_purchase_order %> 
+</p>
+<br />
+<p>
+  <b>Outlet:</b>
+  <%=h @outlet_purchase_order.outlet.name %>
+</p>
+
+<p>
+  <b>Outlet Purchase order date:</b>
+  <%=h @outlet_purchase_order.purchase_order_date %>
+</p>
+
+<p>
+  <b>Outlet Purchase order number:</b>
+  <%=h @outlet_purchase_order.purchase_order_number %>
+</p>
+
+<p>
+  <b>Create by:</b>
+  <%=h @outlet_purchase_order.outlet_staff.fullname %>
+</p>
+
+<p>
+  <b>Remark:</b>
+  <%=h @outlet_purchase_order.remark %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%=raw @outlet_purchase_order.status %>
+</p>
+
+<br />
+ 
+<h2>Suppliers Purchase Orders List</h2>
+<br />
+<table class="list">
+  <thead>
+	<tr>
+		<th>No</th>
+		<th>Purchase Order No</th>
+	
+		<th>Supplier</th>
+		<th>Action</th>
+
+	</tr>
+	</thead>
+   <tbody>
+	<%   num = 0
+         @orders.each do |c| 
+         num += 1
+    %>
+	<tr class="<%= cycle("odd", "even") %>">
+		<td align="center">
+		  <%= num.to_s %>
+		</td>
+		
+		<td align="center">
+		  <%= c.purchase_order_number %>
+		</td>
+			
+		<td align="center">
+			<%= c.supplier.name %>
+		</td>
+		
+		<td align="center">
+			<%= link_to image_tag("show.png", :title => "Show"), c %>
+		</td>
+		
+	</tr>
+	<% end %>
+	 </tbody>
+</table>
+<br /> <br />

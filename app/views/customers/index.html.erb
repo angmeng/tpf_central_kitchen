@@ -1,0 +1,61 @@
+<p><%= link_to (t "links.new"), new_customer_path %></p>
+<% title (t "titles.customer") %>
+
+<%= form_for @search do |f| %>
+<table class="list">
+  <thead>
+	<tr>
+		 <th><%=t 'customer.code' %></th>
+         <th><%=t 'customer.name' %></th>
+		 <th><%=t 'customer.suspend' %></th>
+	     <th><%=t 'common.action' %></th>
+		
+	</tr>
+	</thead>
+   <tbody>
+	<tr align="center">
+		<td><%= f.text_field :code_equals %></td>
+		<td><%= f.text_field :name_equals %></td>
+		<td><%= f.select :suspend, [["No", 0], ["Yes", 1]], {:include_blank => true}  %></td>
+	    <td><%= f.submit(t "links.search") %></td>
+	</tr>
+	</tbody>
+</table>
+
+<% end %>
+
+
+<br />
+<table class="list">
+  <thead>
+  <tr class="<%= cycle("odd", "even") %>">
+    <th><%=t 'customer.code' %></th>
+    <th><%=t 'customer.name' %></th>
+    <th><%=t 'customer.mobile_number' %></th>
+    <th><%=t 'customer.credit_limit' %></th>
+    <th><%=t 'customer.outstanding_amount' %></th>
+    <th><%=t 'customer.suspend' %></th>
+	<th><%=t 'common.action' %></th>
+  </tr>
+  </thead>
+   <tbody>
+  <% for customer in @customers %>
+    <tr align="center" class="<%= cycle("list0", "list1") %>">
+      <td><%=h customer.code %></td>
+      <td><%=h customer.name %></td>
+  
+      <td><%=h customer.mobile_number %></td>
+      <td>RM <%=h number_with_precision(customer.credit_limit, :precision => 2)  %></td>
+      <td>RM <%=h number_with_precision(customer.current_credit, :precision => 2) %></td>
+      <td><%=h customer.suspend %></td>
+      <td align="center"><%= link_to (t "links.show"), customer %>
+      <%= link_to (t "links.edit"), edit_customer_path(customer) %>
+	  <%= link_to "Pricing", edit_pricing_customer_path(customer) %>
+      <%= link_to (t "links.destroy"), customer, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br />
+<%= will_paginate @customers %>

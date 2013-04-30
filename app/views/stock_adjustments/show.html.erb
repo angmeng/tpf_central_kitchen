@@ -1,0 +1,37 @@
+<% title (t "titles.stock_adjustment") %>
+
+<p>
+  <strong><%=t 'stock_adjustment.title' %>:</strong>
+  <%=h @stock_adjustment.name %>
+</p>
+<p>
+  <strong><%=t 'stock_adjustment.description' %>:</strong>
+  <%=h @stock_adjustment.description %>
+</p>
+<p>
+  <strong><%=t 'stock_adjustment.store_location' %>:</strong>
+  <%=h @stock_adjustment.store_location.name %>
+</p>
+<p>
+  <strong><%=t 'stock_adjustment.product' %>:</strong>
+  <%=h @stock_adjustment.product.name %>
+</p>
+
+<p>
+  <strong><%=t 'stock_adjustment.status' %>:</strong>
+  
+  <% if @stock_adjustment.debit %>
+  <%=t 'stock_adjustment.debit' %>
+  <% else %>
+  <%=t 'stock_adjustment.credit' %>
+  <% end %>
+</p>
+<p>
+  <strong><%=t 'stock_adjustment.quantity' %>:</strong>
+  <%=h @stock_adjustment.quantity %>
+</p>
+
+<p>
+  <%= link_to image_tag("delete.png", :title => "Delete"), @stock_adjustment, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to image_tag("show.png", :title => "View All"), stock_adjustments_path %>
+</p>

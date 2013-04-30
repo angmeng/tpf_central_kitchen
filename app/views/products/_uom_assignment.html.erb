@@ -1,0 +1,19 @@
+<br /><br />
+<%= remote_form_for(product) do |f| %>
+<table class="list" style="width:80%;margin-left:10px">
+	<tr>
+		<td>
+			Outlet PO UoM <%= f.select :outlet_po_uom_id, product.product_uoms.all(:order => "rate").map {|u| [u.name, u.id]}, :include_blank => true %>
+			Packing UoM <%= f.select :packing_uom_id, product.product_uoms.all(:order => "rate").map {|p| [p.name, p.id]}, :include_blank => true %>
+			PO UoM <%= f.select :po_uom_id, product.product_uoms.all(:order => "rate").map {|o| [o.name, o.id]}, :include_blank => true %>
+			Invoice Uom <%= f.select :invoice_uom_id, product.product_uoms.all(:order => "rate").map {|i| [i.name, i.id]}, :include_blank => true %>
+		    <%= f.submit "Update" %>
+		</td>
+		<td align="left">
+			
+		</td>
+	</tr>
+
+</table>
+<% end %>
+<br /><br />

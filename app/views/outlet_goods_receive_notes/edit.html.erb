@@ -1,0 +1,35 @@
+<h1>Editing outlet_goods_receive_note</h1>
+
+<%= form_for(@outlet_goods_receive_note) do |f| %>
+   <% render "/shared/error_messages", :target => @outlet_goods_receive_note %>
+  <p>
+    <%= f.label :outlet_id %><br />
+    <%= f.text_field :outlet_id %>
+  </p>
+  <p>
+    <%= f.label :grn_number %><br />
+    <%= f.text_field :grn_number %>
+  </p>
+  <p>
+    <%= f.label :grn_date %><br />
+    <%= f.date_select :grn_date %>
+  </p>
+  <p>
+    <%= f.label :remark %><br />
+    <%= f.text_area :remark %>
+  </p>
+  <p>
+    <%= f.label :void %><br />
+    <%= f.check_box :void %>
+  </p>
+  <p>
+    <%= f.label :settled %><br />
+    <%= f.check_box :settled %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @outlet_goods_receive_note %> |
+<%= link_to 'Back', outlet_goods_receive_notes_path %>

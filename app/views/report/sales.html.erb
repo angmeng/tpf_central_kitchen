@@ -1,0 +1,25 @@
+<% content_for :head do %>
+  <%= calendar_date_select_includes 'silver' %>
+<% end %>
+
+<h3><%=t "titles.sales_enquiry" %></h3>
+
+<%= form_tag :action => 'sales_report' do %>
+<table width="100%">
+	<tr>
+	  <th><%=t "report.from" %></th>
+	  <th><%=t "report.to" %></th>
+	  <th><%=t "common.action" %></th>	
+	</tr>
+	
+	<tr>
+		<td align="center"><%= calendar_date_select_tag "from" %></td>
+		<td align="center"><%= calendar_date_select_tag "to" %></td>
+		<td align="center"><%= submit_tag(t "links.show") %></td>
+	</tr>
+	
+	
+</table>
+<% end %>
+
+<br /><br />

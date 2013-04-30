@@ -1,0 +1,33 @@
+<p>
+  <b>Outlet:</b>
+  <%=h @outlet_goods_receive_note.outlet_id %>
+</p>
+
+<p>
+  <b>Grn number:</b>
+  <%=h @outlet_goods_receive_note.grn_number %>
+</p>
+
+<p>
+  <b>Grn date:</b>
+  <%=h @outlet_goods_receive_note.grn_date %>
+</p>
+
+<p>
+  <b>Remark:</b>
+  <%=h @outlet_goods_receive_note.remark %>
+</p>
+
+<p>
+  <b>Void:</b>
+  <%=h @outlet_goods_receive_note.void %>
+</p>
+
+<p>
+  <b>Settled:</b>
+  <%=h @outlet_goods_receive_note.settled %>
+</p>
+
+
+<%= link_to 'Edit', edit_outlet_goods_receive_note_path(@outlet_goods_receive_note) %> |
+<%= link_to 'Back', outlet_goods_receive_notes_path %>

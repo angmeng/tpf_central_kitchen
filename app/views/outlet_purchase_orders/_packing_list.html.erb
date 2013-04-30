@@ -1,0 +1,21 @@
+  <h3>Packing List</h3>
+           <table class="list">
+             <thead>
+               <tr>
+                 <th style="width: 25%">Packing List No</th>
+                 <th style="width: 35%">Packing Date</th>
+                 <th style="width: 20%">Status</th>
+                 <th style="width: 20%">Action</th>
+               </tr>
+             </thead>
+             <tbody>
+               <% list = @outlet_purchase_order.packing_list %>
+               <tr class="<%= cycle("odd", "even") %>" align="center">
+                 <td><%= list.packing_list_number  %> </td>
+                 <td><%= list.packing_date  %> </td>
+                 <td><%=raw list.current_status  %> </td>
+                 <td><%= link_to "Show Packing list", list %> | <%= link_to "Print&", "#", :id => "print-packing-list-#{list.id}", :class => "print_packing_list" %> </td>
+               </tr>
+
+             </tbody>
+           </table>

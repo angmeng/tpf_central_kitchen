@@ -1,0 +1,55 @@
+<% title (t "titles.stock") %>
+
+<%= form_for @search do |f| %>
+<table>
+	<tr>
+		<th>
+			<%=t "stock.store_location" %>
+		</th>
+		<th>
+			<%=t "stock.product" %>
+		</th>
+		<th><%=t "common.action" %></th>
+	</tr>
+	<tr>
+		<td align="center">
+			<%= f.select :store_location_id_equals, StoreLocation.all(:order => "name").map {|c| [c.name, c.id]}, {:include_blank => true} %>
+		</td>
+		<td align="center">
+			<%= f.select :product_id_equals, Product.all(:order => "name").map {|p| [p.name, p.id]}, {:include_blank => true} %>
+		</td>
+		<td align="center">
+			<%= f.submit(t "links.search") %>
+		</td>
+	</tr>
+</table>
+
+<% end %>
+
+<br /><br />
+<table class="list">
+  <thead>
+  <tr>
+    <th><%=t "stock.store_location" %></th>
+    <th><%=t "stock.product" %></th>
+	<th><%=t "product.open_balance" %> </th>
+    <th><%=t "product.stock_quantity" %> </th>
+	<th><%=t "common.action" %> </th>
+  </tr>
+    </thead>
+   <tbody>
+  <% for stock in @stocks %>
+    <tr class="<%= cycle("odd", "even") %>">
+      <td><%=h stock.store_location.name %></td>
+      <td><%=h stock.product.name %></td>
+	  <td align="center"><%=h stock.opening_balance %></td>
+      <td align="center"><%=h stock.total_quantity %></td>
+      <td align="center"><%= link_to (t "links.show"), stock %>
+     </td>
+    </tr>
+  <% end %>
+    </tbody>
+</table>
+
+<br /><br />
+

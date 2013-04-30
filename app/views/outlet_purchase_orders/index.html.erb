@@ -1,0 +1,40 @@
+
+<% title "Completed Outlet Purchase Order"%>
+<br />
+<% unless is_admin? %>
+  <%= link_to image_tag("new.png", :title => "New"), new_outlet_purchase_order_path %> |
+<% end %>
+  <%= link_to image_tag("pending.png", :title => "Pending Outlet PO"), home_url %>
+<br /><br />
+<table class="list">
+  <thead>
+  <tr>
+    <th>Purchase order date</th>
+    <th>Purchase order number</th>
+    <th>Remark</th>
+    <th>Status</th>
+	<th>Action</th>
+  </tr>
+</thead>
+   <tbody>
+<% @outlet_purchase_orders.each do |outlet_purchase_order| %>
+ <tr class="<%= cycle("odd", "even") %>">
+    <td align="center"><%=h outlet_purchase_order.purchase_order_date %></td>
+    <td align="center"><%=h outlet_purchase_order.purchase_order_number %></td>
+    <td align="center"><%=h outlet_purchase_order.remark %></td>
+    <td align="center"><%=raw outlet_purchase_order.status %></td>
+    <td align="center"><%= link_to image_tag("show.png", :title => "show"), outlet_purchase_order %>
+	<% if is_outlet_staff? %>
+	  <% unless outlet_purchase_order.sent? %>
+        <%= link_to image_tag("edit.png", :title => "Edit"), edit_outlet_purchase_order_path(outlet_purchase_order) %>
+      <% end %>
+	  <% link_to image_tag("delete.png", :title => "Delete"), outlet_purchase_order, :confirm => 'Are you sure?', :method => :delete %>
+	<% end %>
+	</td>
+  </tr>
+<% end %>
+ </tbody>
+</table>
+
+<br />
+

@@ -1,0 +1,74 @@
+<h2 align="center"><%=(t "menu.purchase_order") %></h2>
+
+<table width="100%" style="border:solid">
+	<tr>
+		<td width="10%"><%=t "purchase_invoice.supplier" %> </td> 
+		<td width="60%">
+		 <%= @purchase_order.supplier_name %>
+		</td>
+		<td width="10%"><%=t "invoice.invoice_date" %> </td>
+		<td>
+		 <%= @purchase_order.purchase_order_date.strftime("%d-%m-%Y") %>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>Remark : </td>
+		<td> <%= @purchase_order.remark %>
+		</td>
+		<td><%=t "invoice.invoice_number" %> </td>
+		<td> <%= @purchase_order.purchase_order_number %>
+		</td>
+	</tr>
+	
+</table>
+<br />
+<table width="100%"  style="border:groove">
+	<tr>
+	
+		<th><%=t "invoice.product" %></th>
+		<th>UOM</th>
+		<th><%=t "invoice.quantity" %></th>
+		<th><%=t "invoice.unit_price" %></th>
+		<th><%=t "invoice.amount" %> (RM)</th>
+	</tr>
+	
+	<% line = 0 %>
+	<% @purchase_order.purchase_order_items.each do |c|  %>
+	<% line += 1%>
+	<tr>
+	
+		<td align="center">
+			<%= c.product.name %>
+		</td>
+		<td align="center">
+			<%= c.product_uom.name rescue "Not Assigned" %>
+		</td>
+		<td align="center">
+			<%= c.quantity %>
+		</td>
+		<td align="center">
+			<%= "%.2f" % c.unit_price %>
+		</td>
+		<td align="center">
+			<%= "%.2f" % c.total_amount %>
+		</td>
+	</tr>
+	<% end %>
+	<% 0.upto(10-line) do %>
+	  <tr><td colspan="4">&nbsp;</td>
+	  	</tr>
+	<% end unless line >= 10 %>
+	<tr>
+		<td colspan="4">  </td>
+		<td align="center">
+			<hr/>
+			Total :
+			<%= "%.2f" % @purchase_order.total_amount %>
+		    <hr/>
+		</td>
+	</tr>
+</table>
+
+
+

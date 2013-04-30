@@ -1,0 +1,16 @@
+<%= form_for @bank do |f| %>
+  <% render "/shared/error_messages", :target => @bank %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :priority %><br />
+    <%= f.text_field :priority %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

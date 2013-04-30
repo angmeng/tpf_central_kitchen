@@ -1,0 +1,25 @@
+<% title "Purchase Invoice Items" %>
+
+<table>
+  <tr>
+    <th>Purchase Invoice</th>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Unit Price</th>
+    <th>Remark</th>
+  </tr>
+  <% for purchase_invoice_item in @purchase_invoice_items %>
+    <tr>
+      <td><%=h purchase_invoice_item.purchase_invoice_id %></td>
+      <td><%=h purchase_invoice_item.product_id %></td>
+      <td><%=h purchase_invoice_item.quantity %></td>
+      <td><%=h purchase_invoice_item.unit_price %></td>
+      <td><%=h purchase_invoice_item.remark %></td>
+      <td><%= link_to "Show", purchase_invoice_item %></td>
+      <td><%= link_to "Edit", edit_purchase_invoice_item_path(purchase_invoice_item) %></td>
+      <td><%= link_to "Destroy", purchase_invoice_item, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Purchase Invoice Item", new_purchase_invoice_item_path %></p>

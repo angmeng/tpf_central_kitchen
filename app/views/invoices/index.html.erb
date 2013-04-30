@@ -1,0 +1,29 @@
+<% title (t "titles.invoice") %>
+<p><%= link_to image_tag("new.png", :title => "New Invoice"), new_invoice_path %></p>
+<br />
+ <table class="list">
+  <tr>
+    <th><%=t "invoice.invoice_date" %></th>
+    <th><%=t "invoice.invoice_number" %></th>
+    <th><%=t "invoice.customer" %></th>
+    <th><%=t "invoice.total" %></th>
+	<th><%=t "common.action" %></th>
+  </tr>
+  </thead>
+   <tbody>
+  <% for invoice in @invoices %>
+     <tr class="<%= cycle("odd", "even") %>">
+      <td align="center"><%=h invoice.invoice_date %></td>
+      <td align="center"><%=h invoice.invoice_number %></td>
+      <td align="center"><%=h invoice.outlet.name %></td>
+      <td align="center">RM <%= number_with_precision(invoice.total_amount, :precision => 2) %></td>
+      <td align="center"><%= link_to image_tag("show.png", :title => "show"), invoice %>
+      <%= link_to image_tag("edit.png", :title => "Edit"), edit_invoice_path(invoice) %>
+      <% link_to image_tag("delete.png", :title => "Delete"), invoice, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+     </tbody>
+</table>
+
+<br />
+<%= will_paginate @invoices %>

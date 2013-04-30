@@ -1,0 +1,35 @@
+<%= form_for @supplier_payment do |f| %>
+   <% render "/shared/error_messages", :target => @supplier_payment %>  <p>
+    <%= f.label :payment_date, (t "customer_payment.payment_date") %><br />
+    <%= f.date_select :payment_date %>
+  </p>
+  <p>
+    <%= f.label :supplier_id, (t "supplier_payment.supplier") %><br />
+       <%= f.select :supplier_id, Supplier.all(:order => "name").map {|c| [c.name, c.id]}, {:include_blank => true} %>
+  </p>
+  <p>
+    <%= f.label :reference_number, (t "customer_payment.reference_no") %><br />
+    <%= f.text_field :reference_number %>
+  </p>
+  <p>
+    <%= f.label :resit_number, (t "customer_payment.resit_no") %><br />
+    <%= f.text_field :resit_number %>
+  </p>
+  <p>
+    <%= f.label :description, (t "common.description") %><br />
+    <%= f.text_area :description, :size => "60x8" %>
+  </p>
+  <p>
+    <%= f.label :payment_method_id, (t "customer_payment.payment_method") %><br />
+     <%= f.select :payment_method_id, PaymentMethod.all(:order => "priority").map {|p| [p.name, p.id] }, {:include_blank => true}, :onChange => remote_function(:url => {:action => 'show_payment_info'}, :with => "'id=' + this.value") %>
+  </p>
+  
+  <div id="payment_info">
+  	
+  </div>
+  <p>
+    <%= f.label :amount, (t "customer_payment.amount") %><br />
+    <%= f.text_field :amount %>
+  </p>
+  <p><%= f.submit(t "links.submit") %></p>
+<% end %>

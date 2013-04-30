@@ -1,0 +1,36 @@
+<% title "Credit Card" %>
+
+<p>
+  <strong>Card Number:</strong>
+  <%=h @credit_card.card_number %>
+</p>
+<p>
+  <strong>Card Bank:</strong>
+  <%=h @credit_card.card_bank_id %>
+</p>
+<p>
+  <strong>Reference:</strong>
+  <%=h @credit_card.reference_id %>
+</p>
+<p>
+  <strong>Card Type:</strong>
+  <%=h @credit_card.card_type_id %>
+</p>
+<p>
+  <strong>Card Category:</strong>
+  <%=h @credit_card.card_category_id %>
+</p>
+<p>
+  <strong>Owner Name:</strong>
+  <%=h @credit_card.owner_name %>
+</p>
+<p>
+  <strong>Clear:</strong>
+  <%=h @credit_card.clear %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_credit_card_path(@credit_card) %> |
+  <%= link_to "Destroy", @credit_card, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", credit_cards_path %>
+</p>

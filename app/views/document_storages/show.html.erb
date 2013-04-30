@@ -1,0 +1,20 @@
+<% title (t "titles.document_storage") %>
+
+<p>
+  <strong><%=t 'common.description' %>:</strong>
+  <%=h @document_storage.description %>
+</p>
+<p>
+	<strong>
+		<%=t 'document.filename' %>
+	</strong>
+	<%= link_to @document_storage.document_file_name, @document_storage.document.url %>
+	</p>
+
+<p>
+
+  <%= link_to (t "links.destroy"), @document_storage, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to (t "links.view_all"), document_storages_path %> |
+    <%= link_to (t "links.new"), new_document_storage_path %>
+
+</p>

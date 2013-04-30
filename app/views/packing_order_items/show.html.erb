@@ -1,0 +1,33 @@
+<p>
+  <b>Packing list:</b>
+  <%=h @packing_order_item.packing_list_id %>
+</p>
+
+<p>
+  <b>Outlet purchase order:</b>
+  <%=h @packing_order_item.outlet_purchase_order_id %>
+</p>
+
+<p>
+  <b>Outlet:</b>
+  <%=h @packing_order_item.outlet_id %>
+</p>
+
+<p>
+  <b>Product:</b>
+  <%=h @packing_order_item.product_id %>
+</p>
+
+<p>
+  <b>Quantity:</b>
+  <%=h @packing_order_item.quantity %>
+</p>
+
+<p>
+  <b>Picked:</b>
+  <%=h @packing_order_item.picked %>
+</p>
+
+
+<%= link_to 'Edit', edit_packing_order_item_path(@packing_order_item) %> |
+<%= link_to 'Back', packing_order_items_path %>

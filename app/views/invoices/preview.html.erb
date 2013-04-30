@@ -1,0 +1,76 @@
+<h2 align="center">Invoice</h2>
+
+<table width="100%" style="border:solid">
+	<tr>
+		<td width="10%">Customer : </td> 
+		<td width="60%">
+		 <%= @invoice.outlet.name %>
+		</td>
+		<td width="10%">Invoice Date : </td>
+		<td>
+		 <%= @invoice.invoice_date.strftime("%d-%m-%Y") %>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>Remark : </td>
+		<td> <%= @invoice.remark %>
+		</td>
+		<td>Invoice Number : </td>
+		<td> <%= @invoice.invoice_number %>
+		</td>
+	</tr>
+	
+</table>
+<br />
+<table width="100%"  style="border:groove">
+	<tr>
+	  <th>Code</th>
+		<th>Product</th>
+		<th>UOM</th>
+		<th>Quantity</th>
+		<th align="right">Unit Price</th>
+		<th align="right">Amount (RM)</th>
+	</tr>
+	
+	<% line = 0 %>
+	<% @invoice.invoice_items(:joins => :product).each do |c|  %>
+	<% line += 1%>
+	<tr>
+	  <td align="center">
+      <%= c.product.code %>
+    </td>
+		<td align="center">
+			<%= c.product.name %>
+		</td>
+		<td align="center">
+			<%= c.product_uom.name rescue "Not Assigned" %>
+		</td>
+		<td align="center">
+			<%= c.quantity %>
+		</td>
+		<td align="right">
+			<%= "%.2f" % c.unit_price %>
+		</td>
+		<td align="right">
+			<%= "%.2f" % c.total_amount %>
+		</td>
+	</tr>
+	<% end %>
+	<% 0.upto(10-line) do %>
+	  <tr><td colspan="5">&nbsp;</td>
+	  	</tr>
+	<% end unless line >= 10 %>
+	<tr>
+		<td colspan="5">  </td>
+		<td align="right">
+			<hr>
+			Total :
+			<%= "%.2f" % @invoice.total_amount %>
+		    <hr>
+		</td>
+	</tr>
+</table>
+
+
+

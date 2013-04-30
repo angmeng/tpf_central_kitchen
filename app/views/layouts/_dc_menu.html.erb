@@ -1,0 +1,16 @@
+<div style="float: left;position: relative;margin-top: 30px" id="smoothmenu1" class="ddsmoothmenu-v">
+<ul>
+<li><a href="/home"><%=t 'menu.home' %></a></li>
+
+  <li><%= link_to (t 'menu.document'), category_index_document_storages_path %></li>
+
+<li><a href="/home/change_language"><%= session[:locale] == :cn ? "English" : "华文"  %> </a></li>
+
+<li><%= link_to (t 'links.logout'), logout_url %></li>
+
+</ul>
+
+</div>
+
+
+

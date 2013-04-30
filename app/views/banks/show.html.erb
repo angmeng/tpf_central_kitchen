@@ -1,0 +1,20 @@
+<% title "Bank" %>
+
+<p>
+  <strong>Name:</strong>
+  <%=h @bank.name %>
+</p>
+<p>
+  <strong>Description:</strong>
+  <%=h @bank.description %>
+</p>
+<p>
+  <strong>Priority:</strong>
+  <%=h @bank.priority %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_bank_path(@bank) %> |
+  <%= link_to "Destroy", @bank, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", banks_path %>
+</p>

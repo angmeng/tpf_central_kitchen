@@ -1,0 +1,43 @@
+<% title (t "titles.customer") %>
+
+<p>
+  <strong><%=t 'customer.code' %>:</strong>
+  <%=h @customer.code %>
+</p>
+<p>
+  <strong><%=t 'customer.name' %>:</strong>
+  <%=h @customer.name %>
+</p>
+
+<p>
+  <strong><%=t 'customer.suspend' %>:</strong>
+  <%=h @customer.suspend %>
+</p>
+
+<p>
+  <%= link_to (t "links.edit"), edit_customer_path(@customer) %> |
+  <%= link_to (t "links.destroy"), @customer, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to (t "links.view_all"), customers_path %>
+</p>
+
+<hr />
+<br />
+
+<% form_tag submit_pricing_customer_path(@customer) do %>
+<table>
+	<tr>
+	 <th>Product</th>
+	 <th>Pricing</th>
+	</tr>
+	<% for e in @pricings %>
+	 <tr align="center" class="<%= cycle("list0", "list1") %>">
+		<td><%= e.product.name %></td>
+		<td align="center"><%= text_field_tag "customer_pricing["+e.id.to_s+"][amount]", e.amount %></td>
+	</tr>
+	<% end %>
+	<tr>
+		<td></td>
+		<th><%= submit_tag "Submit" %></th>
+	</tr>
+</table>
+<% end %>

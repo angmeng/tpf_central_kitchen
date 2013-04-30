@@ -1,0 +1,18 @@
+<p>
+  <b>Name:</b>
+  <%=h @product_group.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @product_group.description %>
+</p>
+
+<p>
+  <b>Suspend:</b>
+  <%=h @product_group.suspend %>
+</p>
+
+
+<%= link_to image_tag("edit.png", :title => "Edit"), edit_product_group_path(@product_group) %> |
+<%= link_to image_tag("back.png", :title => "Back"), product_groups_path %>

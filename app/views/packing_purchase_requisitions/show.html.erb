@@ -1,0 +1,13 @@
+<p>
+  <b>Packing list:</b>
+  <%=h @packing_purchase_requisition.packing_list_id %>
+</p>
+
+<p>
+  <b>Outlet purchase order:</b>
+  <%=h @packing_purchase_requisition.outlet_purchase_order_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_packing_purchase_requisition_path(@packing_purchase_requisition) %> |
+<%= link_to 'Back', packing_purchase_requisitions_path %>

@@ -1,0 +1,32 @@
+<h1>New stock_transfer</h1>
+
+<%= form_for(@stock_transfer) do |f| %>
+   <% render "/shared/error_messages", :target => @stock_transfer %>
+  <p>
+    <%= f.label :transfer_date %><br />
+    <%= f.date_select :transfer_date %>
+  </p>
+  
+  <p>
+    <%= f.label :product_id %><br />
+    <%= f.select :product_id, Product.all(:order => "name").collect {|c| [c.name, c.id]} %>
+  </p>
+  <p>
+    <%= f.label :from_store_location_id %><br />
+    <%= f.select :from_store_location_id, StoreLocation.all(:order => "name").collect {|d| [d.name, d.id]} %>
+  </p>
+  <p>
+    <%= f.label :store_location_id, "To store location" %><br />
+    <%= f.select :store_location_id, StoreLocation.all(:order => "name").collect {|e| [e.name, e.id]} %>
+  </p>
+  <p>
+    <%= f.label :quantity %><br />
+    <%= f.text_field :quantity %>
+  </p>
+
+  <p>
+    <%= f.submit (t "links.submit") %>
+  </p>
+<% end %>
+
+<%= link_to image_tag("back.png", :title => "Back to list"), stock_transfers_path %>

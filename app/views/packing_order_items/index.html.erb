@@ -1,0 +1,30 @@
+<h1>Listing packing_order_items</h1>
+
+<table>
+  <tr>
+    <th>Packing list</th>
+    <th>Outlet purchase order</th>
+    <th>Outlet</th>
+    <th>Product</th>
+    <th>Quantity</th>
+    <th>Picked</th>
+  </tr>
+
+<% @packing_order_items.each do |packing_order_item| %>
+  <tr>
+    <td><%=h packing_order_item.packing_list_id %></td>
+    <td><%=h packing_order_item.outlet_purchase_order_id %></td>
+    <td><%=h packing_order_item.outlet_id %></td>
+    <td><%=h packing_order_item.product_id %></td>
+    <td><%=h packing_order_item.quantity %></td>
+    <td><%=h packing_order_item.picked %></td>
+    <td><%= link_to 'Show', packing_order_item %></td>
+    <td><%= link_to 'Edit', edit_packing_order_item_path(packing_order_item) %></td>
+    <td><%= link_to 'Destroy', packing_order_item, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New packing_order_item', new_packing_order_item_path %>

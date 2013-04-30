@@ -1,0 +1,22 @@
+<h1>New product_group</h1>
+
+<%= form_for(@product_group) do |f| %>
+   <% render "/shared/error_messages", :target => @product_group %>
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p>
+    <%= f.label :suspend %><br />
+    <%= f.check_box :suspend %>
+  </p>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to image_tag("back.png", :title => "back"), product_groups_path %>

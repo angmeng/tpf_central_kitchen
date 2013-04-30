@@ -1,0 +1,72 @@
+<% title (t "titles.cheque") %>
+
+<table style="width:80%">
+	<tr align="center">
+		<td><%= link_to (t "links.my_current_date_cheques"), show_current_date_own_cheques_path %></td>
+		<td><%= link_to (t "links.customer_current_date_cheques"), show_current_date_customer_cheques_path %></td>
+		<td><%= link_to (t "links.my_future_cheques"), show_future_own_cheques_path %></td>
+		<td><%= link_to (t "links.customer_future_cheques"), show_future_customer_cheques_path %></td>
+	</tr>
+	
+</table>
+<br />
+<%= form_for @search do |f| %>
+<table class="list">
+  <thead>
+	<tr>
+		<th><%=t "cheque.cheque_number" %>  </th>
+		<th><%=t "cheque.cheque_bank" %> </th>
+		<th><%=t "cheque.cheque_date" %> </th>
+		<th><%=t "cheque.own_cheque" %> </th>
+		<th><%=t "common.action" %> </th>
+		
+	</tr>
+	  </thead>
+   <tbody>
+	<tr align="center">
+		<td><%= f.text_field :cheque_number_equals %></td>
+		<td><%= f.select :bank_id_equals, Bank.all(:order => "name").map {|b| [b.name, b.id]}, {:include_blank => true} %></td>
+		<td><%= calendar_date_select_tag :cheque_date %></td>
+		
+		<td><%= f.select :cheque_type_id_equals, [["Own Cheque", Setting::SUPPLIER_PAYMENT], ["Customer Cheque", Setting::CUSTOMER_PAYMENT]], {:include_blank => true} %></td>
+	    <td><%= f.submit(t "links.search") %></td>
+	</tr>
+	  </tbody>
+</table>
+
+<% end %>
+
+
+<br />
+
+<table class="list">
+  <thead>
+  <tr>
+    <th><%=t "cheque.cheque_number" %> </th>
+    <th><%=t "cheque.cheque_bank" %></th>
+    <th><%=t "cheque.owner_name" %></th>
+    <th><%=t "cheque.cheque_date" %></th>
+    <th><%=t "cheque.bank_account_no" %></th>
+	<th><%=t "cheque.own_cheque" %></th>
+	<th><%=t "common.action" %></th>
+  </tr>
+    </thead>
+   <tbody>
+  <% for cheque in @cheques %>
+     <tr class="<%= cycle("list0", "list1") %>">
+      <td align="center"><%=h cheque.cheque_number %></td>
+      <td><%=h cheque.bank.name %></td>
+      <td><%=h cheque.owner_name %></td>
+      <td align="center"><%=h cheque.cheque_date %></td>
+      <td><%=h cheque.bank_account_number %></td>
+	  <td align="center"><%= cheque.status %></td>
+      <td align="center"><%= link_to image_tag("show.png", :title => "show"), cheque %>
+      <%= link_to image_tag("edit.png", :title => "Edit"), edit_cheque_path(cheque) %>
+     </td>
+    </tr>
+  <% end %>
+    </tbody>
+</table>
+
+
+

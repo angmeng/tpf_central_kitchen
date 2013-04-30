@@ -1,0 +1,63 @@
+<%= form_remote_tag(:url => "/products/#{product.id.to_s}/update_uom") do %>
+<table class="list" style="margin-left:10px;width:80%">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Description</th>
+			<th>Rate</th>
+			<th>Selling Price A</th>
+			<th>Selling Price B</th>
+			<th>Cost</th>
+			<th>Remove</th>
+		
+		</tr>
+	</thead>
+	<tbody>
+		
+		<% product.product_uoms.each do |product_uom| %>
+		
+		 <tr class="<%= cycle("odd", "even") %>" align="center">
+			<td><%= text_field_tag "uom["+product_uom.id.to_s+"][name]", product_uom.name, :size => 10 %></td>
+			<td><%= text_field_tag "uom["+product_uom.id.to_s+"][description]", product_uom.description %></td>
+			<td><%= text_field_tag "uom["+product_uom.id.to_s+"][rate]", product_uom.rate, :size => 10 %></td>
+			<td><%= text_field_tag "uom["+product_uom.id.to_s+"][selling_price_a]", product_uom.selling_price_a, :size => 10 %></td>
+			<td><%= text_field_tag "uom["+product_uom.id.to_s+"][selling_price_b]", product_uom.selling_price_b, :size => 10 %></td>
+			<td><%= text_field_tag "uom["+product_uom.id.to_s+"][cost]", product_uom.cost, :size => 10 %></td>
+			<td><%= link_to_remote image_tag("delete.png", :title => "Delete"), :url => "/products/#{product_uom.id.to_s}/remove_uom", :method => :get, :confirm => "Are you sure you want to remove this item ?" %></td>  
+			
+		</tr>
+		<% end %>
+		<tr>
+			<td colspan="6" align="center"><br />  <%= submit_tag(" Update All UOM ")  %></td></td>
+		</tr>
+	</tbody>
+</table>
+	<% end %>
+<br />
+<br />
+<% form_remote_tag :url => "/products/#{product.id.to_s}/add_uom" do%>
+ <table style="margin-left:10px;">
+ 	<tr>
+ 		<th>Name</th>
+		<th>Description</th>
+		<th>Rate</th>
+		<th>Selling Price A</th>
+		<th>Selling Price B</th>
+		<th>Cost</th>
+		<th>Add</th>
+		
+ 	</tr>
+	<tr>
+		<td><%= text_field "option", "name" %></td>
+		<td><%= text_field "option", "description" %></td>
+		<td><%= text_field "option", "rate", :size => 12 %></td>
+		<td><%= text_field "option", "selling_price_a", :size => 15 %></td>
+		<td><%= text_field "option", "selling_price_b", :size => 15 %></td>
+		<td><%= text_field "option", "cost", :size => 12 %></td>
+		<td><%= submit_tag " Add "%></td>
+		
+	</tr>
+ </table>
+<% end %>
+<br />
+<br />

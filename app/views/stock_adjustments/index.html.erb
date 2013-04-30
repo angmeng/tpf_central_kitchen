@@ -1,0 +1,38 @@
+<% title (t "titles.stock_adjustment") %>
+<br>
+<p><%= link_to image_tag("new.png", :title => "New"), new_stock_adjustment_path %></p>
+<br>
+<table class="list">
+  <thead>
+  <tr>
+    <th><%=t 'stock_adjustment.title' %></th>
+    <th><%=t 'stock_adjustment.store_location' %></th>
+    <th><%=t 'stock_adjustment.product' %></th>
+    <th><%=t 'stock_adjustment.debit' %></th>
+	<th><%=t 'stock_adjustment.credit' %></th>
+	<th><%=t 'common.action' %></th>
+  </tr>
+    </thead>
+   <tbody>
+  <% for stock_adjustment in @stock_adjustments %>
+     <tr class="<%= cycle("odd", "even") %>">
+      <td><%=h stock_adjustment.name %></td>
+      <td align="center"><%=h stock_adjustment.store_location.name %></td>
+      <td align="center"><%=h stock_adjustment.product.name %></td>
+	  <% if stock_adjustment.debit %>
+        <td align="center"><%=h stock_adjustment.quantity %></td>
+	    <td></td>
+	  <% else %>
+	    <td></td>
+	    <td align="center"><%=h stock_adjustment.quantity %></td>
+	  <% end %>
+      <td align="center"><%=link_to image_tag("show.png", :title => "show"), stock_adjustment %>
+      <%= link_to image_tag("delete.png", :title => "Delete"), stock_adjustment, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+   </tbody>
+</table>
+
+
+
+<br />

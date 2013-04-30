@@ -1,0 +1,29 @@
+<% title (t "titles.cheque") %>
+
+<p>
+  <strong><%=t "cheque.cheque_number" %>:</strong>
+  <%=h @cheque.cheque_number %>
+</p>
+<p>
+  <strong><%=t "cheque.cheque_bank" %>:</strong>
+  <%=h @cheque.bank.name %>
+</p>
+
+<p>
+  <strong><%=t "cheque.owner_name" %>:</strong>
+  <%=h @cheque.owner_name %>
+</p>
+<p>
+  <strong><%=t "cheque.cheque_date" %>:</strong>
+  <%=h @cheque.cheque_date %>
+</p>
+
+<p>
+  <strong><%=t "cheque.bank_account_no" %>:</strong>
+  <%=h @cheque.bank_account_number %>
+</p>
+
+<p>
+  <%= link_to (t "links.edit"), edit_cheque_path(@cheque) %> |
+  <%= link_to (t "links.view_all"), cheques_path %>
+</p>

@@ -1,0 +1,31 @@
+<% title (t "titles.customer_payment") %>
+<p><%= link_to (t "links.new"), new_customer_payment_path %></p>
+<table class="list">
+  <thead>
+  <tr>
+    <th><%=t "customer_payment.payment_date" %> </th>
+    <th><%=t "customer_payment.customer" %> </th>
+    <th><%=t "customer_payment.reference_no" %> </th>
+    <th><%=t "customer_payment.resit_no" %> </th>
+    <th><%=t "customer_payment.payment_method" %> </th>
+    <th><%=t "customer_payment.amount" %> </th>
+	<th><%=t "common.action" %> </th>
+  </tr>
+  </thead>
+   <tbody>
+  <% for customer_payment in @customer_payments %>
+   <tr class="<%= cycle("odd", "even") %>">
+      <td align="center"><%=h customer_payment.payment_date %></td>
+      <td><%=h customer_payment.customer.name %></td>
+      <td><%=h customer_payment.reference_number %></td>
+      <td><%=h customer_payment.resit_number %></td>
+      <td align="center"><%=h customer_payment.payment_method.name %></td>
+      <td align="center">RM <%=h number_with_precision(customer_payment.amount, :precision => 2) %></td>
+      <td align="center"><%= link_to (t "links.show"), customer_payment %>
+      <%= link_to (t "links.destroy"), customer_payment, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+

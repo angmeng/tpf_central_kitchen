@@ -1,0 +1,21 @@
+<% title "Card Categories" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Priority</th>
+  </tr>
+  <% for card_category in @card_categories %>
+    <tr>
+      <td><%=h card_category.name %></td>
+      <td><%=h card_category.description %></td>
+      <td><%=h card_category.priority %></td>
+      <td><%= link_to "Show", card_category %></td>
+      <td><%= link_to "Edit", edit_card_category_path(card_category) %></td>
+      <td><%= link_to "Destroy", card_category, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Card Category", new_card_category_path %></p>

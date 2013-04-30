@@ -1,0 +1,37 @@
+<% title (t "titles.product_movement") + " " + @product.name  %> 
+
+<%= link_to (t "links.back"), product_movements_url %>
+<br /><br />
+<table class="list">
+  <thead>
+  <tr>
+    <th><%=t "product_movement.movement_date" %></th>
+    <th><%=t "common.description" %> </th>
+    <th><%=t "stock_adjustment.debit" %> </th>
+    <th><%=t "stock_adjustment.credit" %> </th>
+    <th><%=t "product_movement.balance" %> </th>
+	<th><%=t "common.action" %></th>
+    
+  </tr>
+    </thead>
+   <tbody>
+  <% for product_movement in @product_movements %>
+     <tr class="<%= cycle("odd", "even") %>">
+      <td><%=h product_movement.movement_date %></td>
+      <%= generate_description(product_movement) %>
+          <%= generate_debit_credit(product_movement) %>
+      <td style="text-align:center;"><%=h product_movement.balance %></td>
+      
+      <%= generate_invoice_link(product_movement) %>
+     
+    </tr>
+  <% end %>
+   </tbody>
+</table>
+
+<br />
+<%= will_paginate @product_movements %>
+<hr />
+<br />
+
+

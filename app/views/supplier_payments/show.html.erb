@@ -1,0 +1,45 @@
+<% title (t "titles.supplier_payment") %>
+
+<p>
+  <strong><%=t "customer_payment.payment_date" %>e:</strong>
+  <%=h @supplier_payment.payment_date %>
+</p>
+<p>
+  <strong><%=t "supplier_payment.supplier" %>:</strong>
+  <%=h @supplier_payment.supplier.name %>
+</p>
+<p>
+  <strong><%=t "customer_payment.reference_no" %>:</strong>
+  <%=h @supplier_payment.reference_number %>
+</p>
+<p>
+  <strong><%=t "customer_payment.resit_no" %>:</strong>
+  <%=h @supplier_payment.resit_number %>
+</p>
+<p>
+  <strong><%=t "common.description" %>:</strong>
+  <%=h @supplier_payment.description %>
+</p>
+<p>
+  <strong><%=t "customer_payment.payment_method" %>:</strong>
+  <%=h @supplier_payment.payment_method.name %>
+</p>
+
+<% if @cheque %>
+   <%= render :partial => '/supplier_payments/cheque' %>
+<% end %>
+
+<% if @credit_card %>
+   <%= render :partial => '/supplier_payments/credit_card' %>
+<% end %>
+
+<p>
+  <strong><%=t "customer_payment.amount" %>:</strong>
+  RM <%=h number_with_precision(@supplier_payment.amount, :precision => 2) %>
+</p>
+
+<p>
+
+  <%= link_to (t "links.destroy"), @supplier_payment, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to (t "links.view_all"), supplier_payments_path %>
+</p>

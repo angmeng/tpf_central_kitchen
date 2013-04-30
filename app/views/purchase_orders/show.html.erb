@@ -1,0 +1,115 @@
+<% content_for :head do %>
+
+<%= javascript_include_tag("smo") %>
+
+<% end %>
+<% title (t "menu.purchase_order") %>
+
+<br />
+
+<%= render :partial => "menu" %>
+<br />
+<table width="100%">
+  <tr>
+    <td><%= t "purchase_invoice.supplier" %> : <%= @purchase_order.supplier_name %></td>
+    <td>Purchase Order Date : <%= @purchase_order.purchase_order_date.strftime("%d-%m-%Y") %></td>
+  </tr>
+  <tr>
+    <td><%= t "common.remark" %>: <%= @purchase_order.remark %></td>
+    <td>Purchase Order No : <%= @purchase_order.purchase_order_number %></td>
+    <td>Settled : <%= show_image(@purchase_order.settled?) %> </td>
+  </tr>
+</table>
+<br />
+
+<%= form_tag submit_pricing_purchase_order_path(@purchase_order) do%>
+<table class="list">
+  <thead>
+    <tr>
+	<th>Select All <br /><input type="checkbox" name="checkall" onclick="checkUncheckAll(this);"/></th>
+	<th align="left">Code</th>
+        <th align="left"><%=t "invoice.product" %></th>
+	<th>UOM</th>
+	<th><%=t "invoice.quantity" %></th>
+	<th><%=t "invoice.unit_price" %></th>
+	<th><%=t "invoice.amount" %></th>
+    </tr>
+   </thead>
+  <tbody>
+  <% @current_items.each do |c| %>
+   <tr class="<%= cycle("odd", "even") %>">
+     <td align="center">
+  	<% link_to (t "links.remove"), remove_item_purchase_order_path(@purchase_order, :purchase_order_item_id => c.id), :confirm => "Are you sure ?" %>
+        <%= check_box_tag "item[#{c.id.to_s}][selected]" %>
+     </td>
+
+     <td><%= c.product.code %></td>
+			
+     <td><%= c.product.name %></td>
+     <td align="center"><%= c.product_uom.name rescue "Not Assigned" %></td>
+     <td align="center"><%= c.quantity %></td>
+     <td align="center">
+        RM <%= text_field_tag "pricing["+c.id.to_s+"][amount]", c.unit_price, :size => 8 %>
+     </td>
+     <td align="center">
+	RM <%= number_with_precision(c.total_amount, :precision => 2) %>
+     </td>
+  </tr>
+<% end %>
+	
+  <tr>
+    <td align="center"><%= submit_tag "Remove Selected" %></td>
+    <td colspan="4">  </td>
+    <td align="center"><%= submit_tag "Update" %></td>
+    <td align="center">
+    </td>
+  </tr>
+  <tr>
+    <td colspan="6">  </td>
+    <td align="center">
+	<hr/><%=t ("invoice.total") %> :
+		RM <%= number_with_precision(@purchase_order.total_amount, :precision => 2) %>
+	<hr/><hr/>
+    </td>
+  </tr>
+</tbody>
+</table>
+<% end %>
+<br /> <br />
+
+<%= form_tag add_items_purchase_order_path(@purchase_order) do %>
+
+  <div id="purchase_order_items">
+  
+    <table>
+      <tr>
+        <td>
+          Product :
+        </td>
+      <td>
+           <%= text_field_with_auto_complete "purchase_order_item", "product_name", {:size => 80},
+           { :url => show_product_outlet_purchase_orders_path(:js), :method => :get, :with => "'search='+element.value" } %>
+        </td>
+      <td>
+        Quantity:
+      </td>
+      <td>
+           <%= text_field "purchase_order_item", "quantity", :size => 8 %>
+      </td>
+      
+      <td>
+           <%= submit_tag (t "invoice.add_product") %> 
+        </td>
+      
+      </tr>
+    </table>
+ </div>
+ 
+   <br />
+ 
+ <% end %>  
+ <br />
+<br />
+
+<%= render :partial => "menu" %>
+

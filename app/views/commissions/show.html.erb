@@ -1,0 +1,18 @@
+<p>
+  <b>Salesman:</b>
+  <%=h @commission.salesman_id %>
+</p>
+
+<p>
+  <b>Product:</b>
+  <%=h @commission.product_id %>
+</p>
+
+<p>
+  <b>Percentage:</b>
+  <%=h @commission.percentage %>
+</p>
+
+
+<%= link_to 'Edit', edit_commission_path(@commission) %> |
+<%= link_to 'Back', commissions_path %>

@@ -1,0 +1,41 @@
+<p>
+  <b>Name:</b>
+  <%=h @salesman.name %>
+</p>
+
+
+<p>
+  <b>Mobile number:</b>
+  <%=h @salesman.mobile_number %>
+</p>
+
+<p>
+  <b>Suspend:</b>
+  <%=h @salesman.suspend %>
+</p>
+
+
+<%= link_to 'Edit', edit_salesman_path(@salesman) %> |
+<%= link_to 'Back', salesmen_path %>
+<hr />
+<br />
+
+<%= form_tag submit_commission_salesman_path(@salesman) do %>
+<table>
+	<tr>
+	 <th>Product</th>
+	 <th>Commission</th>
+	</tr>
+	<% for e in @commissions %>
+	 <tr align="center" class="<%= cycle("list0", "list1") %>">
+		<td><%= e.product.name %></td>
+		<td align="center"><%= text_field_tag "commission["+e.id.to_s+"][percentage]", e.percentage %></td>
+	</tr>
+	<% end %>
+	<tr>
+		<td></td>
+		<th><%= submit_tag "Submit" %></th>
+	</tr>
+</table>
+
+<% end %>

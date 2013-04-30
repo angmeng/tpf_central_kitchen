@@ -1,0 +1,73 @@
+<% title (t "links.new") %>
+<br />
+<%= link_to image_tag("home.png", :title => "View all Invoices"), invoices_path %>
+<br /><br />
+<%= form_for @invoice do |f| %>
+  <% render "/shared/error_messages", :target => @invoice %>  
+  <table width="100%">
+  	<tr>
+  	   <th align="left">
+    <%= f.label :invoice_date, (t "invoice.invoice_date") %><br />
+    <%= f.date_select :invoice_date %>
+  </th>
+  		<th align="left"> <%= f.label :company_id,  "Invoice Company" %><br />
+     <%= f.select :company_id, Company.all(:order => "name").map {|co| [co.name, co.id]} %>
+	</th>
+		<th align="left">
+			 <%= f.label :outlet_id, (t "invoice.customer") %><br />
+    <%= f.select :outlet_id, Outlet.all(:order => "name").map {|c| [c.name, c.id]} %>
+		</th>
+		<th>
+		</th>
+	</tr>
+	<tr>
+	  <th align="left" colspan="4">
+	    <%= f.label :remark %><br />
+    <%= f.text_area :remark, :size => "100x8" %>
+	  </th>
+	</tr>
+  </table>
+  
+  <br>
+
+ <%= f.submit 'Create', :disable_with => "Please Wait ..." %> 
+  <br />
+  <hr />
+  <br />
+  
+  <table class="list">
+  <thead>
+    <tr>
+    <th align="left">Product Code</th>
+    <th align="left">Name</th>
+    <th align="left">Description</th>
+    <th>UOM</th>
+    <th>Quantity</th>
+    </tr>
+  </thead>
+   <tbody>
+    <% for product in Product.publicity %>
+    <tr class="<%= cycle("odd", "even") %>" align="center">
+    <td><%= product.code %></td>
+    <td><%= product.name %></td>
+    <td><%= product.description %></td>
+    <td><%= select_tag("product[" + product.id.to_s + "][product_uom_id]", options_from_collection_for_select(product.outlet_po_uom_selection, :id, :name)) %></td>
+    <td><%= text_field_tag "product[" + product.id.to_s + "][quantity]", {}, :size => 5  %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td colspan="4">
+      <br />
+    </td>
+    <td align="center">
+      <p>
+       <%= f.submit 'Create', :disable_with => "Please Wait ..." %> 
+    </td>
+  </tr>
+  </tbody>
+  </table>
+ 
+ <br />
+<% end %>
+
+

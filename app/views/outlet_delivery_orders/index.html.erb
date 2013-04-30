@@ -1,0 +1,31 @@
+<h1>Listing outlet_delivery_orders</h1>
+
+<table class="list">
+  <thead>
+  <tr>
+    <th>Outlet</th>
+    <th>Delivery order date</th>
+    <th>Delivery order number</th>
+    <th>Remark</th>
+    <th>Void</th>
+  </tr>
+</thead>
+   <tbody>
+<% @outlet_delivery_orders.each do |outlet_delivery_order| %>
+   <tr class="<%= cycle("odd", "even") %>">
+    <td><%=h outlet_delivery_order.outlet_id %></td>
+    <td><%=h outlet_delivery_order.delivery_order_date %></td>
+    <td><%=h outlet_delivery_order.delivery_order_number %></td>
+    <td><%=h outlet_delivery_order.remark %></td>
+    <td><%=h outlet_delivery_order.void %></td>
+    <td><%= link_to 'Show', outlet_delivery_order %></td>
+    <td><%= link_to 'Edit', edit_outlet_delivery_order_path(outlet_delivery_order) %></td>
+    <td><%= link_to 'Destroy', outlet_delivery_order, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+ </tbody>
+</table>
+
+<br />
+
+<%= link_to 'New outlet_delivery_order', new_outlet_delivery_order_path %>

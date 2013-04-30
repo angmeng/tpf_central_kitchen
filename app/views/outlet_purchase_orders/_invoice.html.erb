@@ -1,0 +1,19 @@
+ <h3>Invoice</h3>
+           <table class="list">
+             <thead>
+               <tr>
+                 <th style="width: 25%">Invoice No</th>
+                 <th style="width: 35%">Invoice Date</th>
+                 <th style="width: 20%">Status</th>
+                 <th style="width: 20%">Action</th>
+               </tr>
+             </thead>
+             <tbody>
+               <tr class="<%= cycle("odd", "even") %>" align="center">
+                 <td><%= invoice.invoice_number  %> </td>
+                 <td><%= invoice.invoice_date  %> </td>
+                  <td><%=raw invoice.current_status  %> </td>
+                 <td><%= link_to "Show Invoice", invoice %> </td>
+               </tr>
+             </tbody>
+           </table>

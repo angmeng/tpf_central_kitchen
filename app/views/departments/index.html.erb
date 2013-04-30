@@ -1,0 +1,27 @@
+<% title (t "titles.department") %>
+<br />
+<p><%= link_to image_tag("new.png", :title => "new"), new_department_path %></p>
+<br />
+<table class="list">
+  <thead>
+  <tr>
+    <th><%=t 'common.name' %></th>
+    <th><%=t 'common.description' %></th>
+    <th><%=t 'common.action' %></th>
+  </tr>
+</thead>
+   <tbody>
+<% @departments.each do |department| %>
+  <tr class="<%= cycle("odd", "even") %>">
+    <td><%=h department.name %></td>
+    <td><%=h department.description %></td>
+    <td align="center"><%= link_to image_tag("show.png", :title => "Show"), department %>
+    <%= link_to image_tag("edit.png", :title => "Edit"), edit_department_path(department) %>
+    <%= link_to image_tag("delete.png", :title => "Delete"), department, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+<br />
+

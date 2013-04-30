@@ -1,0 +1,24 @@
+<% title (t "titles.expense") %>
+
+<p>
+  <strong><%=t "expenses.expense_date" %>:</strong>
+  <%=h @expense.expense_date %>
+</p>
+<p>
+  <strong><%=t "expenses.title" %>:</strong>
+  <%=h @expense.title %>
+</p>
+<p>
+  <strong><%=t "common.description" %>:</strong>
+  <%=h @expense.description %>
+</p>
+<p>
+  <strong><%=t "expenses.amount" %>:</strong>
+  RM <%=h number_with_precision(@expense.amount, :precision => 2) %>
+</p>
+
+<p>
+  <%= link_to (t "links.edit"), edit_expense_path(@expense) %> |
+  <%= link_to (t "links.destroy"), @expense, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to (t "links.view_all"), expenses_path %>
+</p>

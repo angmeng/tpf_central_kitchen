@@ -1,0 +1,33 @@
+<div style="float: left;position: relative;margin-top: 30px" id="smoothmenu1" class="ddsmoothmenu-v">
+<ul>
+<li><a href="/home"><%=t 'menu.home' %></a></li>
+
+  <li><%= link_to (t 'menu.document'), category_index_document_storages_path %></li>
+
+<li><a href="#"><%=t 'menu.ar_management' %></a>
+  <ul>
+ 
+  <li><a href="/invoices"><%=t 'menu.invoice' %></a></li>
+
+  </ul>
+</li>
+
+
+<li><a href="#" rel="dropmenu6_b"><%=t 'menu.report' %></a>
+<ul>
+  <li><a href="/report/sales"><%=t 'menu.sales' %></a></li>
+  <li><a href="/report/stock_report"><%=t 'menu.stock' %></a></li>
+  <li><a href="/stocks"><%=t 'menu.location_stock' %></a></li>
+  <li><a href="/report/profit_and_loss"><%=t 'menu.profit_loss' %></a></li>
+  <li><a href="/product_movements"><%=t 'menu.product_movement' %></a></li>
+  </ul>
+</li>
+
+<li><%= link_to (t 'links.logout'), logout_url %></li>
+
+</ul>
+
+</div>
+
+
+

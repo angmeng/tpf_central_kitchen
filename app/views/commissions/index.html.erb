@@ -1,0 +1,24 @@
+<h1>Listing commissions</h1>
+
+<table>
+  <tr>
+    <th>Salesman</th>
+    <th>Product</th>
+    <th>Percentage</th>
+  </tr>
+
+<% @commissions.each do |commission| %>
+  <tr>
+    <td><%=h commission.salesman_id %></td>
+    <td><%=h commission.product_id %></td>
+    <td><%=h commission.percentage %></td>
+    <td><%= link_to 'Show', commission %></td>
+    <td><%= link_to 'Edit', edit_commission_path(commission) %></td>
+    <td><%= link_to 'Destroy', commission, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New commission', new_commission_path %>

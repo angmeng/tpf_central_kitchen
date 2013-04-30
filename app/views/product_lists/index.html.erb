@@ -1,0 +1,32 @@
+<% title "Listing product lists" %>
+<br />
+<%= link_to 'New product_list', new_product_list_path %>
+<br /><br />
+
+<table class="list">
+  <thead>
+  <tr>
+  	<th>Date</th>
+    <th>Title</th>
+    <th>Description</th>
+	<th>Action</th>
+  </tr>
+    </thead>
+   <tbody>
+<% @product_lists.each do |product_list| %>
+  <tr class="<%= cycle("odd", "even") %>" align="center">
+  	<td>
+  		<%= product_list.created_at.strftime("%d-%m-%Y %H:%M") %>
+  	</td>
+    <td><%=h product_list.title %></td>
+    <td><%=h product_list.description %></td>
+    <td><%= link_to 'Show', product_list %>
+    <%= link_to 'Edit', edit_product_list_path(product_list) %>
+    <%= link_to 'Destroy', product_list, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+   </tbody>
+</table>
+
+<br />
+

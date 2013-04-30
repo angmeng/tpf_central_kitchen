@@ -1,0 +1,79 @@
+<% title (t "titles.information_center") %>
+
+<br />
+<% if is_outlet_staff?%>
+  <%= link_to image_tag("new.png", :title => "New"), new_outlet_purchase_order_path %>
+<% end %>
+<br />
+<br />
+<h3>Pending Outlet Purchase Order</h3>
+<br />
+<%= form_tag group_confirm_outlet_purchase_orders_path do %>
+
+     <table class="list">
+    	<thead>
+    		<tr>
+    		<th align="left">Outlet</th>
+				<th align="left">Purchase Order No</th>
+				<th align="left">Date</th>
+				<th align="left">Status</th>
+				<% unless is_outlet_staff? %>
+				<th>Grouping</th>
+				<% end %>
+				<th>Action</th>
+    		</tr>
+    	</thead>
+		<tbody>
+			<% count = 0 %>
+
+		<% for order in @orders %>
+		 		 <tr class="<%= cycle("odd", "even") %>">
+		   <td>
+		   	 <%= order.outlet.name %>
+		   </td>	
+		   <td>
+		   	 <%= order.purchase_order_number %>
+		   </td>
+		   <td>
+		   	 <%= order.purchase_order_date.strftime("%d-%m-%Y") %>
+		   </td>
+		    <td>
+		   	 <%= raw order.status %>
+		   </td>
+		   <% unless is_outlet_staff? %>
+		    <td  align="center">
+		    	<% if order.po_sent_to_central_central_stage? %>
+			    	<% if order.is_grouped? %>
+                Grouped into PO <%= link_to(order.master_purchase_order.purchase_order_number, order.master_purchase_order) rescue "" %>
+			    	<% else %>
+			    	<% count += 1 %>
+			   	   <%= check_box_tag "outlet_purchase_order_ids[]", order.id %>
+			   	 	<% end %>
+		   	 	<% end %>
+		   </td>
+		   <% end %>
+		   
+		   <td align="center">
+		   	<%= link_to image_tag("show.png", :title => "show"), order %>
+		   </td>
+		 </tr>
+		
+		<% end %>
+		<tr>
+     <td colspan="4"></td>
+     <% unless is_outlet_staff? %>
+     <td align="center">
+     	   <% if count > 1 %>
+		   	 <%= submit_tag("Group selected POs") %>
+		   	 <% end %>
+		   </td>
+		   <% end %>
+		   <td></td>
+
+		</tr>
+		</tbody>
+    </table>
+	<% end %>
+
+
+

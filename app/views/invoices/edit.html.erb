@@ -1,0 +1,28 @@
+<% title (t "titles.edit") %>
+
+<%= form_for @invoice do |f| %>
+  <% render "/shared/error_messages", :target => @invoice %>
+  <p>
+    <%= f.label :invoice_date, (t "invoice.invoice_date") %><br />
+    <%= f.date_select :invoice_date %>
+  </p>
+  <p>
+    <%= f.label :invoice_number, (t "invoice.invoice_number") %><br />
+    <%= f.text_field :invoice_number %>
+  </p>
+  <p>
+    <%= f.label :outlet_id, (t "invoice.customer") %> : 
+    <%= @invoice.outlet.name %>
+  </p>
+  <p>
+    <%= f.label :remark, (t "invoice.remark") %><br />
+    <%= f.text_field :remark %>
+  </p>
+  <p><%= f.submit(t "links.submit") %></p>
+<% end %>
+
+
+<p>
+  <%= link_to (t "links.show"), @invoice %> |
+  <%= link_to (t "links.view_all"), invoices_path %>
+</p>

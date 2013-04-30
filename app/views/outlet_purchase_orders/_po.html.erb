@@ -1,0 +1,23 @@
+<h3>PO</h3>
+           <table class="list">
+             <thead>
+               <tr>
+                 <th style="width: 25%">PO No</th>
+                 <th style="width: 35%">Supplier</th>
+                 <th style="width: 20%">Status</th>
+                 <th style="width: 20%">Action</th>
+               </tr>
+             </thead>
+             <tbody>
+               <% @outlet_purchase_order.purchase_orders.each do |p| %>
+               <tr class="<%= cycle("odd", "even") %>" align="center">
+                 <td><%= p.purchase_order_number  %> </td>
+                 <td><%= p.supplier.name  %> </td>
+                  <td><%=raw p.current_status  %> </td>
+                 <td><%= link_to "Show PO", p %> </td>
+               </tr>
+
+               <% end %>
+             </tbody>
+           </table>
+

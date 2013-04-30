@@ -1,0 +1,14 @@
+<%= form_for @store_location do |f| %>
+   <% render "/shared/error_messages", :target => @store_location %>
+  <p>
+    <%= f.label :name, (t "common.name") %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description, (t "common.description") %><br />
+    <%= f.text_area :description %>
+  </p>
+  <p><%= f.submit(t "links.submit") %></p>
+<% end %>
+
+<br /><br />

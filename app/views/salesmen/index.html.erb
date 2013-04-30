@@ -1,0 +1,29 @@
+<% title (t 'menu.salesman')  %>
+
+<%= link_to (t "links.new"), new_salesman_path %>
+<br /><br />
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Mobile number</th>
+    <th>Remark</th>
+    <th>Suspend</th>
+	<th>Action</th>
+  </tr>
+
+<% @salesmen.each do |salesman| %>
+  <tr class="<%= cycle("list0", "list1") %>">
+    <td align="center"><%=h salesman.name %></td>
+    <td align="center"><%=h salesman.mobile_number %></td>
+    <td><%=h salesman.remark %></td>
+    <td align="center"><%=h salesman.suspend %></td>
+    <td align="center"><%= link_to (t "links.show"), salesman %>
+    <%= link_to (t "links.edit"), edit_salesman_path(salesman) %>
+	<%= link_to (t "menu.commission"), edit_commission_salesman_path(salesman) %>
+    <%= link_to (t "links.destroy"), salesman, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+

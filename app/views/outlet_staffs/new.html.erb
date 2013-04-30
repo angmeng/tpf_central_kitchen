@@ -1,0 +1,45 @@
+<% title "New outlet staff"%>
+
+<%= form_for(@outlet_staff) do |f| %>
+   <% render "/shared/error_messages", :target => @outlet_staff %>
+  <p>
+    <%= f.label :fullname %><br />
+    <%= f.text_field :fullname %>
+  </p>
+  <p>
+    <%= f.label :nickname %><br />
+    <%= f.text_field :nickname %>
+  </p>
+    <p>
+    <%= f.label :login %><br />
+    <%= f.text_field :login %>
+  </p>
+  <p>
+    <%= f.label :outlet_id %><br />
+    <%= f.select :outlet_id, Outlet.all(:order => "name").map {|c| [c.name, c.id]} %>
+  </p>
+  <p>
+    <%= f.label :suspend %><br />
+    <%= f.check_box :suspend %>
+  </p>
+  <p>
+    <%= f.label :password %><br />
+    <%= f.password_field :password %>
+  </p>
+  <p>
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation%>
+  </p>
+  <br />
+  <p>
+    <%= f.submit 'Create' %> | <%= link_to 'Back', outlet_staffs_path %>
+  </p>
+<% end %>
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

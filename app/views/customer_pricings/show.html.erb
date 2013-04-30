@@ -1,0 +1,18 @@
+<p>
+  <b>Customer:</b>
+  <%=h @customer_pricing.customer_id %>
+</p>
+
+<p>
+  <b>Product:</b>
+  <%=h @customer_pricing.product_id %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%=h @customer_pricing.amount %>
+</p>
+
+
+<%= link_to 'Edit', edit_customer_pricing_path(@customer_pricing) %> |
+<%= link_to 'Back', customer_pricings_path %>

@@ -1,0 +1,15 @@
+  <table class="list" style="margin-left:10px;width:80%">
+    <thead>
+   	<tr>
+   		<th>Location</th>
+		
+		<th>Description</th>
+   	</tr>
+	 </thead>
+   <tbody>
+	 <tr class="<%= cycle("odd", "even") %>" align="center">
+	 	<td><%= product.store_location.name rescue "Not assigned" %></td>
+		<td><%= product.store_location.description  rescue "None" %></td>
+	 </tr>
+	 </tbody>
+   </table>

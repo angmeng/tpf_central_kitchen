@@ -1,0 +1,27 @@
+<% title (t "titles.stock") %>
+
+<p>
+  <strong><%=t "stock.store_location" %>:</strong>
+  <%=h @stock.store_location.name %>
+</p>
+<p>
+  <strong><%=t "stock.product" %>:</strong>
+  <%=h @stock.product.name %>
+</p>
+<p>
+  <strong><%=t "product.stock_quantity" %>:</strong>
+  <%=h @stock.total_quantity %>
+</p>
+
+<p>
+	<strong><%=t 'product.image' %>:</strong><br />
+	<%= image_tag @stock.product.photo.url(:medium) %>
+
+</p>
+
+<p>
+
+  <%= link_to (t "links.view_all"), stocks_path %>
+</p>
+
+<br /><br />

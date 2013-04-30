@@ -1,0 +1,65 @@
+<% title "Packing List" %>
+<br />
+<%= link_to "Back", @packing_list %> |
+<%= link_to "Preview", preview_packing_list_path(@packing_list) %>
+
+<table width="80%">
+	<tr>
+		<th>
+			Packing List Number : <%= @packing_list.packing_list_number %>
+		</th>
+		<th>
+			Packing List Date : <%= @packing_list.packing_date.strftime("%d-%m-%Y") %>
+		</th>
+	</tr>
+</table>
+<br />
+<hr />
+<br />
+<% form_tag(picked_items_packing_list_path(@packing_list)) do %>
+<table class="list">
+  <thead>
+	<tr>
+		<th>Outlet</th>
+		<th>Purchase Requisition No</th>
+		<th>Product</th>
+		<th>Quantity</th>
+		<th>Picked?</th>
+	</tr>
+	    </thead>
+   <tbody>
+   	<% for item in @items %>
+	<tr class="<%= cycle("odd", "even") %>">
+		<td align="center">
+			<%= item.outlet.name %>
+		</td>
+		<td align="center">
+			<%= item.outlet_purchase_order.purchase_order_number %>
+		</td>
+		<td align="center">
+			<%= item.product.name %>
+		</td>
+		<td align="center">
+			<%= item.quantity %>
+		</td>
+		
+		<td align="center">
+			 <%= hidden_field_tag('seen[]', item.id) -%>
+             <%= check_box_tag 'picked[]', item.id, item.picked -%>
+		</td>
+	</tr>
+	<% end %>
+	<tr>
+		<td colspan="4"></td>
+		<td align="center">
+			<br />
+			<%= submit_tag "Update" %>
+		</td>
+		
+	</tr>
+	
+	</tbody>
+</table>
+<% end %>
+<br />
+<br />

@@ -1,0 +1,9 @@
+<% title (t "titles.edit") %>
+
+<%= render :partial => 'form' %>
+
+<p>
+  <%= link_to image_tag("show.png", :title => "Show"),@product_category %> |
+  <%= link_to (t "links.view_all"), product_categories_path %>
+</p>
+

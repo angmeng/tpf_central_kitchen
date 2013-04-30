@@ -1,0 +1,29 @@
+<%= form_for @stock_adjustment do |f| %>
+   <% render "/shared/error_messages", :target => @stock_adjustment %>  <p>
+    <%= f.label :name, (t "common.name") %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description, (t "common.name") %><br />
+    <%= f.text_area :description, :size => "60x8" %>
+  </p>
+  <p>
+    <%= f.label :store_location_id, (t "stock_adjustment.store_location") %><br />
+    <%= f.collection_select :store_location_id, @locations, :id, :name %>
+  </p>
+  <p>
+    <%= f.label :product_id, (t "stock_adjustment.product") %><br />
+    <%= f.collection_select :product_id, @products, :id, :name %>
+  </p>
+  
+   <p>
+    <%= f.radio_button :debit, true %> <%=t ("stock_adjustment.debit")%>
+    <%= f.radio_button :debit, false  %><%=t ("stock_adjustment.credit")%>
+  </p>
+  
+  <p>
+    <%= f.label :quantity, (t "stock_adjustment.quantity") %><br />
+    <%= f.text_field :quantity %>
+  </p>
+  <p><%= f.submit(t "links.submit") %></p>
+<% end %>

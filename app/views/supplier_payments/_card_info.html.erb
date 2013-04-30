@@ -1,0 +1,17 @@
+ <p>
+    <%=t "card.card_no" %><br />
+    <%= text_field :credit_card, :card_number %>
+  </p>
+  <p>
+    <%=t "card.card_bank" %> <br />
+    <%= select :credit_card, :bank_id, Bank.all(:order => "name").map {|b| [b.name, b.id]}, {:include_blank => true} %>
+   </p>
+  
+  <p>
+    <%=t "card.card_type" %> <br />
+    <%= select :credit_card, :card_category_id, CardCategory.all(:order => "name").map {|c| [c.name, c.id]}, {:include_blank => true} %>
+  </p>
+  <p>
+    <%=t "card.owner_name" %>  <br />
+    <%= text_field :credit_card, :owner_name %>
+  </p>

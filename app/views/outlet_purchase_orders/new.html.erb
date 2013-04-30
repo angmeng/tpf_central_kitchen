@@ -1,0 +1,67 @@
+<br /><br />
+<% title "New PO" %>
+<br />
+<%= form_for(@outlet_purchase_order, :html => { :multipart => true }) do |f| %>
+   <% render "/shared/error_messages", :target => @outlet_purchase_order %>
+  <p>  
+  <%= f.hidden_field :outlet_id, :value => current_user.outlet_id.to_s %>
+	<%= f.hidden_field :outlet_staff_id, :value => current_user.id.to_s %>
+  </p>
+  <p>
+    <%= f.label :purchase_order_date %><br />
+    <%= f.date_select :purchase_order_date %>
+  </p>
+
+  <p>
+    <%= f.label :remark %><br />
+    <%= f.text_area :remark, :size => "60x2" %>
+  </p>
+
+  <p>
+  <%= f.label :import_pr_item, "Import Excel file here" %><br />
+  <%= f.file_field :import_pr_item %>
+
+  </p>
+  <br />
+  <%= f.submit 'Create', :disable_with => "Please Wait ..." %> | <%= link_to 'Back', outlet_purchase_orders_path %>
+  
+  <br />
+  <hr />
+  <br />
+  
+  <table class="list">
+  <thead>
+  	<tr>
+  	<th align="left">Product Code</th>
+		<th align="left">Name</th>
+		<th align="left">Description</th>
+		<th align="left">UOM</th>
+		<th align="left">Quantity</th>
+  	</tr>
+	</thead>
+   <tbody>
+   	<% for product in Product.publicity %>
+   	<tr class="<%= cycle("odd", "even") %>">
+   	<td><%= product.code %></td>
+		<td><%= product.name %></td>
+		<td><%= product.description %></td>
+		<td><%= select_tag("product[" + product.id.to_s + "][product_uom_id]", options_from_collection_for_select(product.outlet_po_uom_selection, :id, :name)) %></td>
+		<td><%= text_field_tag "product[" + product.id.to_s + "][quantity]", nil, :size => 5  %></td>
+   	</tr>
+	<% end %>
+	<tr>
+		<td colspan="4">
+			<br />
+		</td>
+		<td align="left">
+			<p>
+       <%= f.submit 'Create', :disable_with => "Please Wait ..." %> | <%= link_to 'Back', outlet_purchase_orders_path %>
+      </p>
+		</td>
+	</tr>
+	</tbody>
+  </table>
+
+  
+<% end %>
+

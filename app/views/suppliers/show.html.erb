@@ -1,0 +1,54 @@
+<% title (t "titles.supplier") %>
+
+<p>
+  <strong><%=t "supplier.code"  %>:</strong>
+  <%=h @supplier.code %>
+</p>
+<p>
+  <strong><%=t "supplier.name"  %>:</strong>
+  <%=h @supplier.name %>
+</p>
+<p>
+  <strong><%=t "supplier.address"  %>:</strong>
+  <%=h @supplier.address %>
+</p>
+<p>
+  <strong><%=t "supplier.office_phone"  %>:</strong>
+  <%=h @supplier.office_phone %>
+</p>
+<p>
+  <strong><%=t "supplier.fax_number"  %>:</strong>
+  <%=h @supplier.fax_number %>
+</p>
+<p>
+  <strong><%=t "supplier.contact_person"  %>:</strong>
+  <%=h @supplier.contact_person %>
+</p>
+<p>
+  <strong><%=t "supplier.contact_number"  %>r:</strong>
+  <%=h @supplier.contact_number %>
+</p>
+<p>
+  <strong>Area:</strong>
+  <%=h @supplier.area %>
+</p>
+<p>
+  <strong>Term:</strong>
+  <%=h @supplier.term %>
+</p>
+
+<p>
+  <strong><%=t "supplier.outstanding_amount"  %>:</strong>
+  RM <%=h number_with_precision(@supplier.current_credit, :precision => 2) %>
+</p>
+
+<p>
+  <strong><%=t "supplier.active"  %>:</strong>
+  <%=h @supplier.active %>
+</p>
+
+<p>
+  <%= link_to (t "links.edit"), edit_supplier_path(@supplier) %> |
+  <%= link_to (t "links.destroy"), @supplier, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to (t "links.view_all"), suppliers_path %>
+</p>

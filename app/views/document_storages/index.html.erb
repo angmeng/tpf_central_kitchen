@@ -1,0 +1,27 @@
+<% title (t "titles.document_storage") %>
+
+<p>
+	<%= link_to (t "links.back"), category_index_document_storages_path %> | 
+	<%= link_to (t "links.new"), new_document_storage_path %>
+</p>
+<table class="list">
+  <thead>
+  <tr>
+  	<th><%=t 'document.filename' %></th>
+    <th><%=t 'common.description' %></th>
+	<th><%=t 'common.action' %></th>
+  </tr>
+  </thead>
+   <tbody>
+  <% for document_storage in @document_storages %>
+    <tr class="<%= cycle("odd", "even") %>">
+      <td><%= link_to document_storage.document_file_name, document_storage.document.url %></td>
+      <td><%=h document_storage.description %></td>
+      <td align="center"><%= link_to (t "links.show"), document_storage %>
+      <%= link_to (t "links.destroy"), document_storage, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+    </tbody>
+</table>
+
+

@@ -1,0 +1,231 @@
+<% content_for :head do %>
+<script type="text/javascript">
+
+  function showOption(n, div_id){
+    if (n == 1)
+      {
+        document.getElementById("location_"+div_id).style.display="block";
+        document.getElementById("supplier_"+div_id).style.display="none";
+      }
+    else if (n == 2)
+      {
+        document.getElementById("location_"+div_id).style.display="none";
+        document.getElementById("supplier_"+div_id).style.display="block";
+      }
+    else if (n == 3)
+      {
+        document.getElementById("location_"+div_id).style.display="none";
+        document.getElementById("supplier_"+div_id).style.display="none";
+      }
+  }
+
+   $( document ).ready(function() {
+     $(".print_packing_list").click(function(event){
+       var list_id = $(this).attr('id').split("-")[3];
+       
+       
+       window.location = "/home";
+       window.open('/packing_lists/'+list_id+'/preview');
+     })
+   });
+
+</script>
+<%= javascript_include_tag("smo") %>
+
+<% end %>
+<% title "Outlet Purchase Order"%>
+
+<br />
+<p>
+   <%= link_to image_tag("home.png", :title => "View All Completed Outlet PO"), outlet_purchase_orders_path %>
+  | <%= link_to image_tag("pending.png", :title => "View All Pending Outlet PO"), home_url %>
+   
+
+ <%  if @outlet_purchase_order.not_yet_sent? %>
+  <% if is_outlet_staff?  %>
+  |  <%= link_to image_tag("edit.png", :title => "Edit"), edit_outlet_purchase_order_path(@outlet_purchase_order) %>
+  |  <%= link_to image_tag("delete.png", :title => "Delete"), @outlet_purchase_order, :confirm => "Are you sure you want to delete ?", :method => :delete %>
+  <% end %>
+ <% elsif is_admin? %>
+    <% unless @outlet_purchase_order.settled? %>  
+      | <%= link_to image_tag("settle.png", :title => "Mark this PO as Completed", :size => "25x25"), complete_outlet_purchase_order_path(@outlet_purchase_order), :confirm => 'Are you sure you want to mark this PO as Completed ?' %>
+    <% end %>
+ <% end %>
+</p>
+<br />
+
+<table style="width:60%">
+    <tr>
+      <td style="font-weight:bolder;">Outlet:</td>
+      <td><%=h @outlet_purchase_order.outlet.name %></td>
+    </tr>
+
+    <tr>
+      <td style="font-weight:bolder;">Purchase order date:</td>
+      <td> <%=h @outlet_purchase_order.purchase_order_date %></td>
+    </tr>
+
+    <tr>
+      <td style="font-weight:bolder;">Purchase order number:</td>
+      <td> <%=h @outlet_purchase_order.purchase_order_number %></td>
+    </tr>
+    <tr>
+      <td style="font-weight:bolder;">Create by:</td>
+      <td> <%=h @outlet_purchase_order.outlet_staff.fullname rescue "*" %></td>
+    </tr>
+
+    <tr>
+      <td style="font-weight:bolder;">Remark:</td>
+      <td> <%=h @outlet_purchase_order.remark %></td>
+    </tr>
+
+    <tr>
+      <td style="font-weight:bolder;" valign="top">Status:</td>
+      <td valign="top"> <%=raw @outlet_purchase_order.status %>  </td>
+    </tr>
+</table>
+
+
+<br />
+  <% unless is_outlet_staff? %>
+      <% if @outlet_purchase_order.confirmed? %>
+
+
+       <%= render('packing_list') if @outlet_purchase_order.packing_list  %>
+
+       <%= render(:partial => 'invoice', :locals => {:invoice => @outlet_purchase_order.invoice}) if @outlet_purchase_order.invoice %>
+
+       <%= render('po') unless @outlet_purchase_order.purchase_orders.empty?  %>
+     <br />
+	   
+	   
+      <% else %>
+         <% unless @outlet_purchase_order.not_yet_sent? %>
+           <%= link_to image_tag("proccess.png", :title => "Confirm to Proccess"), confirm_outlet_purchase_order_path(@outlet_purchase_order), :confirm => "Are you sure you want to proccess ?" %>
+         <% end %>
+      <% end %>
+  <% else %>
+    <% if @outlet_purchase_order.not_yet_sent? %>
+      <%= link_to image_tag("SendToCentral.png", :title => "Send to Central to Process"), send_to_central_outlet_purchase_order_path(@outlet_purchase_order), :confirm => "Are you sure you want to send to central ?" %>
+	<% end %>
+  <% end %>
+<br /><br />
+
+
+<%= form_tag update_item_status_outlet_purchase_order_path(@outlet_purchase_order) do %>
+<table class="list">
+  <thead>
+	<tr>
+	    <th>
+               <% if is_outlet_staff? %>
+                 <% if @outlet_purchase_order.not_yet_sent? %>
+                   Select All <br /><input type="checkbox" name="checkall" onclick="checkUncheckAll(this);"/>
+                 <% end %>
+              <% end %>
+            </th>
+	    <th align="left">Code</th>
+	    <th align="left">Product</th>
+	    <th align="left">Description</th>
+	    <th>UOM</th>
+	    <th><%=t "invoice.quantity" %></th>
+	    <% if is_admin? %>
+	    <th>Status</th>
+	    <% end %>
+	</tr>
+	</thead>
+   <tbody>
+    <% uncategorired_item_count = 0 %>
+	<% @current_items.each do |c| %>
+	<tr class="<%= cycle("odd", "even") %>">
+            <td align="center">
+              <% if is_outlet_staff? %>
+                 <% if @outlet_purchase_order.not_yet_sent? %>
+                    <% link_to image_tag("delete.png", :title => "Delete"), remove_item_outlet_purchase_order_path(@outlet_purchase_order, :purchase_order_item_id => c.id), :confirm => "Are you sure ?" %>
+                    <%= check_box_tag "item[#{c.id.to_s}][selected]" %>
+                 <% end %>
+              <% end %>
+            </td>
+
+            <td><%= c.product.code %></td>
+
+            <td><%= c.product.name %></td>
+
+            <td><%= c.product.description %></td>
+
+            <td align="center"><%= c.product_uom.name rescue "Not Assigned" %></td>
+
+            <td align="center"><%= c.quantity %></td>
+            
+            <% if is_admin? %>
+            <td align="center">
+              
+             <% case c.status_id
+                when ReferenceData::PO_ITEM_UNCATEGORIZED
+                  uncategorired_item_count += 1
+                  options = [["Send to Central", 1], ["Send to Supplier", 2], ["Uncategorized", 3]]
+             %>
+                <%= select_tag "item[#{c.id.to_s}][status_id]", options_for_select(options, c.status_id), {:onchange => "showOption(this.value, #{c.id});"} %>
+              <div id="location_<%= c.id.to_s  %>" style="display:none">
+                <%= select_tag "item[#{c.id.to_s}][store_location_id]", options_for_select(@locations) %>
+              </div>
+              <div id="supplier_<%= c.id.to_s  %>" style="display:none">
+                <%= select_tag "item[#{c.id.to_s}][supplier_id]", options_for_select(@suppliers) %>
+              </div>
+
+             <% else %>
+               <%=raw c.status %>
+             <% end %>
+
+            </td>
+             <% end %>
+	</tr>
+	<% end %>
+        <tr>
+          <td align="center">
+            <% if is_outlet_staff? %>
+               <% if @outlet_purchase_order.not_yet_sent? %>
+                 <%= submit_tag "Remove Selected" %>
+               <% end %>
+            <% end %>
+          </td>
+          <td colspan="5"></td>
+          <% if is_admin? %>
+          <td align="center">
+            <% if uncategorired_item_count > 0 %>
+            <%= submit_tag "Update"  %>
+            <% end %>
+          </td>
+          <% end %>
+        </tr>
+	 </tbody>
+</table>
+<% end %>
+<br /> <br />
+<hr />
+
+ <% if @outlet_purchase_order.not_yet_sent? and is_outlet_staff? %>
+  <%= form_tag add_items_outlet_purchase_order_path(@outlet_purchase_order) do  %>
+
+  <div id="purchase_order_items">
+  
+  <table>
+    <tr>
+    	<td>Product :</td>
+    
+	<td><%#= text_field_with_auto_complete "outlet_purchase_order_item", "product_name", {:size => 80},
+           { :url => show_product_outlet_purchase_orders_path(:js), :method => :get, :with => "'search='+element.value" } %>
+            <%= autocomplete_field_tag "outlet_purchase_order_item[product_name]", "", autocomplete_product_name_products_path, :size => 80 %>
+    	</td>
+	<td>Quantity:</td>
+	<td><%= text_field "outlet_purchase_order_item", "quantity", :size => 8 %></td>
+	<td><%= submit_tag (t "invoice.add_product") %> </td>
+    </tr>
+  </table>
+ </div>
+ 
+     <br />
+   <% end %>
+ <% end %>
+
+
+

@@ -1,0 +1,75 @@
+<%= form_for @product, :html => { :multipart => true } do |f| %>
+  <table style="width:80%">
+  	<tr>
+  		<td colspan="2">
+  			 <% render "/shared/error_messages", :target => @product %>  		</td>
+  	</tr>
+	<tr>
+		<td><%= f.label :code, (t "product.code") %><br /></td>
+		<td> <%= f.text_field :code %></td>
+	</tr>
+	
+	<tr>
+		<td><%= f.label :name, (t "product.name")  %><br /></td>
+		<td>   <%= f.text_field :name %></td>
+	</tr>
+	
+	<tr>
+		<td><%= f.label  :product_category_id %><br /></td>
+		<td><%= f.select :product_category_id, ProductCategory.all(:order => "name").map {|c| [c.name, c.id]} %></td>
+	</tr>
+	
+	<tr>
+		<td><%= f.label  :product_group_id %><br /></td>
+		<td><%= f.select :product_group_id, ProductGroup.all(:order => "name").map {|d| [d.name, d.id]} %></td>
+	</tr>
+	
+	<tr>
+		<td><%= f.label :description, (t "common.description") %><br /></td>
+		<td><%= f.text_area :description, :size => "60x4" %></td>
+	</tr>
+	
+	<tr>
+		<td><%= f.label :description2 %><br /></td>
+		<td> <%= f.text_area :description2, :size => "60x4" %></td>
+	</tr>
+	
+	<tr>
+		<td>
+		</td>
+		<td><%= f.radio_button :central_product, true %> Central Kitchen 
+		    &nbsp;&nbsp;
+	        <%= f.radio_button :central_product, false %> Supplier Product
+		<br />
+		</td>
+	</tr>
+	
+	
+	<tr>
+		<td> <%= f.label :active, (t "product.active") %>?<br /></td>
+		<td><%= f.check_box :active %></td>
+	</tr>
+	
+	<tr>
+		<td>  <%= f.label :is_public, "Public?" %><br /><br /></td>
+		<td> <%= f.check_box :is_public %></td>
+	</tr>
+	<tr>
+		<td> 	<% if @product.photo? %>
+	  <%= image_tag @product.photo.url(:thumb) %>
+    <% end %><br /></td>
+		<td> <%= f.label :photo, (t "product.image") %><br />
+  	 <%= f.file_field :photo %></td>
+	</tr>
+	
+	<tr>
+		<td></td>
+		<td>
+			<%= f.submit(t "links.submit") %>
+		</td>
+	</tr>
+	
+  </table>
+  
+
+<% end %>

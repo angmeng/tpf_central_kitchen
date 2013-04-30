@@ -1,0 +1,96 @@
+<% content_for :head do %>
+  <%= calendar_date_select_includes 'silver' %>
+	<style type="text/css">
+	<!--
+	
+	.yellowThing {background-color: #FF9; }
+	.whiteThing { background-color: #FFF; }
+	.redThing { background-color: #F00; }
+	.pinkThing { background-color: Pink; }
+	//-->
+	</style>
+
+<% end %>
+
+<br />
+<div style="width:100%;border-color:gray">
+<%= form_tag :action => "add_group" do %>
+  <%= text_field_tag "group_name" %>
+  <%= submit_tag(t "report.add_group") %>
+  <% end %>
+
+
+
+	<table style="width:100%">
+		<tr>
+			<td style="width:50%" valign="top">
+	           <% for category in @report_categories %>
+	           
+				 <h3><%= category.name %> <em><%= link_to (t "links.remove"), :action => "remove_group", :id => category %></em></h3>
+				 
+				   <ul>
+				      <% for item in category.report_category_items %>
+				         <li><%= item.product_category.name %> <em><%= link_to (t "links.remove"), :action => "remove_item", :id => item %></em></li>
+				      <% end %>	
+				   </ul>
+			
+	           <% end %>	
+			</td>
+			
+			<td style="width:50%">
+				<h5><%=t "report.choose_product" %></h5>
+				<% form_tag :action => "add_item_to_repot_category" do %>
+				  <table style="width:100%">
+				  	<tr class="pinkThing">
+				  		<td width="20%" align="center"></td>
+				  		<td align="center"><%=t "report.add_to_group" %> <%= collection_select :item, :report_category_id, @report_categories, :id, :name %></td>
+					</tr>
+				  
+				<% for e in @product_categories %>
+				   <tr class="whiteThing" onmouseover="this.className='yellowThing';" onmouseout="this.className='whiteThing';">
+		             <td align="center"><%= check_box_tag "item["+e.id.to_s+"][selected]"  %></td>
+		             <td align="center"><%= e.name %></td>
+		             
+	               </tr>
+				<% end %>
+				   <tr>
+				   	
+				   	<td style="text-align:center;"><%= submit_tag(t "report.add") %></td>
+					<td></td>
+				   </tr>
+				    
+				  </table>
+				<% end%>
+			</td>
+		</tr>
+	</table>
+	
+</div>
+
+<br />
+<hr />
+<br />
+
+<h3><%=t "titles.profit_loss_enquiry" %></h3>
+
+<% form_tag :action => 'profit_and_loss_report' do %>
+<table width="100%">
+	<tr>
+	  <th><%=t "report.from"  %></th>
+	  <th><%=t "report.to"  %></th>
+	  <th><%=t "report.grouping"  %></th>
+	  <th><%=t "common.action"  %></th>	
+	</tr>
+	
+	<tr>
+		<td align="center"><%= calendar_date_select_tag "from" %></td>
+		<td align="center"><%= calendar_date_select_tag "to" %></td>
+		<td align="center"><%= check_box_tag :grouping %></td>
+		<td align="center"><%= submit_tag(t "links.show") %></td>
+	</tr>
+	
+	
+</table>
+<% end %>
+
+<br /><br />

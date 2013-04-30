@@ -1,0 +1,28 @@
+<%= form_for @product_movement do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label :product_id %><br />
+    <%= f.text_field :product_id %>
+  </p>
+  <p>
+    <%= f.label :movement_category_id %><br />
+    <%= f.text_field :movement_category_id %>
+  </p>
+  <p>
+    <%= f.label :reference_id %><br />
+    <%= f.text_field :reference_id %>
+  </p>
+  <p>
+    <%= f.label :quantity %><br />
+    <%= f.text_field :quantity %>
+  </p>
+  <p>
+    <%= f.label :unit_price %><br />
+    <%= f.text_field :unit_price %>
+  </p>
+  <p>
+    <%= f.label :movement_date %><br />
+    <%= f.date_select :movement_date %>
+  </p>
+  <p><%= f.submit "Submit" %></p>
+<% end %>

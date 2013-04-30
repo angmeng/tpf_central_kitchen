@@ -1,0 +1,18 @@
+<% title "Product Category" %>
+
+<p>
+  <strong><%=t 'common.name' %>:</strong>
+  <%=h @product_category.name %>
+</p>
+<p>
+  <strong><%=t 'common.description' %>:</strong>
+  <%=h @product_category.description %>
+</p>
+
+<p>
+  <br></br>
+ <%= link_to image_tag("edit.png", :title => "Edit"),edit_product_category_path(@product_category) %> |
+ <%= link_to image_tag("delete.png", :title => "Delete"), @product_category, :confirm => 'Are you sure?', :method => :delete %> |
+ <%= link_to image_tag("show.png", :title => "View All"), product_categories_path %>
+</p>
+

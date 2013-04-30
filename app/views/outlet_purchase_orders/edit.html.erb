@@ -1,0 +1,28 @@
+
+<br /><br />
+<% title "Editing Oulet Purchase Order"%>
+<% if is_outlet_staff? && @outlet_purchase_order.not_yet_sent? %>
+    <%= link_to image_tag("show.png", :title => "Edit"), @outlet_purchase_order %> |
+    <%= link_to image_tag("delete.png", :title => "Delete"), @outlet_purchase_order, :method => :delete, :confirm => "Are you sure you want to delete ?" %> |
+<% end %>
+    <%= link_to image_tag("home.png", :title => "View All Completed Outlet PO"), outlet_purchase_orders_path %>
+  | <%= link_to image_tag("pending.png", :title => "View All Pending Outlet PO"), home_url %>
+  
+<br /><br />
+<%= form_for(@outlet_purchase_order) do |f| %>
+   <% render "/shared/error_messages", :target => @outlet_purchase_order %>
+
+  <p>
+    <%= f.label :purchase_order_date %><br />
+    <%= f.date_select :purchase_order_date %>
+  </p>
+
+  <p>
+    <%= f.label :remark %><br />
+    <%= f.text_area :remark %>
+  </p>
+
+  <p>
+    <%= f.submit 'Update' %> </p>
+<% end %>
+

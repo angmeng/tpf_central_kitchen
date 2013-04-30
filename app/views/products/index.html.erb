@@ -1,0 +1,73 @@
+
+<% title (t 'titles.product')  %>
+<br />
+<p>
+	<%= link_to image_tag("new.png", :title => "New"), new_product_path %>  
+</p>
+
+
+<p>
+	<%= form_for @search do |f| %>
+<table style="width:60%">
+	<tr>
+		<th>Code</th>
+		<th>Name</th>
+		<th>Group</th>
+		<th>Category</th>
+		<th>Is Public?</th>
+		<th>Central Product?</th>
+		<th><%=t "common.action" %></th>
+	</tr>
+	<tr>
+		<td align="center">	<%= f.text_field :code_like %></td>
+		<td align="center">	<%= f.text_field :name_like %></td>
+		<td align="center">	<%= f.select :product_group_id_equals, ProductGroup.all.map {|g| [g.name, g.id]}, {:include_blank => true} %></td>
+		<td align="center">	<%= f.select :product_category_id_equals, ProductCategory.all.map {|c| [c.name, c.id]}, {:include_blank => true} %></td>
+		<td align="center">	<%= f.select :is_public_equals, [["Yes", true], ["No", false]], {:include_blank => true} %></td>
+		<td align="center">	<%= f.select :central_product_equals, [["Yes", true], ["No", false]], {:include_blank => true} %></td>
+		<td align="center">	<%= f.submit("search") %></td>
+	</tr>
+</table>
+
+<% end %>
+
+</p>
+
+
+<br /><br />
+<table class="list">
+  <thead>
+  <tr>
+  
+	 <th class="link_header">Code </th>
+	 <th class="link_header">Name </th>
+     <th>Group</th>
+    <th><%=t 'product.product_category' %></th>
+    <th class="link_header">Public</th>
+	<th class="link_header">Central product </th>
+	
+	<th><%=t 'common.action' %></th>
+  </tr>
+    </thead>
+   <tbody>
+  <% @products.each do |product| %>
+    <tr class="<%= cycle("odd", "even") %>">
+     
+	  <td align="center"><%=h product.code %></td>
+      <td align="center"><%=h product.name %></td>
+	  <td align="center"><%=h product.product_group.name rescue "-" %></td>
+      <td align="center"><%=h product.product_category.name rescue "-" %></td>
+      
+      <td align="center"><%= show_image(product.is_public) %></td>
+	  <td align="center"><%= show_image(product.central_product) %></td>
+      <td align="center"><%= link_to image_tag("show.png", :title => "show"), product %>
+      <%= link_to image_tag("edit.png", :title => "Edit"), edit_product_path(product) %>
+      <%= link_to image_tag("delete.png", :title => "Delete"), product, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+   </tbody>
+</table>
+
+
+<br />
+<%= will_paginate @products %>

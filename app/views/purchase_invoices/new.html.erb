@@ -1,0 +1,47 @@
+<% title (t "titles.new") %>
+
+<%= form_for @purchase_invoice do |f| %>
+   <% render "/shared/error_messages", :target => @purchase_invoice %>
+  
+  <table width="100%">
+  	<tr>
+  		<th> <%= f.label :company_id,  "Invoice Company" %><br />
+     <%= f.select :company_id, Company.all(:order => "name").map {|co| [co.name, co.id]} %>
+	</th>
+	<th>
+		<%= f.label :invoice_date, (t "invoice.invoice_date") %><br />
+    <%= f.date_select :invoice_date %>
+	</th>
+  	</tr>
+	
+	<tr>
+		<th>
+			 <%= f.label :supplier_id, (t "purchase_invoice.supplier") %><br />
+    <%= f.select :supplier_id, Supplier.all(:order => "name").map {|c| [c.name, c.id]} %>
+		</th>
+		<th>
+			 <%= f.label :remark, (t "common.remark") %><br />
+    <%= f.text_field :remark %>
+		</th>
+	</tr>
+  </table>
+  
+  <br>
+
+  
+   
+   <div id="purchase_invoice_items">
+   	
+     <%= render :partial => 'purchase_invoice_items', :collection => @purchase_invoice.purchase_invoice_items %>
+   </div>
+   
+ <br />
+  
+  <%= link_to_function (t "invoice.add_item") do |page|
+  page.insert_html :bottom, :purchase_invoice_items, :partial => 'purchase_invoice_items', :object => PurchaseInvoiceItem.new
+end %> | <%= link_to (t "links.back"), purchase_invoices_path %>
+  
+  
+  <p align="center"><%= f.submit(t "links.submit") %></p>
+<% end %>
+

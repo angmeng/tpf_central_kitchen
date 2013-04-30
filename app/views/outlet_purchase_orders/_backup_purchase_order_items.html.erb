@@ -1,0 +1,23 @@
+
+  <table width="50%">
+  <tr>
+  	<td>
+  		<%= hidden_field "outlet_purchase_order[outlet_purchase_order_item_attributes][][outlet_purchase_order_id]",  @outlet_purchase_order.id %>
+   	</td>
+	
+  	<td>
+  			
+  	     <%= text_field_with_auto_complete "product", "code_name", {}, { :url => show_product_outlet_purchase_orders_path(:js), :method => :get, :with => "'search='+element.value" } %>
+
+	
+	</td>
+	<td>
+		<%=t "invoice.quantity" %> : <%= text_field_tag "outlet_purchase_order[outlet_purchase_order_item_attributes][][quantity]", nil, :size => 5 %>
+	</td>
+	
+	<!--<td>
+		Remark : <%= text_field_tag "purchase_invoice[purchase_invoice_item_attributes][][remark]" %>
+	</td>-->
+    
+  </tr>
+  </table>

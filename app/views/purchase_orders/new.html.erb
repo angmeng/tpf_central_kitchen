@@ -1,0 +1,42 @@
+<% title (t "titles.new") %>
+
+<%= form_for(@purchase_order) do |f| %>
+   <% render "/shared/error_messages", :target => @purchase_order %>
+  <table width="100%">
+  	<tr>
+  		<th> <br />
+    
+	</th>
+	<th>
+		<%= f.label :purchase_order_date, (t "invoice.invoice_date") %><br />
+    <%= f.date_select :purchase_order_date %>
+	</th>
+  	</tr>
+	
+	<tr>
+		<th>
+			 <%= f.label :supplier_id, (t "purchase_invoice.supplier") %><br />
+    <%= f.select :supplier_id, Supplier.all(:order => "name").map {|c| [c.name, c.id]} %>
+		</th>
+		<th>
+			 <%= f.label :remark, (t "common.remark") %><br />
+    <%= f.text_field :remark %>
+		</th>
+	</tr>
+  </table>
+    <br>
+  <div id="purchase_order_items">
+   	
+     <%= render :partial => 'purchase_order_items', :collection => @purchase_order.purchase_order_items %>
+   </div>
+   
+ <br />
+  <%= link_to_function (t "invoice.add_item") do |page|
+  page.insert_html :bottom, :purchase_order_items, :partial => 'purchase_order_items', :object => PurchaseOrderItem.new
+end %> | <%= link_to (t "links.back"), purchase_orders_path %>
+
+  <p>
+    <%= f.submit(t "links.submit") %>
+  </p>
+<% end %>
+

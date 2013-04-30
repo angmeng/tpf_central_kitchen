@@ -1,0 +1,32 @@
+<% title "Setting" %>
+
+<p>
+  <strong>Ar Code:</strong>
+  <%=h @setting.ar_code %>
+</p>
+<p>
+  <strong>Ar Last Number:</strong>
+  <%=h @setting.ar_last_number %>
+</p>
+<p>
+  <strong>Ap Code:</strong>
+  <%=h @setting.ap_code %>
+</p>
+<p>
+  <strong>Ap Last Number:</strong>
+  <%=h @setting.ap_last_number %>
+</p>
+<p>
+  <strong>Invoice Code:</strong>
+  <%=h @setting.invoice_code %>
+</p>
+<p>
+  <strong>Invoice Last Number:</strong>
+  <%=h @setting.invoice_last_number %>
+</p>
+
+<p>
+  <%= link_to "Edit", edit_setting_path(@setting) %> |
+  <%= link_to "Destroy", @setting, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to "View All", settings_path %>
+</p>

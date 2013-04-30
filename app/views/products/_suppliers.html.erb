@@ -1,0 +1,40 @@
+ <% if @product.central_product %>
+     
+     <div id="store">
+      <%= render :partial => "locations", :locals => {:product => @product} %>
+     </div>
+   <br />
+ 
+ <%= form_remote_tag :url => "/products/#{@product.id.to_s}/add_location" do %>
+   <table style="margin-left:10px;">
+   	<tr>
+   		<td>Location </td>
+		<td> <%= select "option", "store_location_id", StoreLocation.all(:order => "name").map {|lo| [lo.name, lo.id]} %></td>
+   	    
+	    <td><%= submit_tag " Assign " %></td>
+	</tr>
+	
+   </table>   
+	<% end %>
+
+<% else %>
+   <div id="for_suppliers">
+   	 <%= render :partial => 'product_suppliers', :locals => {:product => @product}%>
+   </div>
+   
+  
+   <% form_remote_tag :url => "/products/#{@product.id.to_s}/add_supplier" do %>
+   <table style="margin-left:10px;">
+   	<tr>
+   		<td>Outlet </td>
+		<td> <%= select "option", "outlet_id", @options.map {|o| [o.name, o.id]} %></td>
+   	    <td>Supplier </td>
+		<td><%= select "option", "supplier_id", Supplier.all(:order => "name").map {|s| [s.name, s.id]} %></td>
+	    <td><%= submit_tag "Add" %></td>
+	</tr>
+	
+   </table>
+	<% end %>
+  <% end %>
+<br/>
+<br />

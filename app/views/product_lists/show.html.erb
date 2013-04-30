@@ -1,0 +1,23 @@
+<br /><br />
+<p>
+  <b>Title:</b>
+  <%=h @product_list.title %>
+</p>
+
+<p>
+	<strong>
+		<%=t 'document.filename' %>
+	</strong>
+	<%= link_to @product_list.import_list_file_name, @product_list.import_list.url %>
+	</p>
+
+<p>
+
+<p>
+  <b>Description:</b>
+  <%=h @product_list.description %>
+</p>
+
+<br /><br />
+<%= link_to (t 'links.back'), product_lists_path %> |
+<%= link_to (t 'links.import'), import_product_list_path(@product_list), :confirm => "Are you sure ?" %>

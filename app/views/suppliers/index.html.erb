@@ -1,0 +1,61 @@
+<% title (t "titles.supplier") %>
+<p> <%= link_to image_tag("new.png", :title => "New Outlet"), new_supplier_path %></p>
+
+<%= form_for @search do |f| %>
+<table class="list">
+  <thead>
+	<tr>
+		 <th><%=t 'supplier.code' %></th>
+         <th><%=t 'supplier.name' %></th>
+		 <th><%#t 'supplier.active' %></th>
+	     <th><%=t 'common.action' %></th>
+		
+	</tr>
+	  </thead>
+   <tbody>
+	<tr align="center">
+		<td><%= f.text_field :code_equals %></td>
+		<td><%= f.text_field :name_equals %></td>
+		<td><%# f.select :active, [["No", 0], ["Yes", 1]], {:include_blank => true}  %></td>
+	    <td><%= f.submit("Search") %></td>
+	</tr>
+	   </tbody>
+</table>
+
+<% end %>
+<br />
+<table class="list">
+  <thead>
+  <tr>
+    <th><%=t "supplier.code"  %></th>
+    <th><%=t "supplier.name"  %></th>
+    <th><%=t "supplier.office_phone"  %></th>
+    <th><%=t "supplier.fax_number"  %></th>
+    <th>Area</th>
+    <th><%=t "supplier.contact_number"  %></th>
+	<th>Term</th>
+    <th><%=t "supplier.active"  %></th>
+	<th><%=t "common.action"  %></th>
+  </tr>
+    </thead>
+   <tbody>
+  <% for supplier in @suppliers %>
+     <tr class="<%= cycle("odd", "even") %>">
+      <td align="center"><%=h supplier.code %></td>
+      <td align="center"><%=h supplier.name %></td>
+      <td align="center"><%=h supplier.office_phone %></td>
+      <td align="center"><%=h supplier.fax_number %></td>
+      <td align="center"><%=h supplier.area %></td>
+      <td align="center"><%=h supplier.contact_number %></td>
+	  <td align="center"><%=h supplier.term %></td>
+      <td align="center"><%=h supplier.active %></td>
+      <td align="center"><%= link_to image_tag("show.png", :title => "show"), supplier %>
+      <%= link_to image_tag("edit.png", :title => "Edit"), edit_supplier_path(supplier) %>
+      <%= link_to image_tag("delete.png", :title => "Delete"), supplier, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+   </tbody>
+</table>
+
+<br />
+<%= will_paginate @suppliers %>

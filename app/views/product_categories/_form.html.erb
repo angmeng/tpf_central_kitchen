@@ -1,0 +1,11 @@
+<%= form_for @product_category do |f| %>
+   <% render "/shared/error_messages", :target => @product_category %>  <p>
+    <%= f.label :name, (t "common.name") %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description, (t "common.description") %><br />
+    <%= f.text_area :description, :size => "60x4"  %>
+  </p>
+  <p><%= f.submit(t "links.submit") %></p>
+<% end %>

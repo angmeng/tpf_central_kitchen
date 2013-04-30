@@ -1,0 +1,47 @@
+<%=t "titles.profit_loss_enquiry" %>
+<em>
+	<%= params[:from].to_s %> to <%= params[:to].to_s %>
+</em> | 
+<%= link_to (t "links.back"), :action => "profit_and_loss" %>
+<br /><br />
+<table class="list">
+  <thead>
+  <tr>
+    <th><%=t "invoice.invoice_date" %></th>
+    <th><%=t "invoice.invoice_number" %> </th>
+    <th><%=t "invoice.customer" %> </th>
+    <th><%=t "report.total_sales" %> </th>
+	<th><%=t "report.profit" %> </th>
+	
+  </tr>
+    </thead>
+   <tbody>
+  <% for invoice in @invoices %>
+    <tr class="<%= cycle("list0", "list1") %>">
+      <td align="center"><%=h invoice.invoice_date %></td>
+      <td align="center"><%=h invoice.invoice_number %></td>
+      <td align="center"><%=h invoice.customer.name %></td>
+      <td align="center">RM <%= number_with_precision(invoice.total_amount, :precision => 2) %></td>
+	  <td align="center">RM <%= number_with_precision(invoice.total_profit, :precision => 2)  %></td>
+	 
+    </tr>
+  <% end %>
+  
+  <tr>
+  	<td align="center"><%=t "report.total_expenses" %></td>
+  	<td></td>
+	<td></td>
+	<td></td>
+	<td align="center">RM (<%= number_with_precision(@total_expenses, :precision => 2) %>)</td>
+  </tr>
+  
+  <tr>
+  	<td colspan="3"></td>
+	<td align="center"><hr>RM <%= number_with_precision(@total_sales, :precision => 2) %><hr><hr></td>
+	<td align="center"><hr>RM <%= number_with_precision(@total_profit, :precision => 2) %><hr><hr></td>
+  </tr>
+   </tbody>
+</table>
+
+<br />
+

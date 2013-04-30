@@ -1,0 +1,27 @@
+<%= form_tag remove_supplier_product_path(@product) do %>
+<table class="list" style="width:80%;margin-left:10px">
+  <thead>
+   	<tr>
+          <th><input type="checkbox" name="checkall" onclick="checkUncheckAll(this);"/></th>
+          <th>Outlet</th>
+          <th>Supplier</th>
+          <th>Remove</th>
+   	</tr>
+	 </thead>
+   <tbody>
+	<% for p in product.outlet_product_suppliers %>
+	 <tr class="<%= cycle("odd", "even") %>" align="center">
+           <td><%= check_box_tag "list[#{p.id.to_s}][selected]"  %> </td>
+          <td><%= p.outlet.name %></td>
+          <td><%= p.supplier.name %></td>
+          <td><%= link_to_remote "Remove", :url => "/products/#{p.id.to_s}/remove_supplier", :method => :get, :confirm => "Are you sure?" %></td>
+	 </tr>
+	<% end %>
+         <tr>
+           <td align="center"><%= submit_tag(" Remove ") unless product.outlet_product_suppliers.empty? %> </td>
+           <td colspan="3"></td>
+         </tr>
+	   </tbody>
+   </table>
+<% end %>
+   <br />

@@ -1,0 +1,22 @@
+<p>
+    <%=t "cheque.cheque_number" %>  <br />
+    <%= text_field :cheque, :cheque_number %>
+  </p>
+  <p>
+    <%=t "cheque.cheque_bank" %>  <br />
+    <%= select :cheque, :bank_id, Bank.all(:order => "name").map {|b| [b.name, b.id]}, {:include_blank => true} %>
+  </p>
+
+  <p>
+    <%=t "cheque.owner_name" %>  <br />
+    <%= text_field :cheque, :owner_name %>
+  </p>
+  <p>
+    <%=t "cheque.cheque_date" %>  <br />
+    <%= date_select :cheque, :cheque_date %>
+  </p>
+  
+  <p>
+    <%=t "cheque.bank_account_no" %>   <br />
+    <%= text_field :cheque, :bank_account_number %>
+  </p>

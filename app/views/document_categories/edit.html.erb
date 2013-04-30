@@ -1,0 +1,41 @@
+<% title (t "titles.edit") %>
+
+<% form_for @document_category do |f| %>
+  <% render "/shared/error_messages", :target => @document_category %>  <p>
+    <%= f.label :name, (t "common.name") %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description, (t "common.description") %><br />
+    <%= f.text_area :description, :size => "60x8" %>
+  </p>
+  <br />
+<hr />
+
+<h4><%=t 'document_category.authorized_department' %></h4>
+<table>
+	
+<% for department in Department.all(:order => "name") %>
+   <tr>
+      <td>
+      	<% if @document_category.builtin %>
+		  <%= check_box_tag "document_category[department_ids][]", department.id, @document_category.departments.include?(department) %>
+		<% else %>
+      	  <%= check_box_tag "document_category[department_ids][]", department.id, @document_category.departments.include?(department) %>
+		<% end %>
+		<%= department.name %>
+      </td>
+	</tr>
+<% end %>
+  
+</table>
+
+  <p><%= f.submit(t "links.submit") %></p>
+<% end %>
+
+
+
+<p>
+  <%= link_to (t "links.show"), @document_category %> |
+  <%= link_to (t "links.view_all"), document_categories_path %>
+</p>

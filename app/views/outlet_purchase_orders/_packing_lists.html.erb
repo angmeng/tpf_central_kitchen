@@ -1,0 +1,22 @@
+  <h3>Packing List</h3>
+           <table class="list">
+             <thead>
+               <tr>
+                 <th>Packing List No</th>
+                 <th>Location</th>
+                 <th>Status</th>
+                 <th>Action</th>
+               </tr>
+             </thead>
+             <tbody>
+               <% @outlet_purchase_order.packing_lists.each do |p| %>
+               <tr class="<%= cycle("odd", "even") %>" align="center">
+                 <td><%= p.packing_list_number  %> </td>
+                 <td><%= p.store_location.name  %> </td>
+                 <td><%=raw p.current_status  %> </td>
+                 <td><%= link_to "Show Packing list", p %> </td>
+               </tr>
+
+               <% end %>
+             </tbody>
+           </table>

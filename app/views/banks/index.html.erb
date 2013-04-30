@@ -1,0 +1,21 @@
+<% title "Banks" %>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Priority</th>
+  </tr>
+  <% for bank in @banks %>
+    <tr>
+      <td><%=h bank.name %></td>
+      <td><%=h bank.description %></td>
+      <td><%=h bank.priority %></td>
+      <td><%= link_to "Show", bank %></td>
+      <td><%= link_to "Edit", edit_bank_path(bank) %></td>
+      <td><%= link_to "Destroy", bank, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to "New Bank", new_bank_path %></p>

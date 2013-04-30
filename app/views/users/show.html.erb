@@ -1,0 +1,27 @@
+<% title (t "titles.user") %>
+<p>
+  <%= link_to (t "links.edit"), edit_user_path(@user) %> |
+  <%=  link_to (t "links.change_password"), change_password_user_path(@user)%> |
+  <%= link_to (t "links.destroy"), @user, :confirm => 'Are you sure?', :method => :delete %> |
+  <%= link_to (t "links.view_all"), users_path %>
+</p>
+<p>
+  <strong><%=t "user.user_name" %> :</strong>
+  <%=h @user.username %>
+</p>
+<p>
+  <strong><%=t "user.department" %> :</strong>
+  <%=h @user.department.name rescue "None" %>
+</p>
+<p>
+  <strong><%=t "user.email" %>:</strong>
+  <%=h @user.email %>
+</p>
+
+<p>
+  <strong><%=t "user.language" %>:</strong>
+  <%=h @user.language_option %>
+</p>
+
+
+

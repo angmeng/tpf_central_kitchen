@@ -1,0 +1,24 @@
+<% title (t "titles.product_movement")  %>
+
+<%= form_tag search_product_movements_path do %>
+<table style="width:50%">
+	<tr>
+		<th><%=t "titles.product" %></th>
+		<th style="width:30%"><%=t "common.action" %></th>
+    </tr>		
+	<tr>	
+		<td align="center">
+	   <%= collection_select :search, :product_id, @products,  :id, :name %>		
+		</td>
+	
+		<td align="center">	<%= submit_tag(t "links.search") %></td>
+		
+	</tr>
+</table>
+<% end %>
+
+<br />
+
+
+
+

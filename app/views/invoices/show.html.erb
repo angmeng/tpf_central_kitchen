@@ -1,0 +1,134 @@
+<% content_for :head do %>
+
+<%= javascript_include_tag("smo") %>
+
+<% end %>
+
+<% title ("Invoice") %>
+
+<br />
+  
+<%= render  :partial => "menu" %>
+
+<br />
+<table width="100%">
+  <tr>
+    <td><%=t "invoice.invoice_number" %> : <%= @invoice.invoice_number %></td>
+    <td><%=t "invoice.customer" %> : <%= @invoice.outlet.name rescue "-" %></td>
+    <td><%=t "invoice.invoice_date" %> : <%= @invoice.invoice_date.strftime("%d-%m-%Y")  rescue "-"  %></td>
+    <td>Settled : <%= show_image(@invoice.settled?)%></td>
+  </tr>
+</table>
+<br />
+
+<%= form_tag submit_pricing_invoice_path(@invoice) do%>
+<table class="list">
+  <thead>
+      <tr>
+        <th>Select All <br /><input type="checkbox" name="checkall" onclick="checkUncheckAll(this);"/>
+        </th>
+        <th><%=t "invoice.location" %></th>
+        <th><%=t "product.code" %></th>
+        <th><%=t "invoice.product" %></th>
+        <th>UOM</th>
+        <th><%=t "invoice.quantity" %></th>
+        <th><%=t "invoice.unit_price" %></th>
+        <th align="right"><%=t "invoice.amount" %></th>
+      </tr>
+  </thead>
+ <tbody>
+	
+  <% @current_items.each do |c| %>
+   <tr class="<%= cycle("odd", "even") %>">
+     <td align="center">
+	<% link_to (t "links.remove"), remove_item_invoice_path(@invoice, :invoice_item_id => c.id), :confirm => "Are you sure you wnat to remove this item ?" %>
+        <%= check_box_tag "item[#{c.id}][selected]" %>
+     </td>
+			
+     <td align="center">
+       <%= c.store_location.name rescue "-"  %>
+     </td>
+     <td align="center">
+       <%= c.product.code rescue "-"  %>
+     </td>
+     <td align="center">
+	<%= c.product.name rescue "-"  %>
+     </td>
+     <td align="center">
+	<%= c.product_uom.name rescue "Not Assigned" %>
+     </td>
+     <td align="center">
+	<%= c.quantity %>
+     </td>
+		
+     <td align="center">
+	RM <%= text_field_tag "pricing["+c.id.to_s+"][amount]", c.unit_price, :size => 8 %>
+     </td>
+     <td align="right">
+	RM <%= number_with_precision(c.total_amount, :precision => 2) %>
+     </td>
+   </tr>
+<% end %>
+   <tr>
+    <td align="center"><%= submit_tag "Remove Selected" %></td>
+    <td colspan="5">  </td>
+    <td align="center"><%= submit_tag "Update" %></td>
+    <td align="center"></td>
+   </tr>
+	
+   <tr>
+    <td colspan="6">  </td>
+    <td align="center"></td>
+    <td align="right">
+    <hr/><%=t ("invoice.total") %> :
+	RM <%= number_with_precision(@invoice.total_amount, :precision => 2) %>
+    <hr/><hr/>
+    </td>
+    <td></td>
+   </tr>
+ </tbody>
+</table>
+
+<% end %>
+<br /> <br />
+
+<%= form_tag add_items_invoice_path(@invoice) do %>
+
+ <div id="invoice_items">
+  
+    <table>
+      <tr>
+        
+         <td>
+          <%=t "invoice.location" %> :
+        </td>
+        <td>
+         <%= select_tag("invoice_item][store_location_id]", options_from_collection_for_select(@locations, :id, :name)) %>
+        </td>
+        <td>
+          Product :
+        </td>
+      <td>
+           <%= autocomplete_field_tag "invoice_item[product_name]", "",  autocomplete_product_name_products_path, :size => 80 %>
+        </td>
+      <td>
+        Quantity:
+      </td>
+      <td>
+           <%= text_field "invoice_item", "quantity", :size => 8 %>
+      </td>
+      
+      <td>
+           <%= submit_tag (t "invoice.add_product") %> 
+        </td>
+      
+      </tr>
+    </table>
+ </div>
+ 
+   <br />
+
+ <% end %>  
+ <br />
+   <br />
+<%= render :partial => "menu" %>

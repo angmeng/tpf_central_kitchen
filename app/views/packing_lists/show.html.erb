@@ -1,0 +1,154 @@
+<% content_for :head do %>
+
+<style type="text/css">
+<!--
+
+.yellowThing {background-color: #FF9; }
+.whiteThing { background-color: #FFF; }
+.redThing { background-color: #F00; }
+//-->
+</style>
+
+<script type="text/javascript">
+  $( document ).ready(function() {
+
+  	 $(".confirm_packing_list").click(function () {
+        if (confirm('Are you sure you want to generate invoice from this packing list ?')) {
+            var list_id = $(this).attr('id').split("-")[3];
+            //window.location = "/invoices/";
+            window.location = '/packing_lists/'+list_id+'/confirm';
+        }
+    });
+
+   });
+
+</script>
+<% end %>
+
+
+<br /><br />
+<% title "Packing List" %>
+<p>
+	<%= link_to image_tag("home.png", :title => "View All Completed Outlet PO"), outlet_purchase_orders_path %>
+  | <%= link_to image_tag("pending.png", :title => "View All Pending Outlet PO"), home_url %>
+	| <%= link_to image_tag("print.png", :title => "Print Packing List"), preview_packing_list_path(@packing_list), :target => "blank" %>
+	 <% unless @packing_list.settled %>
+    
+	 | <%= link_to image_tag("delivery.png", :title=>"Confirm Packing List and create Invoice"), "#", :id => "confirm-packing-list-#{@packing_list.id}", :class => "confirm_packing_list" %>
+
+    <% link_to image_tag("unlock.png", :title => "Release"), confirm_packing_list_path(@packing_list), :confirm => "Are you sure to release this packing list ?" %>
+  
+   <% end %> 
+     | <%= link_to image_tag("back.png",:title => "Back to Outlet Purchase order"), @packing_list.outlet_purchase_order %>
+</p>
+
+<p>
+  <b>Packing list number:</b>
+  <%=h @packing_list.packing_list_number %>
+</p>
+
+<p>
+  <b>Packing date:</b>
+  <%=h @packing_list.packing_date %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @packing_list.description %>
+</p>
+
+
+<p>
+  <b>Settled:</b>
+  <%= show_image(@packing_list.settled) %> 
+</p>
+
+<br />
+<hr />
+<br />
+
+ <%= render(:partial => '/outlet_purchase_orders/invoice', :locals => {:invoice => @packing_list.outlet_purchase_order.invoice}) if @packing_list.outlet_purchase_order.invoice %>
+
+ <br />
+<table class="list">
+  <thead>
+	<tr>
+		<th>Outlet</th>
+		<th>Outlet Purchase Requisition No</th>
+		<th>Requisition Date</th>
+	</tr>
+	    </thead>
+   <tbody>
+
+	 <tr class="<%= cycle("odd", "even") %>">
+	 	<td align="center">
+			<%= @packing_list.outlet_purchase_order.outlet.name rescue "-" %>
+		</td>
+		<td align="center">
+			<%= @packing_list.outlet_purchase_order.purchase_order_number rescue "-" %>
+		</td>
+		<td align="center">
+			<%= @packing_list.outlet_purchase_order.purchase_order_date.strftime("%d-%m-%Y") rescue "-"  %>
+		</td>
+	</tr>
+
+	</tbody>
+</table>
+<br />
+<hr />
+<br />
+
+<%= form_tag(picked_items_packing_list_path(@packing_list)) do %>
+<table class="list">
+  <thead>
+	<tr>
+            <th align="left">Location</th>
+            <th align="left">Code</th>
+            <th align="left">Name</th>
+            <th align="left">Description</th>
+            <th>UOM</th>
+            <th>Quantity</th>
+            <th>Picked Quantity</th>
+	</tr>
+	    </thead>
+   <tbody>
+   	<% for item in @items %>
+	<tr class="<%= cycle("odd", "even") %>">
+
+          <td><%= item.store_location.name  rescue "-" %></td>
+	  <td><%= item.product.code rescue "-"  %></td>
+	  <td><%= item.product.name rescue "-"  %></td>
+	  <td><%= item.product.description rescue "-"  %></td>
+	  <td align="center"><%= item.product_uom.name rescue "Not Assigned" %></td>
+          <td align="center"><%= item.quantity %></td>
+	  <td align="center">
+            <% if @packing_list.settled %>
+	      <%= item.picked_quantity %>
+	    <% else %>
+               <%= text_field_tag "item[" + item.id.to_s + "][picked_quantity]", item.picked_quantity, :size => 5 -%>
+	    <% end %>
+	  </td>
+	</tr>
+	<% end %>
+	<tr>
+		<td colspan="6"></td>
+		<td align="center">
+			<br />
+			<% unless @packing_list.settled %>
+			  <%= submit_tag "Update", :disable_with => "Please Wait ..." %>
+			<% end %>
+		</td>
+		
+	</tr>
+	
+	</tbody>
+</table>
+<% end %>
+<br />
+<br />
+
+<br />
+
+
+
+

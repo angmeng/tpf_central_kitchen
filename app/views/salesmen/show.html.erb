@@ -1,0 +1,29 @@
+<p>
+  <b>Name:</b>
+  <%=h @salesman.name %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%=h @salesman.address %>
+</p>
+
+<p>
+  <b>Mobile number:</b>
+  <%=h @salesman.mobile_number %>
+</p>
+
+<p>
+  <b>Remark:</b>
+  <%=h @salesman.remark %>
+</p>
+
+<p>
+  <b>Suspend:</b>
+  <%=h @salesman.suspend %>
+</p>
+
+
+<%= link_to (t "links.edit"), edit_salesman_path(@salesman) %> |
+<%= link_to (t "menu.commission"), edit_commission_salesman_path(@salesman) %> |
+<%= link_to (t "links.view_all"), salesmen_path %>

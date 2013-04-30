@@ -1,0 +1,16 @@
+<% title (t "titles.document_storage") %>
+
+<table>
+	
+<% @document_categories.in_groups_of(3, false) do |category_row| %>
+<tr align="center">
+	<% for category in category_row %>
+   <td><%= link_to (image_tag("folder.png")), :action => :index, :id => category %><br />
+        <%= category.name %>
+   </td>
+   <% end %>
+   </tr>
+<% end %>
+</table>
+
+<br /><br />

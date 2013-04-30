@@ -1,0 +1,41 @@
+
+<% title "Outlets" %>
+<br />
+<%= link_to 'New outlet', new_outlet_path %>
+<br /><br />
+
+<table class="list">
+  <thead>
+  <tr>
+    <th>Outlet No</th>
+    <th>Name</th>
+    <th>Area</th>
+	<th>Term</th>
+	<th>Contact</th>
+	<th>Pricing</th>
+    <th>Domain name</th>
+	<th>Action</th>
+  </tr>
+    </thead>
+   <tbody>
+<% @outlets.each do |outlet| %>
+ <tr class="<%= cycle("odd", "even") %>">
+    <td align="center"><%=h outlet.code %></td>
+    <td align="center"><%=h outlet.name %></td>
+    <td align="center"><%=h outlet.area %></td>
+	<td align="center"><%=h outlet.term %></td>
+	<td align="center"><%=h outlet.contact %></td>
+	<td align="center"><%=h outlet.pricing_category %></td>
+    <td align="center"><%=h outlet.domain_name %></td>
+    <td align="center"><%= link_to image_tag("show.png", :title => "show"), outlet %>
+    <%= link_to image_tag("edit.png", :title => "Edit"), edit_outlet_path(outlet) %>
+    <%= link_to image_tag("delete.png", :title => "Delete"), outlet, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+ </tbody>
+</table>
+
+<br />
+
+
+

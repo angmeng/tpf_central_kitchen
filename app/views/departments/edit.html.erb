@@ -1,0 +1,43 @@
+<% title (t "titles.edit") %>
+<br />
+<%= link_to image_tag("show.png", :title => "show"), @department %> |
+<%= link_to image_tag("home.png", :title => "View All"), departments_path %>
+<br />
+<br />
+
+<%= form_for(@department) do |f| %>
+  <% render "/shared/error_messages", :target => @department %>
+  <p>
+    <%= f.label :name, (t "common.name") %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :description, (t "common.description") %><br />
+    <%= f.text_area :description, :size => "60x6"  %>
+  </p>
+  
+<br />
+<hr />
+<br />
+<h2>Assign Authorization</h2>
+ <table style="width:80%">
+ 	
+  <% AccessibleMenu.all(:order => "name").in_groups_of(5, false) do |group| %>
+    <tr>
+    	
+	<% for e in group %>
+	  <td>
+	    <%= check_box_tag "department[accessible_menu_ids][]", e.id, @department.accessible_menus.include?(e) %> 
+	    <%= e.name %>
+	  </td>
+	<% end %>
+	</tr>
+  <% end %>
+</table>
+
+<br />
+  <p>
+    <%= f.submit((t "links.update"), :disable_with => "Please Wait...") %>
+  </p>
+<% end %>
+

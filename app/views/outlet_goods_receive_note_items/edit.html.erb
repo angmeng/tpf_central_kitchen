@@ -1,0 +1,36 @@
+<h1>Editing outlet_goods_receive_note_item</h1>
+
+<% form_for(@outlet_goods_receive_note_item) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :outlet_goods_receive_note_id %><br />
+    <%= f.text_field :outlet_goods_receive_note_id %>
+  </p>
+  <p>
+    <%= f.label :product_id %><br />
+    <%= f.text_field :product_id %>
+  </p>
+  <p>
+    <%= f.label :quantity %><br />
+    <%= f.text_field :quantity %>
+  </p>
+  <p>
+    <%= f.label :unit_price %><br />
+    <%= f.text_field :unit_price %>
+  </p>
+  <p>
+    <%= f.label :remark %><br />
+    <%= f.text_field :remark %>
+  </p>
+  <p>
+    <%= f.label :rejected %><br />
+    <%= f.check_box :rejected %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @outlet_goods_receive_note_item %> |
+<%= link_to 'Back', outlet_goods_receive_note_items_path %>
