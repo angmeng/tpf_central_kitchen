@@ -39,10 +39,10 @@
   <thead>
   <tr>
   
-	 <th class="link_header">Code </th>
-	 <th class="link_header">Name </th>
-     <th>Group</th>
-    <th><%=t 'product.product_category' %></th>
+	 <th class="link_header" align="left">Code </th>
+	 <th class="link_header" align="left">Name </th>
+     <th align="left">Group</th>
+    <th align="left"><%=t 'product.product_category' %></th>
     <th class="link_header">Public</th>
 	<th class="link_header">Central product </th>
 	
@@ -53,10 +53,10 @@
   <% @products.each do |product| %>
     <tr class="<%= cycle("odd", "even") %>">
      
-	  <td align="center"><%=h product.code %></td>
-      <td align="center"><%=h product.name %></td>
-	  <td align="center"><%=h product.product_group.name rescue "-" %></td>
-      <td align="center"><%=h product.product_category.name rescue "-" %></td>
+	  <td><%=h product.code %></td>
+      <td><%=h product.name %></td>
+	  <td><%=h product.product_group.name rescue "-" %></td>
+      <td><%=h product.product_category.name rescue "-" %></td>
       
       <td align="center"><%= show_image(product.is_public) %></td>
 	  <td align="center"><%= show_image(product.central_product) %></td>

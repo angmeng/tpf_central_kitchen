@@ -77,10 +77,10 @@ class OutletPurchaseOrdersController < ApplicationController
   end
   
   def show_product
-    @products = Product.all(:conditions => ['code LIKE ?', "#{params[:search]}%"])
+    @products = Product.where('code LIKE ?', "#{params[:search]}%")
     @products.each {|c|
        c.code = c.code_name
-    }    
+    }
   end
   
   def add_items

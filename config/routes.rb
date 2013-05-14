@@ -262,6 +262,14 @@ CentralKitchen::Application.routes.draw do
   end
   
   match '/home' => "home#index", :as => :home
+  match 'report/sales' => "report#sales"
+  match 'report/stock_report' => "report#stock_report"
+  match 'report/profit_and_loss' => "report#profit_and_loss"
+  match 'report/add_group' => "report#add_group"
+  match 'report/add_item_to_repot_category' => "report#add_item_to_repot_category"
+  match 'report/profit_and_loss_report' => "report#profit_and_loss_report"
+  
+  
   root :to => 'sessions#outlet'
 
 end
