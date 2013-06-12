@@ -14,7 +14,7 @@ class Outlet < ActiveRecord::Base
   validates_uniqueness_of(:name, :code)
 
   def self.for_options
-    result = order("name")
+    result = order("name").all
     result.insert(0, Outlet.new(:name => "All Outlet"))
     result
   end

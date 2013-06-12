@@ -10,7 +10,7 @@
   <%= link_to image_tag("home.png", :title => "View All"), products_path %>
 </p>
 <p>
-   <%= generate_previous_next_label(@first, @previous, @next, @last) %>	
+   <%=raw generate_previous_next_label(@first, @previous, @next, @last) %>	
 </p>
 <br />
 
