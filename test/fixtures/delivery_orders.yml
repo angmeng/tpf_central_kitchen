@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  delivery_date: 2013-06-12
+  delivery_order_number: MyString
+  outlet_id: 1
+  remark: MyText
+  void: false
+  company_id: 1
+  invoice_id: 1
+
+two:
+  delivery_date: 2013-06-12
+  delivery_order_number: MyString
+  outlet_id: 1
+  remark: MyText
+  void: false
+  company_id: 1
+  invoice_id: 1

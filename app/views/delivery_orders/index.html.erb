@@ -1,0 +1,35 @@
+<h1>Listing delivery_orders</h1>
+
+<table>
+  <tr>
+    <th>Delivery date</th>
+    <th>Delivery order number</th>
+    <th>Outlet</th>
+    <th>Remark</th>
+    <th>Void</th>
+    <th>Company</th>
+    <th>Invoice</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @delivery_orders.each do |delivery_order| %>
+  <tr>
+    <td><%= delivery_order.delivery_date %></td>
+    <td><%= delivery_order.delivery_order_number %></td>
+    <td><%= delivery_order.outlet_id %></td>
+    <td><%= delivery_order.remark %></td>
+    <td><%= delivery_order.void %></td>
+    <td><%= delivery_order.company_id %></td>
+    <td><%= delivery_order.invoice_id %></td>
+    <td><%= link_to 'Show', delivery_order %></td>
+    <td><%= link_to 'Edit', edit_delivery_order_path(delivery_order) %></td>
+    <td><%= link_to 'Destroy', delivery_order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Delivery order', new_delivery_order_path %>

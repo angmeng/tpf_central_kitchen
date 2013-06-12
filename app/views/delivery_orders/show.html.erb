@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Delivery date:</b>
+  <%= @delivery_order.delivery_date %>
+</p>
+
+<p>
+  <b>Delivery order number:</b>
+  <%= @delivery_order.delivery_order_number %>
+</p>
+
+<p>
+  <b>Outlet:</b>
+  <%= @delivery_order.outlet_id %>
+</p>
+
+<p>
+  <b>Remark:</b>
+  <%= @delivery_order.remark %>
+</p>
+
+<p>
+  <b>Void:</b>
+  <%= @delivery_order.void %>
+</p>
+
+<p>
+  <b>Company:</b>
+  <%= @delivery_order.company_id %>
+</p>
+
+<p>
+  <b>Invoice:</b>
+  <%= @delivery_order.invoice_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_delivery_order_path(@delivery_order) %> |
+<%= link_to 'Back', delivery_orders_path %>

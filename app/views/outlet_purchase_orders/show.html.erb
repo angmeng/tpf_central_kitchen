@@ -22,8 +22,7 @@
    $( document ).ready(function() {
      $(".print_packing_list").click(function(event){
        var list_id = $(this).attr('id').split("-")[3];
-       
-       
+       event.preventDefault();
        window.location = "/home";
        window.open('/packing_lists/'+list_id+'/preview');
      })

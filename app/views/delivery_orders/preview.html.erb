@@ -1,0 +1,63 @@
+<h2 align="center">Delivery Order</h2>
+
+<table width="100%" style="border:solid">
+	<tr>
+		<td width="10%">Customer : </td> 
+		<td width="50%">
+		 <%= @delivery_order.outlet.name %>
+		</td>
+		<td width="30%">Delivery Date : </td>
+		<td>
+		 <%= @delivery_order.delivery_date.strftime("%d-%m-%Y") %>
+		</td>
+	</tr>
+	
+	<tr>
+		<td>Remark : </td>
+		<td> <%= @delivery_order.remark %>
+		</td>
+		<td>Delivery Order Number : </td>
+		<td> <%= @delivery_order.delivery_order_number %>
+		</td>
+	</tr>
+	
+</table>
+<br />
+<table width="100%"  style="border:groove">
+	<tr>
+	  <th>Code</th>
+		<th>Product</th>
+		<th>UOM</th>
+		<th>Quantity</th>
+	</tr>
+	
+	<% line = 0 %>
+	<% @delivery_order.delivery_order_items(:joins => :product).each do |c|  %>
+	<% line += 1%>
+	<tr>
+	  <td align="center">
+      <%= c.product.code %>
+    </td>
+		<td align="center">
+			<%= c.product.name %>
+		</td>
+		<td align="center">
+			<%= c.product_uom.name rescue "Not Assigned" %>
+		</td>
+		<td align="center">
+			<%= c.quantity %>
+		</td>
+	</tr>
+	<% end %>
+	<% 0.upto(10-line) do %>
+	  <tr><td colspan="4">&nbsp;</td>
+	  	</tr>
+	<% end unless line >= 10 %>
+	<tr>
+		<td colspan="4">  </td>
+	
+	</tr>
+</table>
+
+
+

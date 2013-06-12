@@ -19,30 +19,44 @@ class PackingList < ActiveRecord::Base
         Setting.increment_of_invoice
       end
 
+      d_order = found.build_delivery_order(delivery_date: found.invoice_date, outlet_id: found.outlet_id)
+      d_order.delivery_order_number = Setting.generate_delivery_order_number
+      d_order.save!
+      Setting.increment_of_delivery_order
+
       packing_order_items.each do |p|
         if p.picked_quantity > 0
-          j = found.invoice_items.new
-          j.product_id = p.product_id
-          j.store_location_id = p.store_location_id
-          found_uom = p.product.product_uoms.find(p.product.packing_uom_id) rescue false
+          j        = found.invoice_items.new
+          d_o_item = d_order.delivery_order_item.new
+          
+          j.product_id               = p.product_id
+          d_o_item.product_id        = p.product_id
+          j.store_location_id        = p.store_location_id
+          d_o_item.store_location_id = p.store_location_id
+          
+          found_uom = p.product.product_uoms.find(p.product.packing_uom_id) rescue nil
           unless found_uom
             found_uom = p.product.product_uoms.first
             unless found_uom
               found_uom = p.product.create_default_uom
             end
           end
-          j.quantity = p.picked_quantity #found_uom.calculate_quantity(p)
-          j.product_uom_id = found_uom.id
+
+          j.quantity               = p.picked_quantity #found_uom.calculate_quantity(p)
+          d_o_item.quantity        = p.picked_quantity
+          j.product_uom_id         = found_uom.id
+          d_o_item.product_uom_id  = found_uom.id
           if outlet.pricing_category_id == ReferenceData::OUTLET_PRICING_A
             j.unit_price = found_uom.selling_price_a
           elsif outlet.pricing_category_id == ReferenceData::OUTLET_PRICING_B
             j.unit_price = found_uom.selling_price_b
           end
           j.save!
+          d_o_item.save!
         end
       end
       self.settled = true
-      result = save!
+      result = self.save
       result ? msg = "Invoice generated" : msg = "Invoice cannot generated"
 
     else

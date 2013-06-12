@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130410040619) do
+ActiveRecord::Schema.define(:version => 20130612135631) do
 
   create_table "accessible_menus", :force => true do |t|
     t.string   "name",        :limit => 45
@@ -137,6 +137,28 @@ ActiveRecord::Schema.define(:version => 20130410040619) do
     t.string   "additional_phone_one", :limit => 20
     t.string   "additional_phone_two", :limit => 20
     t.decimal  "paid_credit",                        :precision => 12, :scale => 2, :default => 0.0
+  end
+
+  create_table "delivery_order_items", :force => true do |t|
+    t.integer  "delivery_order_id"
+    t.integer  "product_id"
+    t.integer  "quantity",          :default => 0
+    t.integer  "product_uom_id"
+    t.integer  "store_location_id"
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
+
+  create_table "delivery_orders", :force => true do |t|
+    t.date     "delivery_date"
+    t.string   "delivery_order_number"
+    t.integer  "outlet_id"
+    t.text     "remark"
+    t.boolean  "void",                  :default => false
+    t.integer  "company_id"
+    t.integer  "invoice_id"
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
   end
 
   create_table "departments", :force => true do |t|
@@ -304,22 +326,22 @@ ActiveRecord::Schema.define(:version => 20130410040619) do
   create_table "outlet_purchase_orders", :force => true do |t|
     t.integer  "outlet_id"
     t.date     "purchase_order_date"
-    t.string   "purchase_order_number",       :limit => 12
+    t.string   "purchase_order_number",        :limit => 12
     t.text     "remark"
-    t.boolean  "void",                                      :default => false
+    t.boolean  "void",                                       :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "settled",                                   :default => false
-    t.integer  "confirmed_by",                              :default => 0
+    t.boolean  "settled",                                    :default => false
+    t.integer  "confirmed_by",                               :default => 0
     t.integer  "outlet_staff_id"
-    t.string   "import_pr_item_file_name"
-    t.string   "import_pr_item_content_type"
-    t.integer  "import_pr_item_file_size",                  :default => 0
-    t.datetime "import_pr_item_updated_at"
-    t.integer  "status_id",                                 :default => 0
-    t.boolean  "deleted",                                   :default => false
-    t.boolean  "is_grouped",                                :default => false
-    t.integer  "master_purchase_order_id",                  :default => 0
+    t.string   "import_document_file_name"
+    t.string   "import_document_content_type"
+    t.integer  "import_document_file_size",                  :default => 0
+    t.datetime "import_document_updated_at"
+    t.integer  "status_id",                                  :default => 0
+    t.boolean  "deleted",                                    :default => false
+    t.boolean  "is_grouped",                                 :default => false
+    t.integer  "master_purchase_order_id",                   :default => 0
   end
 
   add_index "outlet_purchase_orders", ["confirmed_by"], :name => "index_outlet_purchase_orders_on_confirmed_by"
@@ -601,6 +623,8 @@ ActiveRecord::Schema.define(:version => 20130410040619) do
     t.integer  "outlet_delivery_order_last_number",               :default => 10000
     t.string   "grn_code",                          :limit => 45, :default => "GRN"
     t.integer  "grn_last_number",                                 :default => 10000
+    t.integer  "delivery_order_last_number",                      :default => 10000
+    t.string   "delivery_order_code",                             :default => "DO"
   end
 
   create_table "stock_adjustments", :force => true do |t|

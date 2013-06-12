@@ -2,6 +2,7 @@ class Invoice < ActiveRecord::Base
   belongs_to :outlet
   belongs_to :company
   has_many :invoice_items
+  has_one  :delivery_order
   belongs_to :outlet_purchase_order
   
   validates_presence_of(:invoice_number, :invoice_date, :outlet_id)
