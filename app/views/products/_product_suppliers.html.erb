@@ -14,7 +14,7 @@
            <td><%= check_box_tag "list[#{p.id.to_s}][selected]"  %> </td>
           <td><%= p.outlet.name %></td>
           <td><%= p.supplier.name %></td>
-          <td><%= link_to_remote "Remove", :url => "/products/#{p.id.to_s}/remove_supplier", :method => :get, :confirm => "Are you sure?" %></td>
+          <td><%= link_to "Remove", remove_supplier_product_path(p), :confirm => "Are you sure?" %></td>
 	 </tr>
 	<% end %>
          <tr>

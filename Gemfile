@@ -23,6 +23,11 @@ end
 # gem 'prototype-rails'
 gem 'jquery-rails'
 # gem 'rails-asset-jqueryui'
+# gem 'prototype-rails'
+# gem 'prototype_legacy_helper', '0.0.0', :git => 'git://github.com/rails/prototype_legacy_helper.git'
+# gem 'bootstrap-sass', '~> 2.3.2'
+
+
 gem 'rails3-jquery-autocomplete'
 gem 'paperclip', '~> 3.4.1'
 gem 'meta_search', '~> 1.1.3'

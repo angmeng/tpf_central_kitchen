@@ -75,14 +75,14 @@ class ProductsController < ApplicationController
   def add_supplier
     product = Product.find(params[:id])
     product.add_outlet_supplier(params[:option])
-    render :update do |page|
-      page.replace_html 'for_suppliers', :partial => 'product_suppliers', :locals => {:product => product}
-      page.show "note"
-      page.visual_effect :highlight, "note"
-      page.visual_effect :fade, "note", :duration => 3
+    # render :update do |page|
+    #   page.replace_html 'for_suppliers', :partial => 'product_suppliers', :locals => {:product => product}
+    #   page.show "note"
+    #   page.visual_effect :highlight, "note"
+    #   page.visual_effect :fade, "note", :duration => 3
       
-    end
-    
+    # end
+    redirect_to :back
   end
   
   def remove_supplier
@@ -97,12 +97,13 @@ class ProductsController < ApplicationController
       item = OutletProductSupplier.find(params[:id])
       product = item.product
       item.destroy
-      render :update do |page|
-        page.replace_html 'for_suppliers', :partial => 'product_suppliers', :locals => {:product => product}
-        page.show "note"
-        page.visual_effect :highlight, "note"
-        page.visual_effect :fade, "note", :duration => 3
-      end
+      # render :update do |page|
+      #   page.replace_html 'for_suppliers', :partial => 'product_suppliers', :locals => {:product => product}
+      #   page.show "note"
+      #   page.visual_effect :highlight, "note"
+      #   page.visual_effect :fade, "note", :duration => 3
+      # end
+      redirect_to :back
     end
     
   end
@@ -110,40 +111,42 @@ class ProductsController < ApplicationController
   def add_uom
     product = Product.find(params[:id])
     product.add_uom(params[:option])
-    render :update do |page|
-      page.replace_html 'uom_listing', :partial => 'uom_listing', :locals => {:product => product}
-      page.replace_html 'uom_assignment', :partial => 'uom_assignment', :locals => {:product => product}
-      page.show "note"
-      page.visual_effect :highlight, "note"
-      page.visual_effect :fade, "note", :duration => 3
+    # render :update do |page|
+    #   page.replace_html 'uom_listing', :partial => 'uom_listing', :locals => {:product => product}
+    #   page.replace_html 'uom_assignment', :partial => 'uom_assignment', :locals => {:product => product}
+    #   page.show "note"
+    #   page.visual_effect :highlight, "note"
+    #   page.visual_effect :fade, "note", :duration => 3
       
-    end
+    # end
+    redirect_to :back
   end
   
   def remove_uom
     p = ProductUom.find(params[:id])
     product = p.product
     p.destroy
-    render :update do |page|
-      page.replace_html 'uom_listing', :partial => 'uom_listing', :locals => {:product => product}
-      page.replace_html 'uom_assignment', :partial => 'uom_assignment', :locals => {:product => product}
-      page.show "note"
-      page.visual_effect :highlight, "note"
-      page.visual_effect :fade, "note", :duration => 3
-    end
+    # render :update do |page|
+    #   page.replace_html 'uom_listing', :partial => 'uom_listing', :locals => {:product => product}
+    #   page.replace_html 'uom_assignment', :partial => 'uom_assignment', :locals => {:product => product}
+    #   page.show "note"
+    #   page.visual_effect :highlight, "note"
+    #   page.visual_effect :fade, "note", :duration => 3
+    # end
+    redirect_to :back
   end
   
   def add_location
     product = Product.find(params[:id])
     product.add_location(params[:option])
-    render :update do |page|
-      page.replace_html 'store', :partial => 'locations', :locals => {:product => product}
-      page.show "note"
-      page.visual_effect :highlight, "note"
-      page.visual_effect :fade, "note", :duration => 3
+    # render :update do |page|
+    #   page.replace_html 'store', :partial => 'locations', :locals => {:product => product}
+    #   page.show "note"
+    #   page.visual_effect :highlight, "note"
+    #   page.visual_effect :fade, "note", :duration => 3
       
-    end
-    
+    # end
+    redirect_to :back
   end
   
   def remove_location
@@ -161,13 +164,14 @@ class ProductsController < ApplicationController
      uom = ProductUom.find(uom_id)
      uom.update_attributes(content)  
     }
-    render :update do |page|
-       page.replace_html 'uom_listing', :partial => 'uom_listing', :locals => {:product => product}
-       page.replace_html 'uom_assignment', :partial => 'uom_assignment', :locals => {:product => product}
-       page.show "note"
-       page.visual_effect :highlight, "note"
-       page.visual_effect :fade, "note", :duration => 3
-    end
+    # render :update do |page|
+    #    page.replace_html 'uom_listing', :partial => 'uom_listing', :locals => {:product => product}
+    #    page.replace_html 'uom_assignment', :partial => 'uom_assignment', :locals => {:product => product}
+    #    page.show "note"
+    #    page.visual_effect :highlight, "note"
+    #    page.visual_effect :fade, "note", :duration => 3
+    # end
+    redirect_to :back
   end
   
 end

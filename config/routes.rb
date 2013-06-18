@@ -1,4 +1,7 @@
 CentralKitchen::Application.routes.draw do
+  resources :credit_notes
+
+
   resources :delivery_orders do
     member do
       get 'preview'

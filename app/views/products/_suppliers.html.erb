@@ -5,7 +5,7 @@
      </div>
    <br />
  
- <%= form_tag :url => "/products/#{@product.id.to_s}/add_location", remote: true do %>
+ <%= form_tag add_location_product_path(@product) do %>
    <table style="margin-left:10px;">
    	<tr>
    		<td>Location </td>
@@ -23,7 +23,7 @@
    </div>
    
   
-   <% form_tag :url => "/products/#{@product.id.to_s}/add_supplier", remote: true do %>
+   <% form_tag add_supplier_product_path(@product) do %>
    <table style="margin-left:10px;">
    	<tr>
    		<td>Outlet </td>

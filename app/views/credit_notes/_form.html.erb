@@ -1,0 +1,35 @@
+<%= form_for(@credit_note) do |f| %>
+  <% if @credit_note.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@credit_note.errors.count, "error") %> prohibited this credit_note from being saved:</h2>
+
+      <ul>
+      <% @credit_note.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :outlet_id %><br />
+    <%= f.select :outlet_id, Outlet.all.map {|o| [o.name, o.id]} %>
+  </div>
+  <div class="field">
+    <%= f.label :credit_date %><br />
+    <%= f.date_select :credit_date %>
+  </div>
+  <div class="field">
+    <%= f.label :remark %><br />
+    <%= f.text_area :remark %>
+  </div>
+  <% unless @credit_note.new_record? %>
+  <div class="field">
+    <%= f.label :posted %><br />
+    <%= f.check_box :posted %>
+  </div>
+  <% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

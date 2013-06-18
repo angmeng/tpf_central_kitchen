@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  credit_note_number: MyString
+  credit_date: 2013-06-14
+  remark: MyText
+  posted: false
+
+two:
+  credit_note_number: MyString
+  credit_date: 2013-06-14
+  remark: MyText
+  posted: false

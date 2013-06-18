@@ -1,0 +1,34 @@
+<% title "Credit Note" %>
+<br />
+<%= link_to 'New Credit note', new_credit_note_path %>
+<br /><br />
+
+<table class="list">
+  <thead>
+  <tr>
+    <th>Credit note number</th>
+    <th>Credit date</th>
+    <th align="left">Outlet</th>
+    <th>Posted</th>
+    <th>Action</th>
+  </tr>
+ </thead>
+   <tbody>
+<% @credit_notes.each do |credit_note| %>
+   <tr class="<%= cycle("odd", "even") %>">
+    <td align="center"><%= credit_note.credit_note_number %></td>
+    <td align="center"><%= credit_note.credit_date %></td>
+    <td><%= credit_note.outlet.name %></td>
+    <td align="center"><%= credit_note.posted %></td>
+    <td><%= link_to 'Show', credit_note %>
+    <%= link_to 'Edit', edit_credit_note_path(credit_note) %>
+    <%= link_to 'Destroy', credit_note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>
+
+<br />
+<br />
+<%= will_paginate @credit_notes %>
+

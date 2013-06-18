@@ -4,4 +4,12 @@ class CreditCard < ActiveRecord::Base
   belongs_to :card_category
   belongs_to :bank
 
+  before_create :generate_code
+
+  private
+
+  def generate_code
+  	self.credit_note_code = Setting.generate_credit_note_number
+  end
+
 end

@@ -43,6 +43,12 @@ class Setting < ActiveRecord::Base
     setting.delivery_order_last_number += 1
     setting.save
   end
+
+  def self.increment_of_credit_note
+    setting = Setting.first
+    setting.credit_note_last_number += 1
+    setting.save
+  end
   
   def forward_to(number_of_days)
     setting = Setting.first
@@ -63,6 +69,11 @@ class Setting < ActiveRecord::Base
   def self.generate_delivery_order_number
     setting = Setting.first
     setting.delivery_order_code + (setting.delivery_order_last_number + 1).to_s
+  end
+
+  def self.generate_credit_note_number
+    setting = Setting.first
+    setting.credit_note_code + (setting.credit_note_last_number + 1).to_s
   end
   
 end

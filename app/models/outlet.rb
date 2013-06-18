@@ -9,6 +9,7 @@ class Outlet < ActiveRecord::Base
   has_many :outlet_product_suppliers
   has_many :suppliers, :through => :outlet_product_suppliers
   has_many :products, :through => :outlet_product_suppliers
+  has_many :credit_notes
   
   validates_presence_of  :name, :code
   validates_uniqueness_of(:name, :code)

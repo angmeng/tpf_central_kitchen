@@ -1,4 +1,4 @@
-<%= render '/shared/product_header' %>
+<%#= render '/shared/product_header' %>
 
 
 <% title (t "titles.product") %>
@@ -63,49 +63,37 @@
     </p>
   </div>
 
-   
-   <div id="tabs">
-    <ul>
-        <li style="margin-left: 1px" id="tabHeaderActive"><a href="javascript:void(0)" onClick="toggleTab(1,3)">
-        	<span>
-        	 <% if @product.central_product %>
+<!--   <ul class="nav nav-tabs" id="myTab">
+	  <li class="active"><a href="#home">
+	  	 
+	  </a></li>
+	  <li><a href="#uom">UOM</a></li>
+	  <li><a href="#assignment">Assignment</a></li>
+	 
+  </ul> -->
+ 
+	<div class="tab-content">
+	  <div class="tab-pane active" id="home">
+	  	<h2><% if @product.central_product %>
 			   Location
 			 <% else %>
 			   Suppliers
 			 <% end %>
-		</span></a></li>
-        <li id="tabHeader2"><a href="javascript:void(0)" onClick="toggleTab(2,3)" ><span>UOM</span></a></li>
-		 <li id="tabHeader3"><a href="javascript:void(0)" onClick="toggleTab(3,3)" ><span>Assignment</span></a></li>
-
-    </ul>
-    </div>
-    <div id="tabscontent">
-        <div id="tabContent1" class="tabContent" style="display:yes;">
-            <br /><div>
-            	<%= render :partial => "suppliers"%>
-            </div>
-        </div>
-
-        <div id="tabContent2" class="tabContent" style="display:none;">
-            <br /><div>
-            	<div id="uom_listing">
-                  <%= render :partial => 'uom_listing', :locals => {:product => @product}%>
-                </div>
-            </div>
-        </div>
-		
-        <div id="tabContent3" class="tabContent" style="display:none;">
-            <br /><div>
-            	<div id="uom_assignment">
-            	  <%= render :partial => "uom_assignment", :locals => {:product => @product}%>
-				</div>
-            </div>
-        </div>
-
-     
-    </div><!--End of tabscontent-->
-
-
-
-
-  
+			</h2>
+	  	<%= render :partial => "suppliers"%>
+	  </div>
+	  <div class="tab-pane" id="uom">
+	  	<h2>UOM</h2>
+	  	<%= render :partial => 'uom_listing', :locals => {:product => @product}%>
+	  </div>
+	  <div class="tab-pane" id="assignment">
+	  	<h2>Assignment</h2>
+	  	<%= render :partial => "uom_assignment", :locals => {:product => @product}%>
+	  </div>
+  </div>
+ 
+ <script>
+//   $(function () {
+//     $('#myTab a:last').tab('show');
+//   })
+</script>

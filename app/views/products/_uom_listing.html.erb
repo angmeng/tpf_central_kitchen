@@ -1,4 +1,4 @@
-<%= form_tag(:url => "/products/#{product.id.to_s}/update_uom", remote: true) do %>
+<%= form_tag(update_uom_product_path(product)) do %>
 <table class="list" style="margin-left:10px;width:80%">
 	<thead>
 		<tr>
@@ -23,19 +23,19 @@
 			<td><%= text_field_tag "uom["+product_uom.id.to_s+"][selling_price_a]", product_uom.selling_price_a, :size => 10 %></td>
 			<td><%= text_field_tag "uom["+product_uom.id.to_s+"][selling_price_b]", product_uom.selling_price_b, :size => 10 %></td>
 			<td><%= text_field_tag "uom["+product_uom.id.to_s+"][cost]", product_uom.cost, :size => 10 %></td>
-			<td><%= link_to image_tag("delete.png", :title => "Delete"), :url => "/products/#{product_uom.id.to_s}/remove_uom", remote: true, :method => :get, :confirm => "Are you sure you want to remove this item ?" %></td>  
+			<td><%= link_to image_tag("delete.png", :title => "Delete"), remove_uom_product_path(product_uom), :confirm => "Are you sure you want to remove this item ?" %></td>  
 			
 		</tr>
 		<% end %>
 		<tr>
-			<td colspan="6" align="center"><br />  <%= submit_tag(" Update All UOM ")  %></td></td>
+			<td colspan="7" align="center"><br />  <%= submit_tag(" Update All UOM ")  %></td></td>
 		</tr>
 	</tbody>
 </table>
 	<% end %>
 <br />
 <br />
-<% form_tag :url => "/products/#{product.id.to_s}/add_uom", remote: true do%>
+<% form_tag add_uom_product_path(product) do%>
  <table style="margin-left:10px;">
  	<tr>
  		<th>Name</th>

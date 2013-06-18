@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130612135631) do
+ActiveRecord::Schema.define(:version => 20130614092710) do
 
   create_table "accessible_menus", :force => true do |t|
     t.string   "name",        :limit => 45
@@ -96,6 +96,16 @@ ActiveRecord::Schema.define(:version => 20130612135631) do
   add_index "credit_cards", ["card_category_id"], :name => "index_credit_cards_on_card_category_id"
   add_index "credit_cards", ["card_type_id"], :name => "index_credit_cards_on_card_type_id"
   add_index "credit_cards", ["reference_id"], :name => "index_credit_cards_on_reference_id"
+
+  create_table "credit_notes", :force => true do |t|
+    t.integer  "outlet_id"
+    t.string   "credit_note_number"
+    t.date     "credit_date"
+    t.text     "remark"
+    t.boolean  "posted"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "customer_payments", :force => true do |t|
     t.date     "payment_date"
@@ -625,6 +635,8 @@ ActiveRecord::Schema.define(:version => 20130612135631) do
     t.integer  "grn_last_number",                                 :default => 10000
     t.integer  "delivery_order_last_number",                      :default => 10000
     t.string   "delivery_order_code",                             :default => "DO"
+    t.string   "credit_note_code",                  :limit => 5,  :default => "CN"
+    t.integer  "credit_note_last_number",                         :default => 10000
   end
 
   create_table "stock_adjustments", :force => true do |t|
