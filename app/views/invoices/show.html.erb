@@ -12,7 +12,7 @@
 
 <% end %>
 
-<% title ("Invoice") %>
+<% @page_title =  ("Invoice") %>
 
 <br />
 <%= hidden_field_tag "delivery_order_id", @invoice.delivery_order.try(:id) %>

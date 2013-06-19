@@ -1,8 +1,8 @@
-<% title (t "titles.user") %>
+<% @page_title =  (t "titles.user") %>
 <p>
   <%= link_to (t "links.edit"), edit_user_path(@user) %> |
   <%=  link_to (t "links.change_password"), change_password_user_path(@user)%> |
-  <%= link_to (t "links.destroy"), @user, :confirm => 'Are you sure?', :method => :delete %> |
+  <% link_to (t "links.destroy"), @user, :confirm => 'Are you sure?', :method => :delete %> 
   <%= link_to (t "links.view_all"), users_path %>
 </p>
 <p>

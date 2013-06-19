@@ -1,5 +1,5 @@
 
-<% title (t "titles.user") %>
+<% @page_title =  (t "titles.user") %>
 <br />
 <% if is_admin? %>
 <p><%= link_to image_tag("new.png", :title => "New"), new_user_path %></p>
@@ -24,7 +24,7 @@
       <td align="center">
       <%= link_to image_tag("edit.png", :title => "Edit"), edit_user_path(user) %>
 	 
-      <%= link_to image_tag("delete.png", :title => "Delete"), user, :confirm => 'Are you sure?', :method => :delete %>
+      <% link_to image_tag("delete.png", :title => "Delete"), user, :confirm => 'Are you sure?', :method => :delete %>
 	  <%=  link_to image_tag("password.png", :title => "Change Password"), change_password_user_path(user)%>
 	  </td>
     </tr>

@@ -1,4 +1,5 @@
-<% title (t "titles.supplier") %>
+<% @page_title =  (t "titles.supplier") %>
+<br>
 <p> <%= link_to image_tag("new.png", :title => "New Outlet"), new_supplier_path %></p>
 
 <%= form_for @search do |f| %>

@@ -1,6 +1,7 @@
-<% title (t "menu.purchase_order") %>
-
-<%= link_to (t "links.new"), new_purchase_order_path %>
+<% @page_title =  (t "menu.purchase_order") %>
+<br>
+<%= link_to image_tag("new.png", :title => "New PO"), new_purchase_order_path %>
+<br><br>
 <table class="list">
   <thead>
   <tr>

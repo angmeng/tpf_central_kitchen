@@ -1,6 +1,6 @@
-<% title (t 'menu.company')  %>
+<% @page_title =  (t 'menu.company')  %>
 
-<%= link_to (t "titles.new"), new_company_path %>
+<% link_to (t "titles.new"), new_company_path %>
 <br /><br />
 <table class="list">
   <thead>
@@ -20,7 +20,7 @@
    
     <td align="center"><%= link_to image_tag("show.png", :title => "show"), company %>
     <%= link_to image_tag("edit.png", :title => "Edit"), edit_company_path(company) %>
-    <%= link_to image_tag("delete.png", :title => "Delete"), company, :confirm => 'Are you sure?', :method => :delete %></td>
+    <% link_to image_tag("delete.png", :title => "Delete"), company, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
  </tbody>

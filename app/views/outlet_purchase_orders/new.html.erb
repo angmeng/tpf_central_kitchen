@@ -1,5 +1,5 @@
 <br /><br />
-<% title "New PO" %>
+<% @page_title =  "New PO" %>
 <br />
 <%= form_for(@outlet_purchase_order, :html => { :multipart => true }) do |f| %>
    <% render "/shared/error_messages", :target => @outlet_purchase_order %>

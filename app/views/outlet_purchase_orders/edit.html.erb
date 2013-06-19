@@ -1,6 +1,6 @@
 
 <br /><br />
-<% title "Editing Oulet Purchase Order"%>
+<% @page_title =  "Editing Oulet Purchase Order"%>
 <% if is_outlet_staff? && @outlet_purchase_order.not_yet_sent? %>
     <%= link_to image_tag("show.png", :title => "Edit"), @outlet_purchase_order %> |
     <%= link_to image_tag("delete.png", :title => "Delete"), @outlet_purchase_order, :method => :delete, :confirm => "Are you sure you want to delete ?" %> |

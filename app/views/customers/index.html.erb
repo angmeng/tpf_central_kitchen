@@ -1,5 +1,5 @@
 <p><%= link_to (t "links.new"), new_customer_path %></p>
-<% title (t "titles.customer") %>
+<% @page_title =  (t "titles.customer") %>
 
 <%= form_for @search do |f| %>
 <table class="list">

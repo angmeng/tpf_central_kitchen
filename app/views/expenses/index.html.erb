@@ -1,5 +1,7 @@
-<% title (t "titles.expense") %>
-<p><%= link_to (t "links.new"), new_expense_path %></p>
+<% @page_title =  (t "titles.expense") %>
+<br>
+<p><%= link_to image_tag("new.png", :title => "New expense"), new_expense_path %></p>
+<br>
 <table class="list">
   <thead>
   <tr>

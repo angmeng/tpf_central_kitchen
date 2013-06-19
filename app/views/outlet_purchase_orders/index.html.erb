@@ -1,5 +1,5 @@
 
-<% title "Completed Outlet Purchase Order"%>
+<% @page_title =  "Completed Outlet Purchase Order"%>
 <br />
 <% unless is_super_admin? %>
   <%= link_to image_tag("new.png", :title => "New"), new_outlet_purchase_order_path %> |

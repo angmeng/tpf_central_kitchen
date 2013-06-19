@@ -1,4 +1,4 @@
-<% title (t "titles.edit") %>
+<% @page_title =  (t "titles.edit") %>
 
 <%= form_for @invoice do |f| %>
   <% render "/shared/error_messages", :target => @invoice %>
