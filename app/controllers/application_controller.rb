@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :store_location
 
   helper_method :is_admin?
+  helper_method :is_super_admin?
   helper_method :is_user?
   helper_method :is_dc?
   helper_method :is_store?
@@ -57,7 +58,7 @@ class ApplicationController < ActionController::Base
   
   
   def is_admin?
-    current_user.department_id > 0 rescue false
+    current_user.department_id > 0
   end
   
   def is_super_admin?

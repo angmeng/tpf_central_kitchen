@@ -1,29 +1,96 @@
+<% content_for :head do %>
+  <%= javascript_include_tag("smo") %>
+<% end %>
+
+<% title "Credit Note" %>
+
+<br>
 <div style="clear:both"></div>
-<div>
-<p>
-  <b>Credit note number:</b>
-  <%= @credit_note.credit_note_number %>
-</p>
+  <%= link_to image_tag("home.png", :title => "Back"), credit_notes_path %>
+  <% unless @credit_note.posted? %>
+    | <%= link_to image_tag("edit.png", :title => "Edit CN"), edit_credit_note_path(@credit_note) %>
+  <% end %>
+<br>
+<table style="width:60%;padding-top:25px;">
+    <tr>
+      <td style="font-weight:bolder;width:30%">Outlet:</td>
+      <td><%=h @credit_note.outlet.name %></td>
+    </tr>
 
-<p>
-  <b>Credit date:</b>
-  <%= @credit_note.credit_date %>
-</p>
-<p>
-  <b>Outlet:</b>
-  <%= @credit_note.outlet.name %>
-</p>
+    <tr>
+      <td style="font-weight:bolder;">Date:</td>
+      <td> <%=h @credit_note.credit_date %></td>
+    </tr>
 
-<p>
-  <b>Remark:</b>
-  <%= @credit_note.remark %>
-</p>
+    <tr>
+      <td style="font-weight:bolder;">CN number:</td>
+      <td> <%=h @credit_note.credit_note_number %></td>
+    </tr>
+    <tr>
+     <td style="font-weight:bolder;" valign="top">Posted:</td>
+      <td valign="top"> <%= @credit_note.posted %>  </td>
+    </tr>
 
-<p>
-  <b>Posted:</b>
-  <%= @credit_note.posted %>
-</p>
-</div>
+    <tr>
+      <td style="font-weight:bolder;">Remark:</td>
+      <td> <%=h @credit_note.remark %></td>
+    </tr>
 
-<%= link_to 'Edit', edit_credit_note_path(@credit_note) %> |
-<%= link_to 'Back', credit_notes_path %>
+</table>
+<br>
+
+<%= form_tag update_items_credit_note_path(@credit_note) do %>
+  <table class="list">
+    <thead>
+      <tr>
+        <th><!-- Select All <br /><input type="checkbox" name="checkall" onclick="checkUncheckAll(this);"/> --></th>
+        <th align="left">Code</th>
+        <th align="left">Product</th>
+        <th align="left">Description</th>
+        <th>UOM</th>
+        <th>Qty</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    <% @current_items.each do |c| %>
+    <tr class="<%= cycle("odd", "even") %>">
+        <td align="center"><%= link_to image_tag("delete.png", :title => "Delete", :size => "16x16"), remove_item_credit_note_path(c), :method => :delete, :confirm => "Are you sure ?" %></td>
+        <td><%= c.product.code %></td>
+        <td><%= c.product.name %></td>
+        <td><%= c.product.description %></td>
+        <td align="center"><%= c.product_uom.name rescue "Not Assigned" %></td>
+        <td align="center"><%= text_field_tag "item[#{c.id}]qty", c.quantity %></td>
+    </tr>
+    <% end %>
+          <tr>
+            <td colspan="5"></td>
+            <td align="center">
+              <% if @current_items.any? %>
+                <%= submit_tag "Update"  %>
+              <% end %>
+            </td>
+          </tr>
+
+     </tbody>
+  </table>
+
+<% end %>
+
+<br><br><hr>
+
+<%= form_tag add_item_credit_note_path(@credit_note) do  %>
+
+  <div id="credit_note_items">
+  <table>
+    <tr>
+      <td>Product :</td>
+      <td><%= autocomplete_field_tag "credit_note_item[product_name]", "", autocomplete_product_name_products_path, :size => 80, :placeholder => "Search by product name" %></td>
+      <td>Quantity:</td>
+      <td><%= text_field "credit_note_item", "quantity", :size => 8 %></td>
+      <td><%= submit_tag (t "invoice.add_product") %> </td>
+    </tr>
+  </table>
+ </div>
+ <br />
+<% end %>

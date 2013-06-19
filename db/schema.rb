@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130614092710) do
+ActiveRecord::Schema.define(:version => 20130619030937) do
 
   create_table "accessible_menus", :force => true do |t|
     t.string   "name",        :limit => 45
@@ -96,6 +96,22 @@ ActiveRecord::Schema.define(:version => 20130614092710) do
   add_index "credit_cards", ["card_category_id"], :name => "index_credit_cards_on_card_category_id"
   add_index "credit_cards", ["card_type_id"], :name => "index_credit_cards_on_card_type_id"
   add_index "credit_cards", ["reference_id"], :name => "index_credit_cards_on_reference_id"
+
+  create_table "credit_note_items", :force => true do |t|
+    t.integer  "credit_note_id",                                     :null => false
+    t.string   "invoice_number",        :limit => 20
+    t.string   "delivery_order_number", :limit => 20
+    t.string   "purchase_order_number", :limit => 20
+    t.integer  "product_id"
+    t.integer  "quantity",                            :default => 0
+    t.integer  "product_uom_id"
+    t.integer  "store_location_id"
+    t.datetime "created_at",                                         :null => false
+    t.datetime "updated_at",                                         :null => false
+  end
+
+  add_index "credit_note_items", ["credit_note_id"], :name => "index_credit_note_items_on_credit_note_id"
+  add_index "credit_note_items", ["product_id"], :name => "index_credit_note_items_on_product_id"
 
   create_table "credit_notes", :force => true do |t|
     t.integer  "outlet_id"

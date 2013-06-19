@@ -28,7 +28,7 @@ gem 'jquery-rails'
 # gem 'bootstrap-sass', '~> 2.3.2'
 
 
-gem 'rails3-jquery-autocomplete'
+gem 'rails3-jquery-autocomplete', '~> 1.0.11'
 gem 'paperclip', '~> 3.4.1'
 gem 'meta_search', '~> 1.1.3'
 gem 'prawn'

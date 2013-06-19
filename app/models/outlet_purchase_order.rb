@@ -160,8 +160,8 @@ class OutletPurchaseOrder < ActiveRecord::Base
   def add_order_items(items)
     name = items[:product_name]
     unless name.blank?
-      combine = name.split(":")
-      found_product = Product.find_by_code(combine[0])
+      combine = name.split("(")
+      found_product = Product.find_by_code(combine[0].strip)
       
       unless items[:quantity].blank? or items[:quantity].index(/[abcdefghijklmnopqrstuvwxyz]/) or found_product.nil?
         if item = outlet_purchase_order_items.find_by_product_id(found_product.id)

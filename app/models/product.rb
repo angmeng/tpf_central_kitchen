@@ -17,7 +17,7 @@ class Product < ActiveRecord::Base
   has_many :outlet_product_suppliers
   has_many :suppliers, :through => :outlet_product_suppliers
   has_many :outlets, :through => :outlet_product_suppliers
-  belongs_to :store_location  
+  belongs_to :store_location
   has_many :product_uoms, :order => "rate"
   belongs_to :invoice_uom, :class_name => 'ProductUom'
   belongs_to :report_uom, :class_name => 'ProductUom'
@@ -130,7 +130,7 @@ class Product < ActiveRecord::Base
   end
 
   def funky_method
-    "#{self.send("code")} - #{self.name}"
+    "#{self.send("code")}(#{self.name})"
   end
   
   def verify_for_destroy

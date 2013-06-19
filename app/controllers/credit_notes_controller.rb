@@ -15,6 +15,7 @@ class CreditNotesController < ApplicationController
   # GET /credit_notes/1.json
   def show
     @credit_note = CreditNote.find(params[:id])
+    @current_items = @credit_note.credit_note_items
 
     respond_to do |format|
       format.html # show.html.erb
@@ -42,6 +43,7 @@ class CreditNotesController < ApplicationController
   # POST /credit_notes.json
   def create
     @credit_note = CreditNote.new(params[:credit_note])
+    @credit_note.credit_note_number = Setting.generate_credit_note_number
 
     respond_to do |format|
       if @credit_note.save
@@ -52,6 +54,40 @@ class CreditNotesController < ApplicationController
         format.html { render action: "new" }
         format.json { render json: @credit_note.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def update_items
+    credit_note = CreditNote.find(params[:id])
+    params[:item] ||= []
+    credit_note.update_item_status(params[:item])
+    flash[:notice] = "Update completed"
+    redirect_to(credit_note)
+  end
+
+  def add_item
+    if is_admin?
+      credit_note = CreditNote.find(params[:id])
+      credit_note.add_order_items(params[:credit_note_item])
+      flash[:notice] = "Operation Completed"
+      redirect_to(credit_note)
+    else
+      flash[:error] = "You cannot access this area"
+      redirect_to(:action => 'index')
+    end
+  
+  end
+  
+  def remove_item
+    if is_admin?
+      credit_note_item = CreditNoteItem.find(params[:id])
+      credit_note      = credit_note_item.credit_note
+      credit_note_item.destroy
+      flash[:notice] = (t "flashes.successfully_removed")
+      redirect_to(credit_note)
+    else
+      flash[:error] = "You cannot access this area"
+      redirect_to(:action => 'index')
     end
   end
 

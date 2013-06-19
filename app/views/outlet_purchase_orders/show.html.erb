@@ -213,7 +213,7 @@
     
 	<td><%#= text_field_with_auto_complete "outlet_purchase_order_item", "product_name", {:size => 80},
            { :url => show_product_outlet_purchase_orders_path(:js), :method => :get, :with => "'search='+element.value" } %>
-            <%= autocomplete_field_tag "outlet_purchase_order_item[product_name]", "", autocomplete_product_name_products_path, :size => 80 %>
+            <%= autocomplete_field_tag "outlet_purchase_order_item[product_name]", "", autocomplete_product_name_products_path, :size => 80, :placeholder => "Search by product name"  %>
     	</td>
 	<td>Quantity:</td>
 	<td><%= text_field "outlet_purchase_order_item", "quantity", :size => 8 %></td>

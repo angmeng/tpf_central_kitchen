@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  credit_note_id: 1
+  invoice_number: MyString
+  delivery_order_number: MyString
+  purchase_order_number: MyString
+  product_id: 1
+  quantity: 1
+  product_uom_id: 1
+  store_location_id: 1
+
+two:
+  credit_note_id: 1
+  invoice_number: MyString
+  delivery_order_number: MyString
+  purchase_order_number: MyString
+  product_id: 1
+  quantity: 1
+  product_uom_id: 1
+  store_location_id: 1

@@ -1,7 +1,7 @@
 
 <% title "Completed Outlet Purchase Order"%>
 <br />
-<% unless is_admin? %>
+<% unless is_super_admin? %>
   <%= link_to image_tag("new.png", :title => "New"), new_outlet_purchase_order_path %> |
 <% end %>
   <%= link_to image_tag("pending.png", :title => "Pending Outlet PO"), home_url %>
