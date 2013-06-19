@@ -1,7 +1,10 @@
 class OutletPurchaseOrder < ActiveRecord::Base
   belongs_to :outlet
   belongs_to :outlet_staff
-  has_attached_file :import_pr_item #, :styles => { :medium => "300x300>", :thumb => "100x100>" }
+  has_attached_file :import_pr_item,
+      :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
+      :url => "/system/:attachment/:id/:style/:filename"
+      #, :styles => { :medium => "300x300>", :thumb => "100x100>" }
   has_many :purchase_orders
   has_one :invoice
   has_many :outlet_purchase_order_items, :dependent => :destroy
