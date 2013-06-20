@@ -174,7 +174,7 @@ class Engineer
         end if found_outlet_uom
 
         if supplier.blank? or supplier.nil? #or supplier.strip == "-"
-          Supplier.first || Supplier.create!(:name => "Default supplier", :code => "default_supplier")
+          s = Supplier.first || Supplier.create!(:name => "Default supplier", :code => "default_supplier")
         else
           s = Supplier.find_by_code(supplier)
           s = Supplier.create!(:name => supplier, :code => supplier) unless s
