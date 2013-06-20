@@ -46,9 +46,11 @@
         <th><!-- Select All <br /><input type="checkbox" name="checkall" onclick="checkUncheckAll(this);"/> --></th>
         <th align="left">Code</th>
         <th align="left">Product</th>
-        <th align="left">Description</th>
         <th>UOM</th>
         <th>Qty</th>
+        <th>Invoice No</th>
+        <th>PO No</th>
+        <th>DO No</th>
       </tr>
     </thead>
     <tbody>
@@ -58,18 +60,22 @@
         <td align="center"><%= link_to image_tag("delete.png", :title => "Delete", :size => "16x16"), remove_item_credit_note_path(c), :method => :delete, :confirm => "Are you sure ?" %></td>
         <td><%= c.product.code %></td>
         <td><%= c.product.name %></td>
-        <td><%= c.product.description %></td>
         <td align="center"><%= c.product_uom.name rescue "Not Assigned" %></td>
         <td align="center"><%= text_field_tag "item[#{c.id}]qty", c.quantity %></td>
+        <td align="center"><%= text_field_tag "item[#{c.id}]invoice_number", c.invoice_number %></td>
+        <td align="center"><%= text_field_tag "item[#{c.id}]po_number", c.purchase_order_number %></td>
+        <td align="center"><%= text_field_tag "item[#{c.id}]do_number", c.delivery_order_number %></td>
     </tr>
+
     <% end %>
           <tr>
-            <td colspan="5"></td>
+            
             <td align="center">
               <% if @current_items.any? %>
                 <%= submit_tag "Update"  %>
               <% end %>
             </td>
+            <td colspan="5"></td>
           </tr>
 
      </tbody>

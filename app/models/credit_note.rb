@@ -26,7 +26,8 @@ class CreditNote < ActiveRecord::Base
           
           item.product_uom_id = found_uom.id
           item.store_location = StoreLocation.first
-          item.quantity = items[:quantity]
+          item.quantity              = items[:quantity]
+          
           item.save!
         end
       end
@@ -37,6 +38,9 @@ class CreditNote < ActiveRecord::Base
     item.each do |item_id, content|
       cn_item = credit_note_items.find(item_id.to_i)
       cn_item.quantity = content[:qty]
+      cn_item.invoice_number        = content[:invoice_number]
+      cn_item.purchase_order_number = content[:po_number]
+      cn_item.delivery_order_number = content[:do_number]
       cn_item.save
     end
   end
