@@ -38,6 +38,7 @@ gem 'exception_notification', '~> 3.0.1'
 gem 'will_paginate', '~> 3.0'
 gem 'spreadsheet'
 
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

@@ -82,9 +82,19 @@ CentralKitchen::Application.configure do
     :authentication => :plain
   }
 
-  config.middleware.use ExceptionNotifier,
+  # config.middleware.use ExceptionNotifier,
+  #   :email_prefix => "[NIT POS] ",
+  #   :sender_address => %{"notifier" <angmeng@gmail.com>},
+  #   :exception_recipients => %w{angmeng@gmail.com}
+
+end
+
+CentralKitchen::Application.config.middleware.use ExceptionNotification::Rack,
+  :email => {
+    # :email_prefix => "[Whatever] ",
+    # :sender_address => %{"notifier" <notifier@example.com>},
+    # :exception_recipients => %w{exceptions@example.com}
     :email_prefix => "[NIT POS] ",
     :sender_address => %{"notifier" <angmeng@gmail.com>},
     :exception_recipients => %w{angmeng@gmail.com}
-
-end
+  }
