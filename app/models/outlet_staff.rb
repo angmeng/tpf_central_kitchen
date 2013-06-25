@@ -10,6 +10,10 @@ class OutletStaff < ActiveRecord::Base
   validates_presence_of :password, :on => :create
   validates_confirmation_of :password
   validates_length_of :password, :minimum => 6, :allow_blank => true
+
+  def department_id
+    0
+  end
   
   def self.authenticate(login_name, pass)
     user = find_by_login(login_name)
