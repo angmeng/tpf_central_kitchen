@@ -29,7 +29,7 @@ gem 'jquery-rails'
 
 
 gem 'rails3-jquery-autocomplete', '~> 1.0.11'
-gem 'paperclip', '~> 3.4.1'
+gem 'paperclip', '~> 3.4.2'
 gem 'meta_search', '~> 1.1.3'
 gem 'prawn'
 gem 'exception_notification', '~> 3.0.1'

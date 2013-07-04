@@ -35,6 +35,8 @@ CentralKitchen::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
+  #Paperclip.options[:command_path] = "/usr/local/bin/"
+
   config.action_mailer.default_url_options = { :host => 'erp.nit.com.my' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
