@@ -22,7 +22,7 @@
  <tr class="<%= cycle("odd", "even") %>">
     <td align="center"><%=h outlet_purchase_order.purchase_order_date.strftime("%d-%m-%Y") %></td>
     <td align="center"><%=h outlet_purchase_order.purchase_order_number %></td>
-    <td align="center"><%=h outlet_purchase_order.time_sent_to_central.strftime("%d-%m-%Y %H:%M") %></td>
+    <td align="center"><%=h outlet_purchase_order.time_sent_to_central.strftime("%d-%m-%Y %H:%M") rescue "-" %></td>
     <td align="center"><%=h outlet_purchase_order.remark %></td>
     <td align="center"><%=raw outlet_purchase_order.status %></td>
     <td align="center"><%= link_to image_tag("show.png", :title => "show"), outlet_purchase_order %>

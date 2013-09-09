@@ -39,7 +39,7 @@
 		   	 <%= order.purchase_order_date.strftime("%d-%m-%Y") %>
 		   </td>
 		   <td>
-		   	 <%= order.time_sent_to_central.strftime("%d-%m-%Y %H:%M") if order.po_sent_to_central_central_stage? %>
+		   	 <%= order.time_sent_to_central.strftime("%d-%m-%Y %H:%M") if order.po_sent_to_central_central_stage? rescue "-" %>
 		   </td>
 		    <td>
 		   	 <%= raw order.status %>

@@ -66,7 +66,7 @@
 
      <tr>
       <td style="font-weight:bolder;">Time sent to Central:</td>
-      <td> <%=h @outlet_purchase_order.time_sent_to_central.strftime("%d-%m-%Y %H:%M") if @outlet_purchase_order.po_sent_to_central_central_stage? %></td>
+      <td> <%=h @outlet_purchase_order.time_sent_to_central.strftime("%d-%m-%Y %H:%M") if @outlet_purchase_order.po_sent_to_central_central_stage? rescue "-" %></td>
     </tr>
 
     <tr>
