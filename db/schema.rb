@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130619030937) do
+ActiveRecord::Schema.define(:version => 20130909154901) do
 
   create_table "accessible_menus", :force => true do |t|
     t.string   "name",        :limit => 45
@@ -368,6 +368,7 @@ ActiveRecord::Schema.define(:version => 20130619030937) do
     t.boolean  "deleted",                                    :default => false
     t.boolean  "is_grouped",                                 :default => false
     t.integer  "master_purchase_order_id",                   :default => 0
+    t.datetime "time_sent_to_central"
   end
 
   add_index "outlet_purchase_orders", ["confirmed_by"], :name => "index_outlet_purchase_orders_on_confirmed_by"

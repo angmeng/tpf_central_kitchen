@@ -53,6 +53,7 @@ class OutletPurchaseOrdersController < ApplicationController
   # POST /outlet_purchase_orders.xml
   def create
     @outlet_purchase_order = OutletPurchaseOrder.new(params[:outlet_purchase_order])
+    @outlet_purchase_order.purchase_order_date = Date.today
     @outlet_purchase_order.generate_order_number
     respond_to do |format|
       if @outlet_purchase_order.save

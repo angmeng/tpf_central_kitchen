@@ -15,7 +15,8 @@
     		<tr>
     		<th align="left">Outlet</th>
 				<th align="left">Purchase Order No</th>
-				<th align="left">Date</th>
+				<th align="left">Creation Date</th>
+				<th align="left">Time sent to Central</th>
 				<th align="left">Status</th>
 				<% unless is_outlet_staff? %>
 				<th>Grouping</th>
@@ -36,6 +37,9 @@
 		   </td>
 		   <td>
 		   	 <%= order.purchase_order_date.strftime("%d-%m-%Y") %>
+		   </td>
+		   <td>
+		   	 <%= order.time_sent_to_central.strftime("%d-%m-%Y %H:%M") if order.po_sent_to_central_central_stage? %>
 		   </td>
 		    <td>
 		   	 <%= raw order.status %>
@@ -60,7 +64,7 @@
 		
 		<% end %>
 		<tr>
-     <td colspan="4"></td>
+     <td colspan="5"></td>
      <% unless is_outlet_staff? %>
      <td align="center">
      	   <% if count > 1 %>

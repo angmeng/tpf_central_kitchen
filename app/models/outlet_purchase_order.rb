@@ -84,6 +84,7 @@ class OutletPurchaseOrder < ActiveRecord::Base
   def send_to_central
     if status_id < ReferenceData::PO_SENT
       self.status_id = ReferenceData::PO_SENT
+      self.time_sent_to_central = Time.now
       save!
     end
   end

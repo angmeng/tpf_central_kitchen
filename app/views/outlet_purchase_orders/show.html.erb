@@ -60,8 +60,13 @@
     </tr>
 
     <tr>
-      <td style="font-weight:bolder;">Purchase order date:</td>
-      <td> <%=h @outlet_purchase_order.purchase_order_date %></td>
+      <td style="font-weight:bolder;">Creation date:</td>
+      <td> <%=h @outlet_purchase_order.purchase_order_date.strftime("%d-%m-%Y") %></td>
+    </tr>
+
+     <tr>
+      <td style="font-weight:bolder;">Time sent to Central:</td>
+      <td> <%=h @outlet_purchase_order.time_sent_to_central.strftime("%d-%m-%Y %H:%M") if @outlet_purchase_order.po_sent_to_central_central_stage? %></td>
     </tr>
 
     <tr>
