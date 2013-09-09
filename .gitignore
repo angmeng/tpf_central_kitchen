@@ -13,3 +13,5 @@ capybara-*.html
 /spec/tmp/*
 .rvmrc
 /config/database.yml
+.ruby-gemset
+.ruby-version
